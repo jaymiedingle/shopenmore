@@ -7,6 +7,9 @@ include('libs/meekrodb.2.3.class.php');
 //get site info from database
 $site_data = DB::queryFirstRow("SELECT * FROM tb_site_info");
 
+//get item categories
+$item_categories = DB::query("SELECT * FROM tb_item_category");
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +39,7 @@ $site_data = DB::queryFirstRow("SELECT * FROM tb_site_info");
     <link href="css/owl.theme.css" rel="stylesheet">
 
     <!-- theme stylesheet -->
-    <link href="css/style.default.css" rel="stylesheet" id="theme-stylesheet">
+    <link href="css/style.green.css" rel="stylesheet" id="theme-stylesheet">
 
     <!-- your stylesheet with modifications -->
     <link href="css/custom.css" rel="stylesheet">

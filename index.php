@@ -6,8 +6,6 @@
 
 <?php
 
-//get item categories
-$item_categories = DB::query("SELECT * FROM tb_item_category");
 
 $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 ");
 
@@ -19,34 +17,24 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
 
         <div id="content">
 
-            <div class="container">
-                <div class="col-md-12">
-                    <div id="main-slider">
-                        <div class="item">
-                            <img src="img/main-slider1.jpg" style="height:200px" alt="" class="img-responsive">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" style="height:200px" src="img/main-slider2.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" style="height:200px" src="img/main-slider3.jpg" alt="">
-                        </div>
-                        <div class="item">
-                            <img class="img-responsive" style="height:200px" src="img/main-slider4.jpg" alt="">
-                        </div>
-                    </div>
-                    <!-- /#main-slider -->
-                </div>
-            </div>
+            <!--banner slider-->
+            <?php include('includes/banner-slider.php'); ?>
+            <!--end banner slider-->
 
-            <!-- *** ADVANTAGES HOMEPAGE ***
+            <!-- *** CATEGORIES ***
  _________________________________________________________ -->
             <div id="advantages">
+                
+                <!-- <div class="box">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <h2>Categories</h2>
+                        </div>
+                    </div>
+                </div> -->
 
                 <div class="container">
                     <div class="same-height-row">
-
-
                         <!--loop category-->
                         <?php foreach($item_categories as $key=>$category){ ?>
                         <div class="col-sm-4">
@@ -55,7 +43,7 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
                                     <i class="fa fa-desktop"></i>
                                 </div> -->
 
-                                <h3><a href="#"><?php echo $category['name']; ?></a></h3>
+                                <h3><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></h3>
                                 <img style="height:140px;width:80%" src="<?php echo $category['image_url']; ?>">
                             </div>
                         </div>
@@ -71,9 +59,9 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
             </div>
             <!-- /#advantages -->
 
-            <!-- *** ADVANTAGES END *** -->
+            <!-- *** CATEGORIES END *** -->
 
-            <!-- *** HOT PRODUCT SLIDESHOW ***
+            <!-- *** LATEST ITEMS SLIDESHOW ***
  _________________________________________________________ -->
             <div id="hot">
 
@@ -129,7 +117,7 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
             </div>
             <!-- /#hot -->
 
-            <!-- *** HOT END *** -->
+            <!-- *** LATEST ITEMS END *** -->
 
   
 
