@@ -11,7 +11,13 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
 
 
 ?>
-
+<!--add active state on navigation current page via class-->
+<style type="text/css">
+.home > a{
+    color: #fff !important;
+    background-color: #6eb752;
+} 
+</style>
 
     <div id="all">
 
@@ -84,12 +90,12 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
                                     <div class="flipper">
                                         <div class="front">
                                             <a href="detail.html">
-                                                <img style="height:200px" src="<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
+                                                <img style="width:100%;height:200px" src="<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
                                             <a href="detail.html">
-                                                <img style="height:220px" src="<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
+                                                <img style="width:100%;height:220px" src="<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
@@ -99,7 +105,7 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.html"><?php echo $item['name']; ?></a></h3>
-                                    <p class="price"><?php echo $item['price']; ?></p>
+                                    <p class="price">&#8369;<?php echo $item['price']; ?>.00</p>
                                 </div>
                                 <!-- /.text -->
                             </div>

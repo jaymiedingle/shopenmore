@@ -313,7 +313,7 @@ h1 {
 }
 .ribbon .theribbon {
   position: relative;
-  width: 80px;
+  width: 105px;
   padding: 6px 20px 6px 20px;
   margin: 30px 10px 10px -71px;
   color: #fff;
@@ -600,7 +600,7 @@ h1 {
 }
 #content #productMain .goToDescription {
   margin-top: 20px;
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 #content #productMain .goToDescription a {
