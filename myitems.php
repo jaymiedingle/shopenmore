@@ -80,6 +80,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
                         <h1>My Items</h1>
+                        <a href="additem.php" class="btn btn-success pull-right">Add new</a>
 
                         <p class="lead">Your orders on one place.</p>
 
