@@ -118,7 +118,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                         <td><span class="label label-<?php echo $item['tb_item_status.theme']; ?>"><?php echo $item['tb_item_status.name']; ?></span>
                                         </td>
                                         <td>
-                                            <a href="customer-order.html" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                             <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
