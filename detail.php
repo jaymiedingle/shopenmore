@@ -6,7 +6,7 @@
 
 <?php
 
- $get_item_id = isset($_GET['id']) ?  $_GET['id'] : 'No Item set';
+$get_item_id = isset($_GET['id']) ?  $_GET['id'] : false;
 
 $item = DB::queryFullColumns("SELECT * FROM tb_items 
            LEFT JOIN tb_users 
@@ -19,6 +19,11 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
 
   $item = $item[0];
+
+  if(empty($item) || $get_item_id == false){
+    echo '<script>window.location.href = "404.php";</script>';
+    exit;
+}
 
 
 

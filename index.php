@@ -89,22 +89,22 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
-                                            <a href="detail.html">
+                                            <a href="detail.php?id=<?php echo $item['id']; ?>">
                                                 <img style="width:100%;height:200px" src="<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
-                                            <a href="detail.html">
+                                            <a href="detail.php?id=<?php echo $item['id']; ?>">
                                                 <img style="width:100%;height:220px" src="<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible">
+                                <a href="detail.php?id=<?php echo $item['id']; ?>" class="invisible">
                                     <img src="img/product1.jpg" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html"><?php echo $item['name']; ?></a></h3>
+                                    <h3><a href="detail.php?id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h3>
                                     <p class="price">&#8369;<?php echo $item['price']; ?>.00</p>
                                 </div>
                                 <!-- /.text -->
