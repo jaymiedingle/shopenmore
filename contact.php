@@ -32,40 +32,36 @@
 
                 </div>
 
-                <div class="col-md-3">
-                    <!-- *** PAGES MENU ***
+                 <div class="col-md-3">
+                    <!-- *** MENUS AND FILTERS ***
  _________________________________________________________ -->
                     <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title">Pages</h3>
+                            <h3 class="panel-title">Categories</h3>
                         </div>
 
                         <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked">
+                            <ul class="nav nav-pills nav-stacked category-menu">
+                                <!--loop category-->
+                                 <?php foreach($item_categories as $key=>$category){ ?>
+                                 <?php
+                                    /*count items per category*/
+                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $category['id']);
+                                    $counter = DB::count();
+                                 ?>
                                 <li>
-                                    <a href="text.html">Text page</a>
+                                    <a href="category.php?id=<?php echo $category['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $category['name']; ?> </a>
                                 </li>
-                                <li>
-                                    <a href="contact.html">Contact page</a>
-                                </li>
-                                <li>
-                                    <a href="faq.html">FAQ</a>
-                                </li>
-
+                                <?php } ?>
+                                <!--end loop category-->
                             </ul>
 
                         </div>
                     </div>
 
-                    <!-- *** PAGES MENU END *** -->
+                    <!-- *** MENUS AND FILTERS END *** -->
 
-
-                    <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div>
                 </div>
 
                 <div class="col-md-9">
