@@ -6,7 +6,13 @@
 
 <?php
 
- $get_user_id = isset($_SESSION['userdata']) ?  $_SESSION['userdata']['id'] : 'No user set';
+if(!isset($_SESSION['userdata'])){
+  echo '<script>window.location.href = "404.php";</script>';
+    exit;
+}
+
+
+$profile = $_SESSION['userdata'];
 
 //get items of user
 $items = DB::queryFullColumns("SELECT * FROM tb_items 
@@ -16,7 +22,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
            ON tb_items.item_category_id = tb_item_category.id 
            LEFT JOIN tb_item_status
            ON tb_items.item_status_id = tb_item_status.id 
-           WHERE tb_users.id = %i ", $get_user_id );
+           WHERE tb_users.id = %i ", $profile['id'] );
 
 
 
@@ -25,8 +31,8 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
 ?>
 <!--add active state on navigation current page via class-->
 <style type="text/css">
-.category > a{
-    color: #fff !important;
+.profile > a{
+    color: #fff;
     background-color: #6eb752;
 } 
 </style>
@@ -45,36 +51,37 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                 </div>
 
                 
-                <div class="col-md-3">
-                    <!-- *** MENUS AND FILTERS ***
+                 <div class="col-md-3">
+                    <!-- *** CUSTOMER MENU ***
  _________________________________________________________ -->
                     <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title">Categories</h3>
+                            <h3 class="panel-title">My Account</h3>
                         </div>
 
                         <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked category-menu">
-                                <!--loop category-->
-                                 <?php foreach($item_categories as $key=>$category){ ?>
-                                 <?php
-                                    /*count items per category*/
-                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $category['id']);
-                                    $counter = DB::count();
-                                 ?>
+
+                            <ul class="nav nav-pills nav-stacked">
                                 <li>
-                                    <a href="category.php?id=<?php echo $category['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $category['name']; ?> </a>
+                                    <a href="profile.php"><i class="fa fa-user"></i> <?php echo ucwords($_SESSION['userdata']['fname']); ?>'s Profile</a>
                                 </li>
-                                <?php } ?>
-                                <!--end loop category-->
+                                <li class="active">
+                                    <a href="myitems.php"><i class="fa fa-list"></i> My items</a>
+                                </li>
+                                <li>
+                                    <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
+                                </li>
+                                <li>
+                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
+                                </li>
                             </ul>
-
                         </div>
+
                     </div>
+                    <!-- /.col-md-3 -->
 
-                    <!-- *** MENUS AND FILTERS END *** -->
-
+                    <!-- *** CUSTOMER MENU END *** -->
                 </div>
 
                 <div class="col-md-9" id="customer-orders">
@@ -112,7 +119,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                         </td>
                                         <td>
                                             <a href="customer-order.html" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="customer-order.html" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>

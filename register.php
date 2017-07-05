@@ -137,12 +137,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="text" class="form-control" id="password" name="password" required>
+                                <input type="password" class="form-control" id="password" name="password" required>
                             </div>
 
                             <div class="form-group">
                                 <label for="password">Confirm Password</label>
-                                <input type="text" class="form-control" id="confirm_password" name="confirm_password" required>
+                                <input type="password" class="form-control" id="confirm_password" name="confirm_password" required>
                             </div>
 
 

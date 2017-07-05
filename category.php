@@ -19,7 +19,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " .
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .category > a{
-    color: #fff !important;
+    color: #fff;
     background-color: #6eb752;
 } 
 </style>
@@ -50,14 +50,14 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " .
                         <div class="panel-body">
                             <ul class="nav nav-pills nav-stacked category-menu">
                                 <!--loop category-->
-                                 <?php foreach($item_categories as $key=>$category){ ?>
+                                 <?php foreach($item_categories as $key=>$cat){ ?>
                                  <?php
                                     /*count items per category*/
-                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $category['id']);
+                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $cat['id']);
                                     $counter = DB::count();
                                  ?>
                                 <li>
-                                    <a href="category.php?id=<?php echo $category['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $category['name']; ?> </a>
+                                    <a href="category.php?id=<?php echo $cat['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $cat['name']; ?> </a>
                                 </li>
                                 <?php } ?>
                                 <!--end loop category-->

@@ -1,1 +1,14 @@
 /** Your theme modifications here **/
+
+.error-wrap{
+  color:red;
+  font-size:12px;
+  margin-bottom:4px;
+}
+
+#additem input[type=text], 
+#additem input[type=password], 
+#additem select {
+    font-size: 14px;
+    padding: 8px;
+}

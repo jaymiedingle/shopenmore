@@ -14,7 +14,7 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .home > a{
-    color: #fff !important;
+    color: #fff;
     background-color: #6eb752;
 } 
 </style>

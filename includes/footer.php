@@ -124,11 +124,11 @@
         <div id="copyright">
             <div class="container">
                 <div class="col-md-6">
-                    <p class="pull-left">© 2015 Your name goes here.</p>
+                    <p class="pull-left">© <?php echo date('Y'); ?> <?php echo $site_data['title']; ?></p>
 
                 </div>
                 <div class="col-md-6">
-                    <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
+                    <p class="pull-right">Powered by <a href="https://www.linkedin.com/in/jaymie-dingle-946aa3111/" target="_blank">Jaymie Dingle</a>
                          <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
                     </p>
                 </div>

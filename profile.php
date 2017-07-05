@@ -11,7 +11,10 @@ if(!isset($_SESSION['userdata'])){
   exit;
 }
 
+
+
 $profile = $_SESSION['userdata'];
+
 
 // Check if addstuff form was submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -24,7 +27,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $filetype = $_FILES["files"]["type"];
         $filesize = $_FILES["files"]["size"];
 
-        $upload_dir = 'admin/uploads/items/';
+        $upload_dir = 'admin/uploads/users/';
     
         // Verify file extension
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
@@ -42,36 +45,35 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           $image_url = $upload_dir.$unique_filename;
         } 
     } else {
-        $image_url = '';
+        $image_url = $profile['image_url'];
     }
 
 
 
      /*step 2 gather form data to be saved in database*/
       /*predefined value for registration form*/
-      $user_id = $_SESSION['userdata']['id']; //user role id for members
+      
       $is_active = 1; //flag for active users
 
       $data = array(
-          'name' => $_POST['name'],
-          'price' => $_POST['price'],
-          'item_category_id' => $_POST['item_category_id'],
-          'item_status_id' => $_POST['item_status_id'],
-          'description' => $_POST['description'],
+          'contact' => $_POST['contact'],
+          'password' => ($_POST['password'] != "") ? md5($_POST['password']) : $profile['password'],
           'image_url' => $image_url,
-          'user_id' => $user_id,
-          'is_active' => $is_active,
         );
 
       //insert data in database
-     $inserted = DB::insert('tb_items',$data);
+     $updated = DB::update('tb_users',$data, "id=%s", $profile['id']);
 
-     if($inserted){
-        echo '<script>window.location.href = "myitems.php";</script>';
+     if($updated){
+        /*reset session data*/
+        $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE id=%s", $profile['id']);
+        $_SESSION['userdata'] = $userdata;
+        $profile = $_SESSION['userdata'];
+
+        echo '<script>window.location.href = "profile.php";</script>';
      }
+
 }
-
-
 ?>
 <!--add active state on navigation current page via class-->
 <style type="text/css">
@@ -80,7 +82,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     background-color: #6eb752;
 } 
 </style>
-
 
     <div id="all">
 
@@ -91,12 +92,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li>My Account</li>
                     </ul>
                 </div>
 
                 
-                <div class="col-md-3">
+                 <div class="col-md-3">
                     <!-- *** CUSTOMER MENU ***
  _________________________________________________________ -->
                     <div class="panel panel-default sidebar-menu">
@@ -108,13 +109,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <div class="panel-body">
 
                             <ul class="nav nav-pills nav-stacked">
-                                <li>
+                                <li class="active">
                                     <a href="profile.php"><i class="fa fa-user"></i> <?php echo ucwords($profile['fname']); ?>'s Profile</a>
                                 </li>
                                 <li>
                                     <a href="myitems.php"><i class="fa fa-list"></i> My items</a>
                                 </li>
-                                <li class="active">
+                                <li>
                                     <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
                                 </li>
                                 <li>
@@ -129,69 +130,76 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <!-- *** CUSTOMER MENU END *** -->
                 </div>
 
-                <div class="col-md-9">
+                <div class="col-md-9" id="customer-orders">
                     <div class="box">
-                        <h1>Add Item</h1>
-                        <p class="lead">Add items to your list of stuff.</p>
-
+                        <form id="profile-form" name="profile-form" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h1><?php echo ucwords($profile['fname']); ?>'s Profile</h1>
+                                <p class="lead">
+                                    <?php echo ucwords($profile['fname']); ?> <?php echo ucwords($profile['lname']); ?>
+                                    &nbsp;
+                                    <small class="btn btn-danger btn-small" style="font-size:11px;font-style:italic">
+                                        <i class="fa fa-envelope"></i> 
+                                        <?php echo $profile['email']; ?>
+                                    </small>
+                                </p>
+                                
+                            </div> 
+                            <div class="col-md-4">
+                                <?php if(isset($profile['image_url']) && isset($profile['image_url'])){ ?>
+                                <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="<?php echo $_SESSION['userdata']['image_url']; ?>"><br />
+                                <?php }else{ ?>
+                                <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="images/default.png"><br />
+                                <?php } ?>
+                                <input type="file" id="files" name="files" class="btn btn-secondary" style="font-size:11px;" value="Change Profile" />
+                            </div>
+                        </div>
+                        
 
                         <hr>
 
-                        <form name="additem" id="additem" enctype="multipart/form-data" method="POST">
-
+                        <h3>Update Profile</h3>
+                            <span class="error-wrap password-error-wrap"></span>
                             <div class="row">
+
                                 <div class="col-sm-6">
-                                    <img id="image" style="width:100%;height:50%" class="img-thumbnail form-thumbnail"  src="images/thumbnail-default.png"><br />
-                                    <input type="file" id="files" name="files" class="btn btn-secondary" style="font-size:11px;" value="Change Profile" />
+                                    <div class="form-group">
+                                        <label for="password">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password">
+                                    </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
-                                      <label for="name">Item name</label>
-                                      <input type="text" name="name" class="form-control" placeholder="Item name" required>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="lname">Price</label>
-                                      <input type="text" name="price" class="form-control"  placeholder="0.00" required>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="fname">Status</label>
-                                      <select name="item_status_id" style="width:100%" required>
-                                          <option value="">--select--</option>
-                                          <?php 
-                                          $item_status = DB::query("SELECT * FROM tb_item_status");
-                                          foreach($item_status as $key=>$status){ 
-                                          ?>
-                                          <option value="<?php echo $status['id']; ?>"><?php echo $status['name']; ?></option>
-                                          <?php } ?>
-                                      </select>
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="email">Category</label>
-                                      <select name="item_category_id" style="width:100%" required>
-                                        <option value="">--select--</option>
-                                          <?php foreach($item_categories as $key=>$category){ ?>
-                                          <option value="<?php echo $category['id']; ?>"><?php echo $category['name']; ?></option>
-                                          <?php } ?>
-                                      </select>
-                                    </div>
-                                    
-
-                                    <div class="form-group">
-                                      <label for="fname">Description</label>
-                                      <textarea name="description" style="width:100%"></textarea>
-                                    </div>
-                                    
-                                    <div style="float:right;margin:10% 0">
-                                      <input type="submit" class="btn btn-primary" name="btn-register" value="Add Item">&nbsp;
-                                      <a href="mystuff.php" class="btn btn-danger pull-right" >Cancel</a>
+                                        <label for="password">Confirm Password</label>
+                                        <input type="password" class="form-control" id="confirm_password" name="confirm_password">
                                     </div>
                                 </div>
                             </div>
                             <!-- /.row -->
-                            
+
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="contact">Contact</label>
+                                        <input type="text" class="form-control" id="contact" value="<?php echo $profile['contact']; ?>" name="contact" required>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <!-- /.row -->
+
+                            <div class="col-sm-12 text-center">
+                                <input class="btn btn-primary" type="submit" name="update" value="Update Profile">
+                            </div>
                         </form>
+
+                        <hr>
+
+
                     </div>
                 </div>
+                <!-- /.col-md-9 -->
 
 
             </div>
