@@ -4,13 +4,6 @@
 
 <?php include('includes/nav-bar.php'); ?>
 
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.category > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-</style>
 
     <div id="all">
 

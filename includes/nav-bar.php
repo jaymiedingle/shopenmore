@@ -59,8 +59,8 @@
                     <a href="faq.php">FAQ</a>
                    </li>
 
-                   <li class="contactus">
-                    <a href="contactus.php">Contact us</a>
+                   <li class="contact">
+                    <a href="contact.php">Contact us</a>
                    </li>
 
                 </ul>
