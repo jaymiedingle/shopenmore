@@ -7,13 +7,11 @@
                         <h4>Pages</h4>
 
                         <ul>
-                            <li><a href="text.html">About us</a>
+                            <li><a href="text.html">Home</a>
                             </li>
-                            <li><a href="text.html">Terms and conditions</a>
+                            <li><a href="faq.php">FAQ</a>
                             </li>
-                            <li><a href="faq.html">FAQ</a>
-                            </li>
-                            <li><a href="contact.html">Contact us</a>
+                            <li><a href="contact.php">Contact us</a>
                             </li>
                         </ul>
 
@@ -24,7 +22,7 @@
                         <ul>
                             <li><a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                             </li>
-                            <li><a href="register.html">Regiter</a>
+                            <li><a href="register.php">Regiter</a>
                             </li>
                         </ul>
 
@@ -35,30 +33,18 @@
 
                     <div class="col-md-3 col-sm-6">
 
-                        <h4>Top categories</h4>
+                        <h4>Categories</h4>
 
-                        <h5>Men</h5>
 
                         <ul>
-                            <li><a href="category.html">T-shirts</a>
+                            <!--loop category-->
+                            <?php foreach($item_categories as $key=>$category){ ?>
+                            <li><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a>
                             </li>
-                            <li><a href="category.html">Shirts</a>
-                            </li>
-                            <li><a href="category.html">Accessories</a>
-                            </li>
+                            <?php } ?>
                         </ul>
 
-                        <h5>Ladies</h5>
-                        <ul>
-                            <li><a href="category.html">T-shirts</a>
-                            </li>
-                            <li><a href="category.html">Skirts</a>
-                            </li>
-                            <li><a href="category.html">Pants</a>
-                            </li>
-                            <li><a href="category.html">Accessories</a>
-                            </li>
-                        </ul>
+
 
                         <hr class="hidden-md hidden-lg">
 
@@ -69,16 +55,15 @@
 
                         <h4>Where to find us</h4>
 
-                        <p><strong>Obaju Ltd.</strong>
-                            <br>13/25 New Avenue
-                            <br>New Heaven
-                            <br>45Y 73J
-                            <br>England
+                        <p><strong>ICCT Binangonan Campus</strong>
+                            <br>National Rd
+                            <br>1940
+                            <br>Binagonan, Rizal
                             <br>
-                            <strong>Great Britain</strong>
+                            <strong>Philippines</strong>
                         </p>
 
-                        <a href="contact.html">Go to contact page</a>
+                        <a href="contact.php">Go to contact page</a>
 
                         <hr class="hidden-md hidden-lg">
 
@@ -90,9 +75,6 @@
                     <div class="col-md-3 col-sm-6">
 
                         <h4>Get the news</h4>
-
-                        <p class="text-muted">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
-
                         <form>
                             <div class="input-group">
 

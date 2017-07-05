@@ -64,7 +64,7 @@
                         <h1>Add Item</h1>
                         <p class="lead">Add items to your list of stuff.</p>
 
-                        <h3>Change password</h3>
+                        <!-- <h3>Change password</h3>
 
                         <form>
                             <div class="row">
@@ -96,7 +96,7 @@
                             </div>
                         </form>
 
-                        <hr>
+                        <hr> -->
 
                         <h3>Personal details</h3>
                         <form>
