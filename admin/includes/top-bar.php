@@ -2,24 +2,22 @@
  _________________________________________________________ -->
     <div id="top">
         <div class="container">
-            <div class="col-md-6 offer" data-animate="fadeInDown" style="margin-top:12px">
-                <?php if(!isset($_SESSION['userdata'])) { ?>
-                <a href="register.php" class="btn btn-success btn-sm" data-animate-hover="shake">Start selling your stuff</a>
-                <?php }else{ ?>
-                Welcome back,&nbsp; <?php echo $_SESSION['userdata']['fname']; ?>
-                <?php } ?>
+            <div class="col-md-6 offer" data-animate="fadeInDown">
+                <a class="home" href="index.php" data-animate-hover="bounce" style="color:#669999;font-family:Garamond, Georgia, serif;font-size: 34px;">
+                    <?php echo $site_data['title']; ?>
+                </a>
             </div>
             <div class="col-md-6" data-animate="fadeInDown">
                 <ul class="menu">
                     
-                    <?php if(isset($_SESSION['userdata'])) { ?>
+                    <?php if(isset($_SESSION['admindata'])) { ?>
 
                     <li>
                         <a href="myitems.php">My Profile</a>
                     </li>
                     <li>
                         <a href="logout.php">Logout</a>&nbsp;&nbsp;
-                        <img style="width:45px;height: 45px;border-radius:50%" src="../<?php echo $_SESSION['userdata']['image_url']; ?>">
+                        <img style="width:45px;height: 45px;border-radius:50%" src="../<?php echo $_SESSION['admindata']['image_url']; ?>">
                     </li>
 
 

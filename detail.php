@@ -101,7 +101,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                     <div class="row" id="productMain">
                         <div class="col-sm-6">
                             <div id="mainImage">
-                                <img src="<?php echo $item['tb_items.image_url'];?>" alt="" style="width:100%;height:440px" class="img-responsive">
+                                <img src="admin/uploads/items/<?php echo $item['tb_items.image_url'];?>" alt="" style="width:100%;height:440px" class="img-responsive">
                             </div>
 
                             <div class="ribbon new">

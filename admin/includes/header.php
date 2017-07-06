@@ -3,6 +3,7 @@ session_start();
 unset($_SESSION['error']);
 
 include('../libs/meekrodb.2.3.class.php');
+include('../libs/common.php');
 
 
 //get site info from database
@@ -11,29 +12,7 @@ $site_data = DB::queryFirstRow("SELECT * FROM tb_site_info");
 //get item categories
 $item_categories = DB::query("SELECT * FROM tb_item_category");
 
-//login
-//get user credentials
-if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if(isset($_POST['login'])){
-
-      $email = $_POST['email'];
-      $password = md5($_POST['password']);
-
-      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
-
-      if($userdata){
-        $_SESSION['userdata'] = $userdata;
-        echo '<script>window.location.href = "index.php";</script>';
-      }else{
-        $_SESSION['error'] = "Invalid username and password combination";
-      }
-
-    }
-
-}
-
-include('includes/modal.php');
 ?>
 
 

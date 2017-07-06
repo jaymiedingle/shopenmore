@@ -87,12 +87,12 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " .
                                     <div class="flipper">
                                         <div class="front">
                                             <a href="detail.php?id=<?php echo $item['id']; ?>">
-                                                <img src="<?php echo $item['image_url']; ?>" alt="" style="width:100%;height:280px" class="img-responsive">
+                                                <img src="admin/uploads/items/<?php echo $item['image_url']; ?>" alt="" style="width:100%;height:280px" class="img-responsive">
                                             </a>
                                         </div>
                                         <div class="back">
                                             <a href="detail.php?id=<?php echo $item['id']; ?>">
-                                                <img src="<?php echo $item['image_url']; ?>" style="width:100%;height:300px" alt="" class="img-responsive">
+                                                <img src="admin/uploads/items/<?php echo $item['image_url']; ?>" style="width:100%;height:300px" alt="" class="img-responsive">
                                             </a>
                                         </div>
                                     </div>

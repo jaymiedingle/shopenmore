@@ -6,7 +6,7 @@
 <?php
 
 
-$profile = $_SESSION['userdata'];
+$profile = $_SESSION['admindata'];
 
 //get items of user
 $items = DB::queryFullColumns("SELECT * FROM tb_items 
@@ -33,13 +33,13 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
         <div id="content">
             <div class="container">
 
-                <div class="col-md-12">
+                <!-- <div class="col-md-12">
                     <ul class="breadcrumb" style="margin-top:10px">
-                        <li><a href="index.php">Home</a>
                         </li>
                         <li>Item List</li>
                     </ul>
-                </div>
+                </div> -->
+                <br>
 
                 
                  <div class="col-md-3">
@@ -78,7 +78,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
                         <h1>Item List</h1>
-                        <a href="additem.php" class="btn btn-success pull-right">Add new</a>
+                        <a href="additem.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
 
                         <p class="lead">Listing of all items in system</p>
 
