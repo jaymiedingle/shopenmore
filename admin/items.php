@@ -2,14 +2,8 @@
 
 <?php include('includes/top-bar.php'); ?>
 
-<?php include('includes/nav-bar.php'); ?>
 
 <?php
-
-if(!isset($_SESSION['userdata'])){
-  echo '<script>window.location.href = "404.php";</script>';
-    exit;
-}
 
 
 $profile = $_SESSION['userdata'];
@@ -22,16 +16,13 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
            ON tb_items.item_category_id = tb_item_category.id 
            LEFT JOIN tb_item_status
            ON tb_items.item_status_id = tb_item_status.id 
-           WHERE tb_users.id = %i ", $profile['id'] );
-
-
-
+           WHERE tb_users.is_active = %i ", true );
 
 
 ?>
 <!--add active state on navigation current page via class-->
 <style type="text/css">
-.profile > a{
+.home > a{
     color: #fff;
     background-color: #6eb752;
 } 
@@ -43,10 +34,10 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
             <div class="container">
 
                 <div class="col-md-12">
-                    <ul class="breadcrumb">
+                    <ul class="breadcrumb" style="margin-top:10px">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li>Item List</li>
                     </ul>
                 </div>
 
@@ -57,17 +48,17 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                     <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title">My Account</h3>
+                            <h3 class="panel-title">Admin Panel</h3>
                         </div>
 
                         <div class="panel-body">
 
                             <ul class="nav nav-pills nav-stacked">
-                                <li>
-                                    <a href="profile.php"><i class="fa fa-user"></i> <?php echo ucwords($_SESSION['userdata']['fname']); ?>'s Profile</a>
-                                </li>
                                 <li class="active">
-                                    <a href="myitems.php"><i class="fa fa-list"></i> My items</a>
+                                    <a href="index.php"><i class="fa fa-list"></i> Items</a>
+                                </li>
+                                <li>
+                                    <a href="users.php"><i class="fa fa-user"></i> Users</a>
                                 </li>
                                 <li>
                                     <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
@@ -86,10 +77,10 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
 
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
-                        <h1>My Items</h1>
+                        <h1>Item List</h1>
                         <a href="additem.php" class="btn btn-success pull-right">Add new</a>
 
-                        <p class="lead">Your orders on one place.</p>
+                        <p class="lead">Listing of all items in system</p>
 
                         <hr>
 
@@ -118,8 +109,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                         <td><span class="label label-<?php echo $item['tb_item_status.theme']; ?>"><?php echo $item['tb_item_status.name']; ?></span>
                                         </td>
                                         <td>
-                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-default btn-sm" alt="Edit">Activate</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -137,5 +127,5 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
         </div>
         <!-- /#content -->
     </div>
-    
- <?php include('includes/footer.php'); ?>
+
+<?php include('includes/footer.php'); ?>

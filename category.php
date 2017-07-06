@@ -105,7 +105,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " .
                                     <p class="price">&#8369;<?php echo $item['price']; ?>.00</p>
                                     <p class="buttons">
                                         <a href="detail.php?id=<?php echo $item['id']; ?>" class="btn btn-default">View detail</a>
-                                        <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                                        <!-- <a href="basket.html" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</a> -->
                                     </p>
                                 </div>
                                 <!-- /.text -->
