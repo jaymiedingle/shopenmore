@@ -1,5 +1,14 @@
 $(function(){
 
+  
+  $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+      $(".alert-dismissible").slideUp(500);
+  }); 
+
+
+  $(".slider").on('click', function(){
+    methods.activate_update(this);
+  });
 
   $("#files").change(function(){
     methods.img_preview(this);
@@ -33,5 +42,37 @@ var methods = {
 
       // read the image file as a data URL.
       reader.readAsDataURL(elem.files[0]);
+  },
+
+  activate_update: function(elem){
+
+    var this_elem = $(elem);
+    var checkbox = this_elem.closest('label').find('[type=checkbox]');
+
+    var data = {
+      table : checkbox.prop('class'),
+      id : checkbox.prop('alt'),
+      update_field : 'is_active',
+      update_value : (checkbox.prop('checked')) ? 0 : 1
+    }
+
+     $.ajax({
+        url: "custom_update.php",
+        type: "post",
+        data: data ,
+        success: function (response) {
+           $(".alert-dismissible").hide();     
+
+          $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+              $(".alert-dismissible").slideUp(500);
+          }); 
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           console.log(textStatus, errorThrown);
+        }
+
+
+    });
+
   }
 }

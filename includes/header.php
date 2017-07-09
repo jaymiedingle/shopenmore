@@ -3,7 +3,7 @@ session_start();
 unset($_SESSION['error']);
 
 include('libs/meekrodb.2.3.class.php');
-
+include('libs/common.php');
 
 //get site info from database
 $site_data = DB::queryFirstRow("SELECT * FROM tb_site_info");
@@ -23,9 +23,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
 
       if($userdata){
+        unset($_SESSION['userdata']);
         $_SESSION['userdata'] = $userdata;
         echo '<script>window.location.href = "index.php";</script>';
       }else{
+        unset($_SESSION['error']);
         $_SESSION['error'] = "Invalid username and password combination";
       }
 

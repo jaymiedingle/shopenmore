@@ -8,14 +8,15 @@
 
 $profile = $_SESSION['admindata'];
 
-//get items of user
-$items = DB::queryFullColumns("SELECT * FROM tb_items 
-           LEFT JOIN tb_users 
-           ON tb_items.user_id = tb_users.id 
-           LEFT JOIN tb_item_category 
-           ON tb_items.item_category_id = tb_item_category.id 
-           LEFT JOIN tb_item_status
-           ON tb_items.item_status_id = tb_item_status.id");
+//get users of user
+$users = DB::queryFullColumns("SELECT * FROM tb_users
+           LEFT JOIN tb_user_role 
+           ON tb_users.user_role_id = tb_user_role.id 
+           -- LEFT JOIN tb_item_category 
+           -- ON tb_users.item_category_id = tb_item_category.id 
+           -- LEFT JOIN tb_item_status
+           -- ON tb_users.item_status_id = tb_item_status.id 
+           WHERE tb_users.user_role_id > 1 ");
 
 
 ?>
@@ -38,22 +39,6 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                         <li>Item List</li>
                     </ul>
                 </div> -->
-
-                <!--alert display-->
-                <?php if(isset($_SESSION['error'])) { ?>}
-                <div class="container">
-                    <div class="col-md-12">
-                        <div class="alert alert-warning alert-dismissible" style="display:none" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <?php echo $_SESSION['error']; ?>
-                        </div>
-                    </div>
-                </div>
-                <?php } ?>
-                <!--end alert display-->
-
                 <br>
 
                 
@@ -69,13 +54,13 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                         <div class="panel-body">
 
                             <ul class="nav nav-pills nav-stacked">
-                                <li class="active">
+                                <li>
                                     <a href="index.php"><i class="fa fa-list"></i> Items</a>
                                 </li>
                                 <li>
                                     <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
                                 </li>
-                                <li>
+                                <li class="active">
                                     <a href="users.php"><i class="fa fa-user"></i> Users</a>
                                 </li>
                                 
@@ -94,11 +79,17 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
 
+                        <div class="alert alert-warning alert-dismissible" style="display:none" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <strong>Item updated</strong> successfully!
+                        </div>
 
-                        <h1>Item List</h1>
+                        <h1>Users List</h1>
                         <a href="additem.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
 
-                        <p class="lead">Listing of all items in system</p>
+                        <p class="lead">Listing of all users in system</p>
 
                         <hr>
 
@@ -107,32 +98,40 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Item name</th>
-                                        <th>Price</th>
-                                        <th>Owner</th>
-                                        <th>Status</th>
+                                        <th>Role</th>
+                                        <th>Email</th>
+                                        <th>Name</th>
                                         <th>Activate</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    <?php foreach($items as $key=>$item) { ?>
+                                    <?php foreach($users as $key=>$user) { ?>
                                     <tr>
                                         <th><?php echo ($key + 1); ?></th>
                                         <td>
-                                            <a href="detail.php?id=<?php echo $item['tb_items.id']; ?>">
-                                                <?php echo $item['tb_items.name']; ?>
-                                            </a>
-                                        </td>
-                                        <td>&#8369;<?php echo $item['tb_items.price']; ?>.00</td>
-                                        <td><?php echo ucwords($item['tb_users.fname']); ?> <?php echo ucwords($item['tb_users.lname']); ?></td>
-                                        <td><span class="label label-<?php echo $item['tb_item_status.theme']; ?>"><?php echo $item['tb_item_status.name']; ?></span>
+                                            <span class="label label-<?php echo $user['tb_user_role.theme']; ?>">
+                                                <?php echo ucwords($user['tb_user_role.name']); ?>
+                                            </span>
                                         </td>
                                         <td>
+                                            <a href="detail.php?id=<?php echo $user['tb_users.id']; ?>">
+                                                <?php echo $user['tb_users.email']; ?>
+                                            </a>
+                                        </td>
+                                        <td><?php echo ucwords($user['tb_users.fname']); ?> <?php echo ucwords($user['tb_users.lname']); ?></td>
+                                       
+                                        <td>
+                                            <!-- <div class="btn-group" id="status" data-toggle="buttons">
+                                                <label class="btn btn-default btn-on btn-xs active">
+                                                <input type="radio" value="1" name="is_active" checked="checked">Yes</label>
+                                                <label class="btn btn-default btn-off btn-xs ">
+                                                <input type="radio" value="0" name="is_active">No</label>
+                                            </div> -->
 
                                             <!-- Rounded switch -->
                                             <label class="switch">
-                                              <input class="tb_items" alt="<?php echo $item['tb_items.id']; ?>" type="checkbox" <?php echo ($item['tb_items.is_active'] ) ? 'checked' : ''; ?>>
+                                              <input class="tb_users" alt="<?php echo $user['tb_users.id']; ?>" type="checkbox" <?php echo ($user['tb_users.is_active'] ) ? 'checked' : ''; ?>>
                                               <div class="slider round"></div>
                                             </label>
 

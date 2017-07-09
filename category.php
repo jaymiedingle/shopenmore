@@ -11,7 +11,7 @@
 //get site info from database
 $category = DB::queryFirstRow("SELECT * FROM tb_item_category WHERE id=%s", $get_category_id);
 
-$category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " . $category['id']);
+$category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id = " . $category['id']);
 
 
 
@@ -19,8 +19,12 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " .
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .category > a{
-    color: #fff;
+    color: #fff !important;
     background-color: #6eb752;
+} 
+.category > a:hover, .category > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
 } 
 </style>
 
@@ -53,7 +57,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE item_category_id = " .
                                  <?php foreach($item_categories as $key=>$cat){ ?>
                                  <?php
                                     /*count items per category*/
-                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $cat['id']);
+                                    DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id=%s", $cat['id']);
                                     $counter = DB::count();
                                  ?>
                                 <li>

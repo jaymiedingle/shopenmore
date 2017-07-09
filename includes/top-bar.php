@@ -2,7 +2,7 @@
  _________________________________________________________ -->
     <div id="top">
         <div class="container">
-            <div class="col-md-6 offer" data-animate="fadeInDown" style="margin-top:12px">
+            <div class="col-md-6 offer" data-animate="fadeInDown" style="margin:12px 0">
                 <?php if(!isset($_SESSION['userdata'])) { ?>
                 <a href="register.php" class="btn btn-success btn-sm" data-animate-hover="shake">Start selling your stuff</a>
                 <?php }else{ ?>
@@ -22,7 +22,7 @@
                     </li>
                     <li>
                         <a href="logout.php">Logout</a>&nbsp;&nbsp;
-                        <img style="width:45px;height: 45px;border-radius:50%" src="<?php echo $_SESSION['userdata']['image_url']; ?>">
+                        <img style="width:45px;height: 45px;border-radius:50%" src="admin/uploads/users/<?php echo $_SESSION['userdata']['image_url']; ?>">
                     </li>
 
 

@@ -14,14 +14,33 @@ $latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 "
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .home > a{
-    color: #fff;
+    color: #fff !important;
     background-color: #6eb752;
+} 
+.home > a:hover, .home > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
 } 
 </style>
 
     <div id="all">
 
         <div id="content">
+
+            <!--alert display-->
+            <?php if(isset($_SESSION['error'])) { ?>}
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="alert alert-warning alert-dismissible" style="display:none" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <?php echo $_SESSION['error']; ?>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
+            <!--end alert display-->
 
             <!--banner slider-->
             <?php include('includes/banner-slider.php'); ?>

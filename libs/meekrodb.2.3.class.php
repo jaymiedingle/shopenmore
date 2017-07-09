@@ -19,7 +19,7 @@
 
 class DB {
   // initial connection
-  public static $dbName = 'db_icct_bazaar';
+  public static $dbName = 'db_shopenmore';
   public static $user = 'root';
   public static $password = '';
   public static $host = 'localhost';

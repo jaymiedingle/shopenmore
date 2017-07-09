@@ -16,6 +16,10 @@
     color: #fff !important;
     background-color: #6eb752;
 } 
+.faq > a:hover, .faq > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
+} 
 </style>
 
     <div id="all">

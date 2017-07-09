@@ -32,8 +32,12 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .profile > a{
-    color: #fff;
+    color: #fff !important;
     background-color: #6eb752;
+} 
+.profile > a:hover, .profile > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
 } 
 </style>
 
@@ -87,7 +91,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
                         <h1>My Items</h1>
-                        <a href="additem.php" class="btn btn-success pull-right">Add new</a>
+                        <a href="additem.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
 
                         <p class="lead">Your orders on one place.</p>
 
@@ -101,6 +105,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                         <th>Item name</th>
                                         <th>Price</th>
                                         <th>Status</th>
+                                        <th>Active</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -116,6 +121,11 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                         </td>
                                         <td>&#8369;<?php echo $item['tb_items.price']; ?>.00</td>
                                         <td><span class="label label-<?php echo $item['tb_item_status.theme']; ?>"><?php echo $item['tb_item_status.name']; ?></span>
+                                        </td>
+                                        <td>
+                                            <span class="label label-<?php echo ($item['tb_items.is_active'] ) ? 'primary' : 'default'; ?>">
+                                            <?php echo ($item['tb_items.is_active'] ) ? 'Active' : 'Pending'; ?>
+                                            </span>
                                         </td>
                                         <td>
                                             <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>

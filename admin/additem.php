@@ -21,8 +21,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $upload_dir = 'uploads/items/';
     $image_url = Common::file_upload($_FILES["files"], $upload_dir);
 
-
-
      /*step 2 gather form data to be saved in database*/
       /*predefined value for registration form*/
       $user_id = $profile['id']; //user role id for members
@@ -84,15 +82,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         <div class="panel-body">
 
                             <ul class="nav nav-pills nav-stacked">
-                                <li class="active">
+                                <li>
                                     <a href="index.php"><i class="fa fa-list"></i> Items</a>
+                                </li>
+                                <li class="active">
+                                    <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
                                 </li>
                                 <li>
                                     <a href="users.php"><i class="fa fa-user"></i> Users</a>
                                 </li>
-                                <li>
-                                    <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
-                                </li>
+                                
                                 <li>
                                     <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                                 </li>
@@ -160,7 +159,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     
                                     <div style="float:right;margin:10% 0">
                                       <input type="submit" class="btn btn-primary" name="btn-register" value="Add Item">&nbsp;
-                                      <a href="mystuff.php" class="btn btn-danger pull-right" >Cancel</a>
+                                      <a href="javascript:history.go(-1)" class="btn btn-danger pull-right" >Cancel</a>
                                     </div>
                                 </div>
                             </div>

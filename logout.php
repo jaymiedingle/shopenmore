@@ -2,7 +2,7 @@
 session_start();
 
 // Finally, destroy the session.
-session_destroy();
+unset($_SESSION['userdata']);
 
 // after sesion destroy redirect to home page
 

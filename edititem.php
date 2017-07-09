@@ -36,34 +36,10 @@ if(empty($edit_item)){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   /*step 1 check and validate file to upload*/
-    // Check if file was uploaded without errors
-    if(isset($_FILES["files"]) && $_FILES["files"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-        $filename = $_FILES["files"]["name"];
-        $filetype = $_FILES["files"]["type"];
-        $filesize = $_FILES["files"]["size"];
-
-        $upload_dir = 'admin/uploads/items/';
-    
-        // Verify file extension
-        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-    
-        // Verify file size - 5MB maximum
-        $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-    
-        // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
-
-          $unique_filename = time().uniqid(rand())."-".$filename;
-          move_uploaded_file($_FILES["files"]["tmp_name"], $upload_dir . $unique_filename);
-          $image_url = $upload_dir.$unique_filename;
-        } 
-    } else {
-        $image_url = $edit_item['tb_items.image_url'];
-    }
-
+  /*call file_upload function in common*/
+    $upload_dir = 'admin/uploads/items/';
+    $get_image_url = Common::file_upload($_FILES["files"], $upload_dir);
+    $image_url = ($get_image_url) ? $get_image_url : $edit_item['tb_items.image_url'];
 
 
      /*step 2 gather form data to be saved in database*/
@@ -159,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <img id="image" style="width:100%;height:50%" class="img-thumbnail form-thumbnail"  src="<?php echo (isset($edit_item['tb_items.image_url'])) ? $edit_item['tb_items.image_url'] : 'images/thumbnail-default.png'; ?>"><br />
+                                    <img id="image" style="width:100%;height:50%" class="img-thumbnail form-thumbnail"  src="<?php echo (isset($edit_item['tb_items.image_url'])) ? 'admin/uploads/items/' . $edit_item['tb_items.image_url'] : 'images/thumbnail-default.png'; ?>"><br />
                                     <input type="file" id="files" name="files" class="btn btn-secondary" style="font-size:11px;" value="Change Profile" />
                                 </div>
                                 <div class="col-sm-6">
@@ -201,7 +177,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     
                                     <div style="float:right;margin:10% 0">
                                       <input type="submit" class="btn btn-primary" name="btn-editstuff" value="Save">&nbsp;
-                                      <a href="mystuff.php" class="btn btn-danger pull-right" >Cancel</a>
+                                      <a href="javascript:history.go(-1)" class="btn btn-danger pull-right" >Cancel</a>
                                     </div>
                                 </div>
                             </div>

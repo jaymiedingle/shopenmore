@@ -5,12 +5,11 @@
         <div class="container">
             <div class="navbar-header">
 
-                <a class="navbar-brand home" href="index.php" data-animate-hover="bounce" style="color:#669999;font-family:Garamond, Georgia, serif;;padding-top: 12%;font-size: 34px;">
-                    <!-- <img src="img/logo.png" alt="Obaju logo" class="hidden-xs">
-                    <img src="img/logo-small.png" alt="Obaju logo" class="visible-xs">
+                <a class="navbar-brand home" href="index.php" data-animate-hover="bounce" >
+                    <img class="logo" src="images/shopenmore-logo.png" alt="Obaju logo" class="hidden-xs">
+                    <!-- <img src="img/shopenmore-logo-small.png" alt="Obaju logo" class="visible-xs">
                     <span class="sr-only">Obaju - go to homepage</span> -->
 
-                    <?php echo $site_data['title']; ?>
                 </a>
                 <div class="navbar-buttons">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
@@ -109,3 +108,5 @@
     <!-- /#navbar -->
 
     <!-- *** NAVBAR END *** -->
+
+    

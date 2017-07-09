@@ -14,6 +14,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
 
       if($userdata){
+        unset($_SESSION['admindata']);
+        //session_destroy();
         $_SESSION['admindata'] = $userdata;
         echo '<script>window.location.href = "items.php";</script>';
       }else{
@@ -43,9 +45,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-md-6 col-md-offset-3 col-xs-12 col-sm-12">
                     <div class="box" style="margin:5% auto;text-align:center">
                         <div class="">
-                            <h1 style="color:#669999;font-family:Garamond, Georgia, serif;padding-top: 12%;font-size:50px;">
-                                <?php echo $site_data['title']; ?>
-                            </h1>
+                            <!--green # 08782b-->
+                            <img class="logo" src="../images/shopenmore-logo.png" alt="<?php echo $site_data['title']; ?> logo" class="hidden-xs">
                             <h3>Admin Control</h3>
                         </div>
 

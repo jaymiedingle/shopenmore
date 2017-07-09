@@ -16,6 +16,10 @@
     color: #fff !important;
     background-color: #6eb752;
 } 
+.contact > a:hover, .contact > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
+} 
 </style>
 
     <div id="all">

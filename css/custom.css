@@ -1,5 +1,8 @@
 /** Your theme modifications here **/
-
+.navbar-brand{padding-top:0px}
+.logo{
+	width: 210px;
+}
 .error-wrap{
   color:red;
   font-size:12px;

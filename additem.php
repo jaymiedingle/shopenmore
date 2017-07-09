@@ -17,40 +17,14 @@ $profile = $_SESSION['userdata'];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   /*step 1 check and validate file to upload*/
-    // Check if file was uploaded without errors
-    if(isset($_FILES["files"]) && $_FILES["files"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-        $filename = $_FILES["files"]["name"];
-        $filetype = $_FILES["files"]["type"];
-        $filesize = $_FILES["files"]["size"];
-
-        $upload_dir = 'admin/uploads/items/';
-    
-        // Verify file extension
-        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-    
-        // Verify file size - 5MB maximum
-        $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-    
-        // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
-
-          $unique_filename = time().uniqid(rand())."-".$filename;
-          move_uploaded_file($_FILES["files"]["tmp_name"], $upload_dir . $unique_filename);
-          $image_url = $upload_dir.$unique_filename;
-        } 
-    } else {
-        $image_url = '';
-    }
-
-
+  /*call file_upload function in common*/
+    $upload_dir = 'admin/uploads/items/';
+    $image_url = Common::file_upload($_FILES["files"], $upload_dir);
 
      /*step 2 gather form data to be saved in database*/
       /*predefined value for registration form*/
       $user_id = $_SESSION['userdata']['id']; //user role id for members
-      $is_active = 1; //flag for active users
+      $is_active = 0; //flag for active users
 
       $data = array(
           'name' => $_POST['name'],
@@ -67,7 +41,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      $inserted = DB::insert('tb_items',$data);
 
      if($inserted){
-        echo '<script>window.location.href = "myitems.php";</script>';
+        //echo '<script>window.location.href = "myitems.php";</script>';
+        $alert = [
+          'main_message' => 'Item submitted',
+          'message' => 'Item has already saved and is subject for admin review'
+        ];
      }
 }
 
@@ -76,8 +54,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .profile > a{
-    color: #fff;
+    color: #fff !important;
     background-color: #6eb752;
+} 
+.profile > a:hover, .profile > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
 } 
 </style>
 
@@ -86,6 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         <div id="content">
             <div class="container">
+
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
@@ -130,7 +113,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 <div class="col-md-9">
+
+                    
+
                     <div class="box">
+
+                        <?php if(isset($alert)) { ?>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                          <strong><?php echo $alert['main_message']; ?></strong> <?php echo $alert['message']; ?>
+                        </div>
+                        <?php } ?>
+
+
                         <h1>Add Item</h1>
                         <p class="lead">Add items to your list of stuff.</p>
 
@@ -183,7 +180,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     
                                     <div style="float:right;margin:10% 0">
                                       <input type="submit" class="btn btn-primary" name="btn-register" value="Add Item">&nbsp;
-                                      <a href="mystuff.php" class="btn btn-danger pull-right" >Cancel</a>
+                                      <a href="javascript:history.go(-1)" class="btn btn-danger pull-right" >Cancel</a>
                                     </div>
                                 </div>
                             </div>

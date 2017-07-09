@@ -29,7 +29,8 @@ class Common{
 	          return  $unique_filename;
 	        } 
 	    } else {
-	        return '';
+	        return false;
 	    }
 	}
+
 }

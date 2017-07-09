@@ -11,8 +11,6 @@ if(!isset($_SESSION['userdata'])){
   exit;
 }
 
-
-
 $profile = $_SESSION['userdata'];
 
 
@@ -20,35 +18,10 @@ $profile = $_SESSION['userdata'];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   /*step 1 check and validate file to upload*/
-    // Check if file was uploaded without errors
-    if(isset($_FILES["files"]) && $_FILES["files"]["error"] == 0){
-        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-        $filename = $_FILES["files"]["name"];
-        $filetype = $_FILES["files"]["type"];
-        $filesize = $_FILES["files"]["size"];
-
-        $upload_dir = 'admin/uploads/users/';
-    
-        // Verify file extension
-        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-    
-        // Verify file size - 5MB maximum
-        $maxsize = 5 * 1024 * 1024;
-        if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-    
-        // Verify MYME type of the file
-        if(in_array($filetype, $allowed)){
-
-          $unique_filename = time().uniqid(rand())."-".$filename;
-          move_uploaded_file($_FILES["files"]["tmp_name"], $upload_dir . $unique_filename);
-          $image_url = $upload_dir.$unique_filename;
-        } 
-    } else {
-        $image_url = $profile['image_url'];
-    }
-
-
+  /*call file_upload function in common*/
+    $upload_dir = 'admin/uploads/users/';
+    $get_image_url = Common::file_upload($_FILES["files"], $upload_dir);
+    $image_url = ($get_image_url) ? $get_image_url : $profile['image_url'];
 
      /*step 2 gather form data to be saved in database*/
       /*predefined value for registration form*/
@@ -78,8 +51,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <!--add active state on navigation current page via class-->
 <style type="text/css">
 .profile > a{
-    color: #fff;
+    color: #fff !important;
     background-color: #6eb752;
+} 
+.profile > a:hover, .profile > li:hover{
+    color: #000 !important;
+    /*background-color: #6eb752;*/
 } 
 </style>
 
@@ -148,7 +125,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </div> 
                             <div class="col-md-4">
                                 <?php if(isset($profile['image_url']) && isset($profile['image_url'])){ ?>
-                                <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="<?php echo $_SESSION['userdata']['image_url']; ?>"><br />
+                                <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="admin/uploads/users/<?php echo $_SESSION['userdata']['image_url']; ?>"><br />
                                 <?php }else{ ?>
                                 <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="images/default.png"><br />
                                 <?php } ?>
