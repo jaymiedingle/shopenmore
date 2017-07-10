@@ -19,35 +19,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(isset($_POST['register'])){
 
       /*step 1 check and validate file to upload*/
-        // Check if file was uploaded without errors
-        if(isset($_FILES["files"]) && $_FILES["files"]["error"] == 0){
-            $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-            $filename = $_FILES["files"]["name"];
-            $filetype = $_FILES["files"]["type"];
-            $filesize = $_FILES["files"]["size"];
-
-            $upload_dir = 'admin/uploads/users/';
-        
-            // Verify file extension
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-        
-            // Verify file size - 5MB maximum
-            $maxsize = 5 * 1024 * 1024;
-            if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-        
-            // Verify MYME type of the file
-            if(in_array($filetype, $allowed)){
-
-              $unique_filename = time().uniqid(rand())."-".$filename;
-              move_uploaded_file($_FILES["files"]["tmp_name"], $upload_dir . $unique_filename);
-              $image_url = $upload_dir.$unique_filename;
-            } 
-        } else {
-            $image_url = '';
-        }
-
-
+      /*call file_upload function in common*/
+        $upload_dir = 'admin/uploads/items/';
+        $image_url = Common::file_upload($_FILES["files"], $upload_dir);
 
          /*step 2 gather form data to be saved in database*/
           /*predefined value for registration form*/
@@ -95,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li>Register</li>
                     </ul>
                 </div>
 

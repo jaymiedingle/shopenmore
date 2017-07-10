@@ -7,7 +7,7 @@
 <?php
 
 
-$latest_item = DB::query("SELECT * FROM tb_items ORDER BY date_posted LIMIT 10 ");
+$latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY date_posted DESC LIMIT 10 ");
 
 
 ?>

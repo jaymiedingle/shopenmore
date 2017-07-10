@@ -11,7 +11,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $email = $_POST['email'];
       $password = md5($_POST['password']);
 
-      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
+      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE user_role_id <= 2 AND email=%s AND password=%s", $email, $password);
 
       if($userdata){
         unset($_SESSION['admindata']);

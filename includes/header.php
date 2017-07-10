@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $email = $_POST['email'];
       $password = md5($_POST['password']);
 
-      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
+      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE is_active = 1 AND email=%s AND password=%s", $email, $password);
 
       if($userdata){
         unset($_SESSION['userdata']);

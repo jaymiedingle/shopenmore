@@ -74,23 +74,7 @@
 
                     <div class="col-md-3 col-sm-6">
 
-                        <h4>Get the news</h4>
-                        <form>
-                            <div class="input-group">
-
-                                <input type="text" class="form-control">
-
-                                <span class="input-group-btn">
-
-			    <button class="btn btn-default" type="button">Subscribe!</button>
-
-			</span>
-
-                            </div>
-                            <!-- /input-group -->
-                        </form>
-
-                        <hr>
+                        
 
                         <h4>Stay in touch</h4>
 
