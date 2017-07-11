@@ -16,7 +16,7 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
            -- ON tb_users.item_category_id = tb_item_category.id 
            -- LEFT JOIN tb_item_status
            -- ON tb_users.item_status_id = tb_item_status.id 
-           WHERE tb_users.user_role_id > 1 ");
+           WHERE tb_users.id != %i ", $profile['id']);
 
 
 ?>
@@ -57,7 +57,7 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                         </div>
 
                         <h1>Users List</h1>
-                        <a href="additem.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
+                        <a href="adduser.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
 
                         <p class="lead">Listing of all users in system</p>
 

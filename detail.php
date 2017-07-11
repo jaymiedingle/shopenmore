@@ -133,7 +133,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                                         <img style="height:80px;width:80px;border-radius:50%" src="admin/uploads/users/<?php echo $item['tb_users.image_url'];?>">
                                         <br><br>
-                                        by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?>
+                                         by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?> <br >ID# <?php echo $item['tb_users.student_id'];?>
                                        
                                         
                                     </a>

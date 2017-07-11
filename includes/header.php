@@ -28,7 +28,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo '<script>window.location.href = "index.php";</script>';
       }else{
         unset($_SESSION['error']);
-        $_SESSION['error'] = "Invalid username and password combination";
+        $_SESSION['error'] = "Account inactive / Invalid username and password combination";
       }
 
     }
