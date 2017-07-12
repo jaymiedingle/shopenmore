@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      /*step 2 gather form data to be saved in database*/
       /*predefined value for registration form*/
       
-      $is_active = 1; //flag for active users
+      $is_active = $edit_item['tb_items.is_active']; //flag for active users
 
       $data = array(
           'name' => $_POST['name'],
@@ -85,7 +85,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li>
+                        <li>Edit item</li>
                     </ul>
                 </div>
 
@@ -108,7 +109,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <li>
                                     <a href="myitems.php"><i class="fa fa-list"></i> My items</a>
                                 </li>
-                                <li class="active">
+                                <li>
                                     <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
                                 </li>
                                 <li>
@@ -125,8 +126,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 <div class="col-md-9">
                     <div class="box">
-                        <h1>Add Item</h1>
-                        <p class="lead">Add items to your list of stuff.</p>
+                        <h1>Edit Item</h1>
+                        <p class="lead">Edit your item.</p>
 
 
                         <hr>

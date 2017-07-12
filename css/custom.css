@@ -9,9 +9,10 @@
   margin-bottom:4px;
 }
 
-#additem input[type=text], 
-#additem input[type=password], 
-#additem select {
+input[type=text], 
+input[type=password], 
+select
+ {
     font-size: 14px;
     padding: 8px;
 }

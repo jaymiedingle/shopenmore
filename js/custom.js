@@ -3,6 +3,15 @@ $(function(){
   
   $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
       $(".alert-dismissible").slideUp(500);
+
+      $.ajax({
+        url: "error_session_resetter.php",
+        type: "post",
+        success: function (response) {
+           console.log(response);
+        }
+       }); 
+
   }); 
 
 

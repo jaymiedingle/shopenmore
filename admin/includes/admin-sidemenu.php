@@ -3,8 +3,8 @@
  _________________________________________________________ -->
                     <div class="panel panel-default sidebar-menu" >
 
-                        <div class="panel-heading" style="text-align:center">
-                            <h3 class="panel-title"><?php echo DB::queryOneField('name', "SELECT name FROM tb_user_role WHERE id = %i", $profile['user_role_id']); ?> Panel</h3>
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><?php echo DB::queryOneField('name', "SELECT * FROM tb_user_role WHERE id=%s", $profile['user_role_id']); ?> Panel</h3>
                         </div>
 
                         <div class="panel-body">
@@ -19,10 +19,9 @@
                                 <li  class="users">
                                     <a href="users.php"><i class="fa fa-user"></i> Users</a>
                                 </li>
-                                <li class="adduser">
-                                    <a href="adduser.php"><i class="fa fa-plus"></i> Add user</a>
+                                <li>
+                                    <a href="adduser.php"><i class="fa fa-plus"></i> Add User</a>
                                 </li>
-                                
                                 <li>
                                     <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                                 </li>

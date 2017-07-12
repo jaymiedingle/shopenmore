@@ -18,59 +18,57 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if(isset($_POST['register'])){
 
-      /*step 1 check and validate file to upload*/
-        // Check if file was uploaded without errors
-        if(isset($_FILES["files"]) && $_FILES["files"]["error"] == 0){
-            $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
-            $filename = $_FILES["files"]["name"];
-            $filetype = $_FILES["files"]["type"];
-            $filesize = $_FILES["files"]["size"];
 
-            $upload_dir = 'admin/uploads/users/';
-        
-            // Verify file extension
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
-        
-            // Verify file size - 5MB maximum
-            $maxsize = 5 * 1024 * 1024;
-            if($filesize > $maxsize) die("Error: File size is larger than the allowed limit.");
-        
-            // Verify MYME type of the file
-            if(in_array($filetype, $allowed)){
+     /**Check if student**/
+        $is_student = Common::student_checker($_POST);
 
-              $unique_filename = time().uniqid(rand())."-".$filename;
-              move_uploaded_file($_FILES["files"]["tmp_name"], $upload_dir . $unique_filename);
-              $image_url = $upload_dir.$unique_filename;
-            } 
-        } else {
-            $image_url = '';
+        if(!$is_student){
+            $type = 'danger';
+            $message = "You're name and student no does not match any student records";
+            Common::display_message_alert($type, $message);
+            echo '<script>window.location.href = "register.php";</script>';
+        }else{
+
+            /*step 1 check and validate file to upload*/
+              /*call file_upload function in common*/
+                $upload_dir = 'admin/uploads/users/';
+                $image_url = Common::file_upload($_FILES["files"], $upload_dir);
+
+                 /*step 2 gather form data to be saved in database*/
+                  /*predefined value for registration form*/
+                  $user_role_id = 3; //user role id for members
+                  $is_active = 0; //flag for active users
+
+                  $data = array(
+                      'student_id' => $_POST['student_id'],
+                      'email' => $_POST['email'],
+                      'fname' => $_POST['fname'],
+                      'mname' => $_POST['mname'],
+                      'lname' => $_POST['lname'],
+                      'contact' => $_POST['contact'],
+                      'password' => md5($_POST['password']),
+                      'image_url' => $image_url,
+                      'user_role_id' => $user_role_id,
+                      'is_active' => $is_active,
+                    );
+
+                  //insert data in database
+                 $inserted = DB::insert('tb_users',$data);
+
+                 if($inserted){
+                    $type = 'success';
+                    $message = "Succesful registration, please wait for admin activation.";
+                    Common::display_message_alert($type, $message);
+                    echo '<script>window.location.href = "index.php";</script>';
+                 }else{
+                    $type = 'danger';
+                    $message = "Error saving data in database";
+                    Common::display_message_alert($type, $message);
+                    echo '<script>window.location.href = "register.php";</script>';
+                 }
         }
 
-
-
-         /*step 2 gather form data to be saved in database*/
-          /*predefined value for registration form*/
-          $user_role_id = 3; //user role id for members
-          $is_active = 1; //flag for active users
-
-          $data = array(
-              'email' => $_POST['email'],
-              'fname' => $_POST['fname'],
-              'lname' => $_POST['lname'],
-              'contact' => $_POST['contact'],
-              'password' => md5($_POST['password']),
-              'image_url' => $image_url,
-              'user_role_id' => $user_role_id,
-              'is_active' => $is_active,
-            );
-
-          //insert data in database
-         $inserted = DB::insert('tb_users',$data);
-
-         if($inserted){
-            echo '<script>window.location.href = "index.php";</script>';
-         }
+      
     }
       
 
@@ -95,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li>Register</li>
                     </ul>
                 </div>
 
@@ -114,6 +112,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <input type="file" id="files" name="files" class="btn btn-secondary" style="font-size:11px;float:right" />
                                 <img id="image" style="width:40%;height:20%" class="img-thumbnail form-thumbnail"  src="images/default.png"><br />
                             </div>
+
+                            <div class="form-group">
+                                <label for="student_id">Student ID</label>
+                                <input type="text" class="form-control" id="student_id" name="student_id" required>
+                            </div>
                             
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -123,6 +126,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <div class="form-group">
                                 <label for="fname">First name</label>
                                 <input type="text" class="form-control" id="fname" name="fname" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="mname">Middle name</label>
+                                <input type="text" class="form-control" id="mname" name="mname" required>
                             </div>
 
                             <div class="form-group">

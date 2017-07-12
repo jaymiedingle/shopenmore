@@ -41,11 +41,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      $inserted = DB::insert('tb_items',$data);
 
      if($inserted){
-        //echo '<script>window.location.href = "myitems.php";</script>';
-        $alert = [
-          'main_message' => 'Item submitted',
-          'message' => 'Item has already saved and is subject for admin review'
-        ];
+        $type = 'success';
+        $message = "Item has already saved and is subject for admin review";
+        Common::display_message_alert($type, $message);
+        echo '<script>window.location.href = "myitems.php";</script>';
      }
 }
 
@@ -74,7 +73,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></li>
+                        <li>Add item</li>
                     </ul>
                 </div>
 
@@ -114,18 +114,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 <div class="col-md-9">
 
-                    
-
                     <div class="box">
-
-                        <?php if(isset($alert)) { ?>
-                        <div class="alert alert-warning alert-dismissible" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <strong><?php echo $alert['main_message']; ?></strong> <?php echo $alert['message']; ?>
-                        </div>
-                        <?php } ?>
 
 
                         <h1>Add Item</h1>

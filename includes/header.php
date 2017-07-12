@@ -1,6 +1,8 @@
 <?php
 session_start();
-unset($_SESSION['error']);
+
+// unset($_SESSION['error_type']);
+// unset($_SESSION['error_message']);
 
 include('libs/meekrodb.2.3.class.php');
 include('libs/common.php');
@@ -20,15 +22,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $email = $_POST['email'];
       $password = md5($_POST['password']);
 
-      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
+      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE is_active = 1 AND email=%s AND password=%s", $email, $password);
 
       if($userdata){
         unset($_SESSION['userdata']);
         $_SESSION['userdata'] = $userdata;
         echo '<script>window.location.href = "index.php";</script>';
       }else{
-        unset($_SESSION['error']);
-        $_SESSION['error'] = "Invalid username and password combination";
+        $type = 'danger';
+        $message = "Account inactive / Invalid username and password combination";
+        Common::display_message_alert($type, $message);
       }
 
     }
@@ -80,3 +83,5 @@ include('includes/modal.php');
 </head>
 
 <body>
+
+ 

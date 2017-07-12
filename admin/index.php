@@ -11,7 +11,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $email = $_POST['email'];
       $password = md5($_POST['password']);
 
-      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE email=%s AND password=%s", $email, $password);
+      $userdata = DB::queryFirstRow("SELECT * FROM tb_users WHERE user_role_id <= 2 AND email=%s AND password=%s", $email, $password);
+
+      //var_dump($userdata);
 
       if($userdata){
         unset($_SESSION['admindata']);
@@ -19,7 +21,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['admindata'] = $userdata;
         echo '<script>window.location.href = "items.php";</script>';
       }else{
-        $_SESSION['error'] = "Invalid username and password combination";
+        $type = 'danger';
+        $message = "Invalid username and password combination";
+        Common::display_message_alert($type, $message);
+
+        echo '<script>window.location.href = "index.php";</script>';
       }
 
     }
@@ -83,15 +89,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <!-- *** SCRIPTS TO INCLUDE ***
  _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap-hover-dropdown.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/front.js"></script>
-    <script src="js/custom.js"></script>
+    <script src="../js/jquery-1.11.0.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery.cookie.js"></script>
+    <script src="../js/waypoints.min.js"></script>
+    <script src="../js/modernizr.js"></script>
+    <script src="../js/bootstrap-hover-dropdown.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/front.js"></script>
+    <script src="../js/custom.js"></script>
 
 
 </body>

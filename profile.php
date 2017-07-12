@@ -43,6 +43,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $_SESSION['userdata'] = $userdata;
         $profile = $_SESSION['userdata'];
 
+
+        $type = 'success';
+        $message = "Profile updated successfully";
+        Common::display_message_alert($type, $message);
         echo '<script>window.location.href = "profile.php";</script>';
      }
 
@@ -124,7 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 
                             </div> 
                             <div class="col-md-4">
-                                <?php if(isset($profile['image_url']) && isset($profile['image_url'])){ ?>
+                                <?php if(($profile['image_url']) && isset($profile['image_url'])){ ?>
                                 <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="admin/uploads/users/<?php echo $_SESSION['userdata']['image_url']; ?>"><br />
                                 <?php }else{ ?>
                                 <img id="image" style="width:100%;height:30%" class="img-thumbnail form-thumbnail"  src="images/default.png"><br />

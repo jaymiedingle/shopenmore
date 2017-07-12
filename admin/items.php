@@ -90,7 +90,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                     <tr>
                                         <th><?php echo ($key + 1); ?></th>
                                         <td>
-                                            <a href="detail.php?id=<?php echo $item['tb_items.id']; ?>">
+                                            <a href="itemdetail.php?id=<?php echo $item['tb_items.id']; ?>">
                                                 <?php echo $item['tb_items.name']; ?>
                                             </a>
                                         </td>

@@ -1,6 +1,5 @@
 <?php
 
-
 class Common{
 
 	public function file_upload($file, $upload_dir){
@@ -31,6 +30,24 @@ class Common{
 	    } else {
 	        return false;
 	    }
+	}
+
+	public function display_message_alert($type, $message){
+		$_SESSION['error_type']= $type;
+        $_SESSION['error_message'] = $message;
+	}
+
+	public function student_checker($data){
+
+		$is_student = DB::queryFirstRow("SELECT * FROM tb_student
+		 WHERE is_active = 1
+		  AND id=%s 
+		  AND fname=%s
+		  AND mname=%s
+		  AND lname=%s", 
+		  $data['student_id'], $data['fname'], $data['mname'], $data['lname']);
+
+		return $is_student;
 	}
 
 }

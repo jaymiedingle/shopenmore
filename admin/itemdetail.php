@@ -54,39 +54,9 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                 <br>
 
                 <a href="items.php" class="btn btn-success pull-right" style="margin-bottom:10px"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to Item list</a>
-                 <div class="col-md-3">
-                    <!-- *** CUSTOMER MENU ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
+                
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo $profile['user_role_id']; ?> Panel</h3>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <ul class="nav nav-pills nav-stacked">
-                                <li class="active">
-                                    <a href="index.php"><i class="fa fa-list"></i> Items</a>
-                                </li>
-                                <li>
-                                    <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
-                                </li>
-                                <li>
-                                    <a href="users.php"><i class="fa fa-user"></i> Users</a>
-                                </li>
-                                
-                                <li>
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                    <!-- /.col-md-3 -->
-
-                    <!-- *** CUSTOMER MENU END *** -->
-                </div>
+                <?php include('includes/admin-sidemenu.php'); ?>
 
                 <div class="col-md-9">
 
@@ -113,7 +83,8 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                                         <img style="height:80px;width:80px;border-radius:50%" src="uploads/users/<?php echo $item['tb_users.image_url'];?>">
                                         <br><br>
-                                        by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?>
+                                        by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?> <br >ID# <?php echo $item['tb_users.student_id'];?>
+                                       
                                        
                                         
                                     </a>

@@ -27,20 +27,6 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
 
         <div id="content">
 
-            <!--alert display-->
-            <?php if(isset($_SESSION['error'])) { ?>}
-            <div class="container">
-                <div class="col-md-12">
-                    <div class="alert alert-warning alert-dismissible" style="display:none" role="alert">
-                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      <?php echo $_SESSION['error']; ?>
-                    </div>
-                </div>
-            </div>
-            <?php } ?>
-            <!--end alert display-->
 
             <!--banner slider-->
             <?php include('includes/banner-slider.php'); ?>
@@ -50,13 +36,6 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
  _________________________________________________________ -->
             <div id="advantages">
                 
-                <!-- <div class="box">
-                    <div class="container">
-                        <div class="col-md-12">
-                            <h2>Categories</h2>
-                        </div>
-                    </div>
-                </div> -->
 
                 <div class="container">
                     <div class="same-height-row">

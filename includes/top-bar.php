@@ -15,14 +15,17 @@
                     <?php if(isset($_SESSION['userdata'])) { ?>
 
                     <li>
-                        <a href="profile.php"><?php echo $_SESSION['userdata']['fname']; ?>'s Profile</a>
+                        <a href="profile.php"><?php echo ucwords($_SESSION['userdata']['fname']); ?>'s Profile</a>
                     </li>
                     <li>
                         <a href="myitems.php">My Items</a>
                     </li>
                     <li>
                         <a href="logout.php">Logout</a>&nbsp;&nbsp;
-                        <img style="width:45px;height: 45px;border-radius:50%" src="admin/uploads/users/<?php echo $_SESSION['userdata']['image_url']; ?>">
+                        <?php
+                            $profile_image = ($_SESSION['userdata']['image_url']) ? 'admin/uploads/users/'.$_SESSION['userdata']['image_url'] : 'images/default.png';
+                        ?>
+                        <img style="width:45px;height: 45px;border-radius:50%" src="<?php echo $profile_image; ?>">
                     </li>
 
 
