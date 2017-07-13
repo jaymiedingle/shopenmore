@@ -24,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if(!$is_student){
             $type = 'danger';
-            $message = "You're name and student no does not match any student records";
+            $message = "You're name and student id does not match any student records";
             Common::display_message_alert($type, $message);
             echo '<script>window.location.href = "register.php";</script>';
         }else{
@@ -43,7 +43,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       'student_id' => $_POST['student_id'],
                       'email' => $_POST['email'],
                       'fname' => $_POST['fname'],
-                      'mname' => $_POST['mname'],
                       'lname' => $_POST['lname'],
                       'contact' => $_POST['contact'],
                       'password' => md5($_POST['password']),
@@ -126,11 +125,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <div class="form-group">
                                 <label for="fname">First name</label>
                                 <input type="text" class="form-control" id="fname" name="fname" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="mname">Middle name</label>
-                                <input type="text" class="form-control" id="mname" name="mname" required>
                             </div>
 
                             <div class="form-group">

@@ -43,9 +43,8 @@ class Common{
 		 WHERE is_active = 1
 		  AND id=%s 
 		  AND fname=%s
-		  AND mname=%s
 		  AND lname=%s", 
-		  $data['student_id'], $data['fname'], $data['mname'], $data['lname']);
+		  $data['student_id'], $data['fname'], $data['lname']);
 
 		return $is_student;
 	}

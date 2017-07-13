@@ -1,18 +1,7 @@
 $(function(){
 
   
-  $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
-      $(".alert-dismissible").slideUp(500);
-
-      $.ajax({
-        url: "error_session_resetter.php",
-        type: "post",
-        success: function (response) {
-           console.log(response);
-        }
-       }); 
-
-  }); 
+  methods.show_alert();
 
 
   $(".slider").on('click', function(){
@@ -30,8 +19,10 @@ $(function(){
 
     if(password != confirm_password){
       e.preventDefault();
-      //alert("Password do not match");
-      $(".password-error-wrap").html('Passwords do not match');
+      alert("Password do not match");
+      //methods.show_alert();
+
+      //$(".password-error-wrap").html('Passwords do not match');
     }
 
 
@@ -83,5 +74,21 @@ var methods = {
 
     });
 
+  },
+
+  show_alert: function(){
+
+     $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
+      $(".alert-dismissible").slideUp(500);
+
+        $.ajax({
+          url: "error_session_resetter.php",
+          type: "post",
+          success: function (response) {
+             console.log(response);
+          }
+         }); 
+
+    }); 
   }
 }

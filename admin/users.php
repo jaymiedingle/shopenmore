@@ -89,7 +89,7 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                                             <?php echo ucwords($user['tb_users.student_id']); ?>
                                         </td>
                                         <td>
-                                            <a href="detail.php?id=<?php echo $user['tb_users.id']; ?>">
+                                            <a href="userdetails.php?id=<?php echo $user['tb_users.id']; ?>">
                                                 <?php echo $user['tb_users.email']; ?>
                                             </a>
                                         </td>
