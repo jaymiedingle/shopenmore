@@ -6,12 +6,11 @@
 
 <?php
 
- $get_category_id = isset($_GET['id']) ?  $_GET['id'] : 'No Category set';
+$get_search = isset($_GET['search']) ?  $_GET['search'] : 'No search set';
 
 //get site info from database
-$category = DB::queryFirstRow("SELECT * FROM tb_item_category WHERE id=%s", $get_category_id);
 
-$category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id = " . $category['id']);
+$search_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND name LIKE '%".$get_search."%'");
 
 
 
@@ -37,7 +36,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li>Search : <?php echo $get_search; ?></li>
                     </ul>
                 </div>
 
@@ -77,14 +76,14 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                 <div class="col-md-9">
 
                     <div class="box">
-                        <h1><?php echo $category['name']; ?></h1>
+                        <h1>Search : <span class="highlight"><?php echo $get_search; ?></span> </h1>
                     </div>
 
 
                     <div class="row products">
                         
                         <!--loop item-->
-                        <?php foreach($category_items as $key=>$item){ ?>
+                        <?php foreach($search_items as $key=>$item){ ?>
                         <div class="col-md-4 col-sm-6">
                             <div class="product">
                                 <div class="flip-container">
@@ -101,7 +100,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                                         </div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible">
+                                <a href="detail.php?id=<?php echo $item['id']; ?>" class="invisible">
                                     <img src="img/product1.jpg" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
@@ -157,4 +156,18 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
         </div>
         <!-- /#content -->
 
+        
+
  <?php include('includes/footer.php'); ?>
+
+
+<script src="js/jquery.mark.min.js"></script>
+<script type="text/javascript">
+var searchTerm = "<?php echo $get_search; ?>"
+
+// Search for the search term in your context
+$(".text h3 a").mark(searchTerm, {
+    "element": "span",
+    "className": "highlight"
+});
+</script>

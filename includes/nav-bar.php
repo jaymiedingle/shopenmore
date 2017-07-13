@@ -87,9 +87,9 @@
                 </div> -->
 
                 <div class="clearfix" style="text-align: right;">
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" action="search.php" method="GET" role="search">
                         <div class="input-group">
-                            <input type="text" class="form-control" style="height: 28px;" placeholder="Search">
+                            <input type="text" name="search" class="form-control" style="height: 28px;" placeholder="Search">
                             <span class="input-group-btn">
                                  <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                             </span>
