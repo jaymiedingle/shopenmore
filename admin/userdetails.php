@@ -13,8 +13,6 @@ $user = DB::queryFullColumns("SELECT * FROM tb_users
            LEFT JOIN tb_user_role
            ON tb_users.user_role_id = tb_user_role.id 
            WHERE 
-           tb_users.is_active = 1 
-           AND 
            tb_users.id = %i ", $get_user_id );
 
 
