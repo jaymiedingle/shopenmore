@@ -38,7 +38,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 }
 
-include('includes/modal.php');
 ?>
 
 
@@ -49,8 +48,6 @@ include('includes/modal.php');
     <meta name="robots" content="all,follow">
     <meta name="googlebot" content="index,follow,snippet,archive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Obaju e-commerce template">
-    <meta name="author" content="Ondrej Svestka | ondrejsvestka.cz">
     <meta name="keywords" content="">
 
     <title>
@@ -75,7 +72,7 @@ include('includes/modal.php');
 
     <script src="js/respond.min.js"></script>
 
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
     
 
 
@@ -83,6 +80,8 @@ include('includes/modal.php');
 </head>
 
 <body>
+
+<?php include('includes/modal.php'); ?>
 
 
 

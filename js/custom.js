@@ -1,6 +1,5 @@
 $(function(){
 
-  
   methods.show_alert();
 
 
@@ -81,8 +80,12 @@ var methods = {
      $(".alert-dismissible").fadeTo(2000, 500).slideUp(500, function(){
       $(".alert-dismissible").slideUp(500);
 
+      var site_path =  window.location.origin + '/shopenmore/';
+
+      console.log(site_path + "error_session_resetter.php");
+
         $.ajax({
-          url: "error_session_resetter.php",
+          url: site_path + "error_session_resetter.php",
           type: "post",
           success: function (response) {
              console.log(response);

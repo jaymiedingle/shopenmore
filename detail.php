@@ -212,8 +212,6 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                         <?php } ?>
 
 
-
-
                     </div>
 
                 </div>

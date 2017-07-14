@@ -17,8 +17,6 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
            LEFT JOIN tb_item_status
            ON tb_items.item_status_id = tb_item_status.id 
            WHERE 
-           tb_items.is_active = 1 
-           AND 
            tb_items.id = %i ", $get_item_id );
 
 
@@ -62,6 +60,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                     <div class="row" id="productMain">
                         <div class="col-sm-6">
+
                             <div id="mainImage">
                                 <img src="uploads/items/<?php echo $item['tb_items.image_url'];?>" alt="" style="width:100%;height:440px" class="img-responsive">
                             </div>
@@ -75,6 +74,9 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                         </div>
                         <div class="col-sm-6">
                             <div class="box">
+                                <span class="label label-<?php echo ($item['tb_items.is_active']) ? 'primary' : 'default'; ?>">
+                                    <?php echo ($item['tb_items.is_active']) ? 'Active' : 'Inactive'; ?>
+                                </span>
                                 <h1 class="text-center"><?php echo $item['tb_items.name']; ?></h1>
                                 <p class="price">&#8369;<?php echo $item['tb_items.price']; ?>.00</p>
                                 
@@ -91,8 +93,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                 </p>
 
                                 <p class="text-center buttons">
-                                    <a href="basket.html" class="btn btn-primary"><i class="fa fa-comment"></i> Message owner</a> 
-                                    <a href="basket.html" class="btn btn-default"><i class="fa fa-phone"></i> Call <?php echo $item['tb_users.contact']; ?> </a>
+                                    <a href="#" class="btn btn-default"><i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?> </a>
                                 </p>
 
 
@@ -128,47 +129,4 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
 
 
-        <!-- *** COPYRIGHT ***
- _________________________________________________________ -->
-        <div id="copyright">
-            <div class="container">
-                <div class="col-md-6">
-                    <p class="pull-left">© 2015 Your name goes here.</p>
-
-                </div>
-                <div class="col-md-6">
-                    <p class="pull-right">Template by <a href="https://bootstrapious.com/e-commerce-templates">Bootstrapious.com</a>
-                         <!-- Not removing these links is part of the license conditions of the template. Thanks for understanding :) If you want to use the template without the attribution links, you can do so after supporting further themes development at https://bootstrapious.com/donate  -->
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- *** COPYRIGHT END *** -->
-
-
-
-    </div>
-    <!-- /#all -->
-
-
-    
-
-    <!-- *** SCRIPTS TO INCLUDE ***
- _________________________________________________________ -->
-    <script src="js/jquery-1.11.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.cookie.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/modernizr.js"></script>
-    <script src="js/bootstrap-hover-dropdown.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/front.js"></script>
-
-
-
-
-
-
-</body>
-
-</html>
+<?php include('includes/footer.php'); ?>

@@ -56,19 +56,3 @@ $item_categories = DB::query("SELECT * FROM tb_item_category");
 </head>
 
 <body>
-
-<!--alert display-->
-<?php if(isset($_SESSION['error_type']) && isset($_SESSION['error_message'])) { ?>
-<div class="container">
-
-    <div class="col-md-12" style="position:absolute;z-index:999;margin-top:10px">
-        <div class="alert alert-<?php echo $_SESSION['error_type']; ?> alert-dismissible" style="display:none" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <?php echo $_SESSION['error_message']; ?>
-        </div>
-    </div>
-</div>
-<?php } ?>
-<!--end alert display-->

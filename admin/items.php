@@ -34,29 +34,6 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
         <div id="content">
             <div class="container">
 
-                <!-- <div class="col-md-12">
-                    <ul class="breadcrumb" style="margin-top:10px">
-                        </li>
-                        <li>Item List</li>
-                    </ul>
-                </div> -->
-
-                <!--alert display-->
-                <?php if(isset($_SESSION['error'])) { ?>}
-                <div class="container">
-                    <div class="col-md-12">
-                        <div class="alert alert-warning alert-dismissible" style="display:none" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <?php echo $_SESSION['error']; ?>
-                        </div>
-                    </div>
-                </div>
-                <?php } ?>
-                <!--end alert display-->
-
-                <br>
 
                 
                 <?php include('includes/admin-sidemenu.php'); ?>

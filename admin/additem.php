@@ -41,7 +41,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      $inserted = DB::insert('tb_items',$data);
 
      if($inserted){
-
+        $type = 'success';
+        $message = "Item has already saved";
+        Common::display_message_alert($type, $message);
         echo '<script>window.location.href = "items.php";</script>';
      }
 }
