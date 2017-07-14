@@ -1,22 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Marketplace
-Gist
- @roeldingle
- Sign out
- Unwatch 1
-  Star 0
-  Fork 0 roeldingle/mybazaar
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Settings Insights 
-Branch: master Find file Copy pathmybazaar/search.php
-f6142ac  16 hours ago
-@roeldingle roeldingle search compleed
-1 contributor
-RawBlameHistory     
-173 lines (133 sloc)  6.58 KB
 <?php include('includes/header.php'); ?>
 
 <?php include('includes/top-bar.php'); ?>
@@ -24,9 +5,11 @@ RawBlameHistory
 <?php include('includes/nav-bar.php'); ?>
 
 <?php
+
 $get_search = isset($_GET['search']) ?  $_GET['search'] : 'No search set';
 //get site info from database
 $search_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND name LIKE '%".$get_search."%'");
+
 ?>
 <!--add active state on navigation current page via class-->
 <style type="text/css">
@@ -153,11 +136,11 @@ $search_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND name L
 <script src="js/jquery.mark.min.js"></script>
 <script type="text/javascript">
 var searchTerm = "<?php echo $get_search; ?>"
+
 // Search for the search term in your context
 $(".text h3 a").mark(searchTerm, {
     "element": "span",
     "className": "highlight"
 });
+
 </script>
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

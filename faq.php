@@ -66,9 +66,9 @@
 
 
                     <div class="banner">
-                        <a href="#">
+                        <!-- <a href="#">
                             <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
+                        </a> -->
                     </div>
                 </div>
 

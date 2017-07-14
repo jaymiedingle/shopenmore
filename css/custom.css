@@ -30,3 +30,7 @@ select
 	width:50px;
 	border-radius:50%;
 }
+.highlight{
+	font-weight: bold;
+	color:#5cb85c;
+}

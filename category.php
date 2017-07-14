@@ -105,7 +105,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                                     <img src="admin/uploads/items/<?php echo $item['image_url']; ?>" alt="" style="width:100%;height:280px" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html"><?php echo $item['name']; ?></a></h3>
+                                    <h3><a href="detail.php?id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h3>
                                     <p class="price">&#8369;<?php echo $item['price']; ?>.00</p>
                                     <p class="buttons">
                                         <a href="detail.php?id=<?php echo $item['id']; ?>" class="btn btn-default">View detail</a>
