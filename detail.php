@@ -139,10 +139,10 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                     </a>
                                 </p>
 
-                                <p class="text-center buttons">
+                                <p class="text-center buttons" >
 
                                     <?php if(isset($_SESSION['userdata'])){ ?>
-                                        <i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?>
+                                        <h3 style="text-align:center"><i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?></h3>
                                     <?php }else{ ?>
                                         <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary"><i class="fa fa-phone"></i> Register to view Contact </a>
                                     <?php } ?>
