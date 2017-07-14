@@ -4,17 +4,17 @@
 
 
             <div class="item">
-                <img src="img/banners/shoe-sale.png" alt="" class="img-responsive" style="height: 350px;">
+                <img src="images/banners/shoe-sale.png" alt="" class="img-responsive banner-images" >
             </div>
             <div class="item">
-                <img class="img-responsive" src="img/banners/sweet.jpg" alt="" style="height: 350px;">
+                <img class="img-responsive banner-images" src="images/banners/sweet.jpg" alt="" >
             </div>
             <div class="item">
-                <img class="img-responsive" src="img/banners/team-spirit.png" alt="" style="height: 350px;">
+                <img class="img-responsive banner-images" src="images/banners/team-spirit.png" alt="">
             </div>
 
             <div class="item">
-                <img class="img-responsive" src="img/banners/team-spirit.png" alt="" style="height: 350px;">
+                <img class="img-responsive banner-images" src="images/banners/team-spirit.png" alt="">
             </div>
 
 

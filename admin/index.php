@@ -44,6 +44,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <div id="all">
 
+    
+
         <div id="content">
             <div class="container">
 

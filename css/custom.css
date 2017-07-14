@@ -16,3 +16,17 @@ select
     font-size: 14px;
     padding: 8px;
 }
+
+.mobile-fb-like{
+	margin: 5%;
+    text-align: center;
+    padding: 10px;
+    background: rgb(238,233,233);
+    background: rgba(238,233,233, .5);
+    border: 1px solid #cacaca;
+}
+
+.mobile-fb-like > h4 > a > img{
+	width:50px;
+	border-radius:50%;
+}

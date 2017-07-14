@@ -21,9 +21,31 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
     color: #000 !important;
     /*background-color: #6eb752;*/
 } 
+
+#fb-div{
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    bottom: 20px;
+    padding:20px;
+    background: rgb(238,233,233); /* Fall-back for browsers that don't*/
+    background: rgba(238,233,233, .5);
+    border:1px solid #cacaca;
+}
+
+
 </style>
 
     <div id="all">
+
+        <div id="fb-div" class="hidden-xs hidden-sm">
+            <h3>
+                <a href="https://www.facebook.com/SenMofficial/" >Like our FB page <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/20031662_1999895480231933_4702362662918044706_n.png?oh=80feee058bfbd51d44e9d86cbec0c28e&oe=59C313D3" style="width:50px;border-radius: 50%">
+                </a>
+            </h3>
+           <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FSenMofficial%2F%3Fref%3Dbr_rs&width=200&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=328400533904097" width="200" height="70" style="border:none;overflow:hidden;color:#fff" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
+        </div>
+
 
         <div id="content">
 
@@ -83,7 +105,7 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
                         <!--latest items loop-->
                         <?php foreach($latest_item as $key=>$item){ ?>
                         <div class="item">
-                            <div class="product">
+                            <div class="product same-height" >
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
@@ -99,7 +121,7 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
                                     </div>
                                 </div>
                                 <a href="detail.php?id=<?php echo $item['id']; ?>" class="invisible">
-                                    <img src="img/product1.jpg" alt="" class="img-responsive">
+                                    <img style="width:100%;height:200px" src="admin/uploads/items/<?php echo $item['image_url']; ?>" alt="" class="img-responsive">
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.php?id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h3>

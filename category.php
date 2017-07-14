@@ -86,7 +86,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                         <!--loop item-->
                         <?php foreach($category_items as $key=>$item){ ?>
                         <div class="col-md-4 col-sm-6">
-                            <div class="product">
+                            <div class="product same-height" >
                                 <div class="flip-container">
                                     <div class="flipper">
                                         <div class="front">
@@ -102,7 +102,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                                     </div>
                                 </div>
                                 <a href="detail.html" class="invisible">
-                                    <img src="img/product1.jpg" alt="" class="img-responsive">
+                                    <img src="admin/uploads/items/<?php echo $item['image_url']; ?>" alt="" style="width:100%;height:280px" class="img-responsive">
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.html"><?php echo $item['name']; ?></a></h3>
@@ -123,29 +123,6 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                     </div>
                     <!-- /.products -->
 
-                    <div class="pages">
-
-                        <p class="loadMore">
-                            <a href="#" class="btn btn-primary btn-lg"><i class="fa fa-chevron-down"></i> Load more</a>
-                        </p>
-
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a>
-                            </li>
-                            <li class="active"><a href="#">1</a>
-                            </li>
-                            <li><a href="#">2</a>
-                            </li>
-                            <li><a href="#">3</a>
-                            </li>
-                            <li><a href="#">4</a>
-                            </li>
-                            <li><a href="#">5</a>
-                            </li>
-                            <li><a href="#">&raquo;</a>
-                            </li>
-                        </ul>
-                    </div>
 
 
                 </div>

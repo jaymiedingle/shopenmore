@@ -58,7 +58,6 @@ include('includes/modal.php');
     </title>
 
     <meta name="keywords" content="">
-
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,300,100' rel='stylesheet' type='text/css'>
 
     <!-- styles -->
@@ -77,11 +76,14 @@ include('includes/modal.php');
     <script src="js/respond.min.js"></script>
 
     <link rel="shortcut icon" href="favicon.png">
+    
 
 
 
 </head>
 
 <body>
+
+
 
  

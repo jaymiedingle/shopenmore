@@ -48,6 +48,8 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 } 
 </style>
 
+    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59682226aec25f00114bf183&product=sticky-share-buttons"></script>
+
     <div id="all">
 
         <div id="content">
@@ -185,7 +187,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                         <?php foreach($item_by_owner as $key=>$item_by){ ?>
                         <div class="col-md-3 col-sm-6">
-                            <div class="product same-height">
+                            <div class="product same-height" >
                                 <div class="flip-container">
                                       <div class="flipper">
                                         <div class="front">
@@ -201,7 +203,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                     </div>
                                 </div>
                                 <a href="detail.html" class="invisible">
-                                    <img src="img/product2.jpg" alt="" class="img-responsive">
+                                    <img src="admin/uploads/items/<?php echo $item_by['image_url']; ?>" alt="" style="width:100%;height:200px" class="img-responsive">
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.html"><?php echo $item_by['name']; ?></a></h3>
