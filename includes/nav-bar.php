@@ -66,7 +66,7 @@
                     <a href="contact.php">Contact us</a>
                    </li>
                    <?php if(isset($_SESSION['userdata'])) { ?>
-                   <li class="profile">
+                   <li class="myaccount">
                     <a href="profile.php">My Account</a>
                    </li>
                    <?php } ?>

@@ -54,9 +54,9 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Category</th>
                                         <th>Item name</th>
                                         <th>Price</th>
-                                        <th>Owner</th>
                                         <th>Status</th>
                                         <th>Activate</th>
                                     </tr>
@@ -67,12 +67,14 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                     <tr>
                                         <th><?php echo ($key + 1); ?></th>
                                         <td>
+                                            <?php echo $item['tb_item_category.name']; ?>
+                                        </td>
+                                        <td>
                                             <a href="itemdetail.php?id=<?php echo $item['tb_items.id']; ?>">
                                                 <?php echo $item['tb_items.name']; ?>
                                             </a>
                                         </td>
                                         <td>&#8369;<?php echo $item['tb_items.price']; ?>.00</td>
-                                        <td><?php echo ucwords($item['tb_users.fname']); ?> <?php echo ucwords($item['tb_users.lname']); ?></td>
                                         <td><span class="label label-<?php echo $item['tb_item_status.theme']; ?>"><?php echo $item['tb_item_status.name']; ?></span>
                                         </td>
                                         <td>

@@ -45,6 +45,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
          $inserted = DB::insert('tb_users',$data);
 
          if($inserted){
+            $type = 'success';
+            $message = "User added successfully";
+            Common::display_message_alert($type, $message);
             echo '<script>window.location.href = "users.php";</script>';
          }
     }

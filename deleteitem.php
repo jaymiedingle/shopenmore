@@ -9,6 +9,9 @@ $deleted = DB::delete('tb_items', "id=%s", $item_to_delete);
 
 
 if($deleted){
+	$type = 'success';
+    $message = "Item deleted successfully";
+    Common::display_message_alert($type, $message);
     echo '<script>window.location.href = "myitems.php";</script>';
 }
 

@@ -49,7 +49,7 @@ $item_categories = DB::query("SELECT * FROM tb_item_category");
 
     <script src="../js/respond.min.js"></script>
 
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
 
 
 

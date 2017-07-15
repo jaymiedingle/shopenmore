@@ -1,23 +1,20 @@
-   <div class="col-md-3">
+<div class="col-md-3">
                     <!-- *** CUSTOMER MENU ***
  _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu" >
+                    <div class="panel panel-default sidebar-menu">
 
                         <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo DB::queryOneField('name', "SELECT * FROM tb_user_role WHERE id=%s", $profile['user_role_id']); ?> Panel</h3>
+                            <h3 class="panel-title">My Account</h3>
                         </div>
 
                         <div class="panel-body">
 
                             <ul class="nav nav-pills nav-stacked">
-                                <li class="items">
-                                    <a href="items.php"><i class="fa fa-shopping-cart"></i> Items</a>
+                                <li class="profile">
+                                    <a href="profile.php"><i class="fa fa-user"></i> <?php echo ucwords($_SESSION['userdata']['fname']); ?>'s Profile</a>
                                 </li>
-                                <li  class="users">
-                                    <a href="users.php"><i class="fa fa-user"></i> Users</a>
-                                </li>
-                                <li  class="categories">
-                                    <a href="categories.php"><i class="fa fa-tags"></i>Categories</a>
+                                <li class="myitem">
+                                    <a href="myitems.php"><i class="fa fa-shopping-cart"></i> My items</a>
                                 </li>
                                 <li>
                                     <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>

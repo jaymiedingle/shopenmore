@@ -62,6 +62,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
      $updated = DB::update('tb_items',$data, "id=%s", $edit_item['tb_items.id']);
 
      if($updated){
+        $type = 'success';
+        $message = "Item updated successfully";
+        Common::display_message_alert($type, $message);
         echo '<script>window.location.href = "myitems.php";</script>';
      }
 }

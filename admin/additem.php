@@ -42,7 +42,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
      if($inserted){
         $type = 'success';
-        $message = "Item has already saved";
+        $message = "Item added successfully";
         Common::display_message_alert($type, $message);
         echo '<script>window.location.href = "items.php";</script>';
      }

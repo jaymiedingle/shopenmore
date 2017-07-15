@@ -34,3 +34,21 @@ select
 	font-weight: bold;
 	color:#5cb85c;
 }
+
+#fb-div{
+    z-index: 1;
+    position: fixed;
+    right: 0;
+    bottom: 20px;
+    padding:20px;
+    background: rgb(238,233,233); /* Fall-back for browsers that don't*/
+    background: rgba(238,233,233, .5);
+    border:1px solid #cacaca;
+}
+
+.rate-container{text-align:center}
+.rate-container a{opacity:.5}
+
+.rate-container a:hover, 
+.rate-container a.active
+{opacity:1}

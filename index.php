@@ -1,42 +1,19 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
-
 <?php include('includes/nav-bar.php'); ?>
 
 <?php
-
-$latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY date_posted DESC LIMIT 10");
-
+    $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY date_posted DESC LIMIT 10");
 ?>
 <!--add active state on navigation current page via class-->
 <style type="text/css">
-.home > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-.home > a:hover, .home > li:hover{
-    color: #000 !important;
-    /*background-color: #6eb752;*/
-} 
-
-#fb-div{
-    z-index: 1;
-    position: fixed;
-    right: 0;
-    bottom: 20px;
-    padding:20px;
-    background: rgb(238,233,233); /* Fall-back for browsers that don't*/
-    background: rgba(238,233,233, .5);
-    border:1px solid #cacaca;
-}
-
-
+    .home > a{color: #fff !important;background-color: #6eb752;} 
+    .home > a:hover, .home > li:hover{ color: #000 !important;} 
 </style>
 
     <div id="all">
 
-     <!--    <div id="fb-div" class="hidden-xs hidden-sm">
+     <!--<div id="fb-div" class="hidden-xs hidden-sm">
             <h3>
                 <a href="https://www.facebook.com/SenMofficial/" >Like our FB page <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/20031662_1999895480231933_4702362662918044706_n.png?oh=80feee058bfbd51d44e9d86cbec0c28e&oe=59C313D3" style="width:50px;border-radius: 50%">
                 </a>
@@ -52,10 +29,7 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
             <?php include('includes/banner-slider.php'); ?>
             <!--end banner slider-->
 
-            <!-- *** CATEGORIES ***
- _________________________________________________________ -->
             <div id="advantages">
-                
 
                 <div class="container">
                     <div class="same-height-row">
@@ -68,7 +42,7 @@ $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY da
                                 </div> -->
 
                                 <h3><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></h3>
-                                <img style="height:140px;width:80%" src="<?php echo $category['image_url']; ?>">
+                                <img style="height:140px;width:80%" src="admin/uploads/category/<?php echo $category['image_url']; ?>">
                             </div>
                         </div>
                         <?php } ?>

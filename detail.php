@@ -1,7 +1,5 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
-
 <?php include('includes/nav-bar.php'); ?>
 
 <?php
@@ -139,14 +137,29 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                     </a>
                                 </p>
 
-                                <p class="text-center buttons" >
+                                <p class="text-center buttons">
+                                    <h3 style="text-align:center"><i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?></h3>
 
                                     <?php if(isset($_SESSION['userdata'])){ ?>
-                                        <h3 style="text-align:center"><i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?></h3>
+                                        
+                                        <p style="text-align:center;margin:10px 0">
+                                            Rate the seller &nbsp;
+                                            <div class="rate-container">
+                                                <a href="#" class="btn btn-success btn-sm" title="Up vote" ><i class="fa fa-thumbs-up" aria-hidden="true"> 10</i></a>
+                                                <a href="#" class="btn btn-danger btn-sm" title="Down vote" ><i class="fa fa-thumbs-down" aria-hidden="true"> 0</i></a>
+                                            </div>
+                                        </p>
                                     <?php }else{ ?>
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary"><i class="fa fa-phone"></i> Register to view Contact </a>
+                                        <p style="text-align:center;margin:10px 0">
+                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary">
+                                            <i class="fa fa-thumbs-up" aria-hidden="true"></i><i class="fa fa-thumbs-down" aria-hidden="true"></i>
+                                            Register to rate this seller 
+                                        </a>
+                                        </p>
                                     <?php } ?>
                                 </p>
+                                
+                                
 
 
                             </div>

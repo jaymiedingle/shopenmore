@@ -49,13 +49,6 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
 
-                        <div class="alert alert-warning alert-dismissible" style="display:none" role="alert">
-                          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                          <strong>Item updated</strong> successfully!
-                        </div>
-
                         <h1>Users List</h1>
                         <a href="adduser.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
 

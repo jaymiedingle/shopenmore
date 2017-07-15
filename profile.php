@@ -54,10 +54,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ?>
 <!--add active state on navigation current page via class-->
 <style type="text/css">
+.myaccount >a,
 .profile > a{
     color: #fff !important;
     background-color: #6eb752;
 } 
+.myaccount > a:hover, .myaccount > li:hover,
 .profile > a:hover, .profile > li:hover{
     color: #000 !important;
     /*background-color: #6eb752;*/
@@ -78,38 +80,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 
-                 <div class="col-md-3">
-                    <!-- *** CUSTOMER MENU ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><?php echo ucwords($profile['fname']); ?>'s Account</h3>
-                        </div>
-
-                        <div class="panel-body">
-
-                            <ul class="nav nav-pills nav-stacked">
-                                <li class="active">
-                                    <a href="profile.php"><i class="fa fa-user"></i> <?php echo ucwords($profile['fname']); ?>'s Profile</a>
-                                </li>
-                                <li>
-                                    <a href="myitems.php"><i class="fa fa-list"></i> My items</a>
-                                </li>
-                                <li>
-                                    <a href="additem.php"><i class="fa fa-plus"></i> Add item</a>
-                                </li>
-                                <li>
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                    <!-- /.col-md-3 -->
-
-                    <!-- *** CUSTOMER MENU END *** -->
-                </div>
+                <?php include('includes/sidemenu.php'); ?>
 
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
