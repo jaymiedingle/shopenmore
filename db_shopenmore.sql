@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2017 at 09:01 AM
+-- Generation Time: Jul 15, 2017 at 03:52 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -48,7 +48,12 @@ INSERT INTO `tb_items` (`id`, `user_id`, `item_category_id`, `name`, `price`, `d
 (34, 21, 5, 'Kyrie Shoe 3', 3000, 'Used Kyrie Irving Basketball shoes', '2017-07-09 13:53:30', 1, '1499608410224435962355aeb0d4-sneakers-Nike-Kyrie-1-Air-Mag.jpg', 1),
 (35, 21, 3, 'Meeting and Seminar room', 650, 'For rent AC room for seminars and meetings', '2017-07-12 00:00:33', 2, '14998176339961596566a11634b-18952754_1597746726916086_3280422255861674124_n.jpg', 1),
 (36, 35, 3, 'Breadboard', 280, 'Breadboard for electronic subjects', '2017-07-12 06:37:25', 1, '1499841445212105965c3a55d5ef-64-00.jpg', 0),
-(38, 35, 4, 'Press Powder', 180, 'Branded makeup for you and others ganda in the hood', '2017-07-12 06:44:22', 3, '1499841862256005965c5464143c-pressed-powder_LRG.jpg', 1);
+(38, 35, 4, 'Press Powder', 180, 'Branded makeup for you and others ganda in the hood', '2017-07-12 06:44:22', 3, '1499841862256005965c5464143c-pressed-powder_LRG.jpg', 1),
+(39, 35, 3, 'Computer Rental (Shop)', 15, 'Computer rental (shop) for your school projects and needs', '2017-07-14 12:30:19', 2, '150003541952935968b95b99253-download (4).jpg', 0),
+(40, 35, 11, 'Cheezy Special Yema Cake', 80, 'Cheezy Special Yema Cake, indi tinipid sa ingredients', '2017-07-14 12:31:40', 3, '1500035500119085968b9ac17cbe-12310517_1211308632219743_8194212334010780873_n.jpg', 1),
+(41, 21, 3, 'Imported Japanese Pen', 55, 'Imported Japanese Pen, limited stock only', '2017-07-14 13:10:34', 3, '1500037834106165968c2cab1308-download (5).jpg', 1),
+(42, 21, 4, 'Lipstick', 100, 'Lipstick from japan, branded', '2017-07-14 13:12:27', 3, '1500037947139335968c33b03e68-download (3).jpg', 1),
+(43, 36, 7, 'High Grade Puppy food', 90, 'High Grade Puppy food 90 pesos per kilo for your loved pets', '2017-07-14 13:23:08', 1, '1500038588186145968c5bc98b6d-images (1).jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -60,22 +65,21 @@ CREATE TABLE `tb_item_category` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `theme` text NOT NULL,
-  `image_url` text NOT NULL
+  `image_url` text NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tb_item_category`
 --
 
-INSERT INTO `tb_item_category` (`id`, `name`, `theme`, `image_url`) VALUES
-(1, 'Gadgets', 'success', 'images/category/gadgets.jpg\n'),
-(2, 'Clothes', 'info', 'images/category/clothes.jpg'),
-(3, 'School supplies', 'warning', 'images/category/school_supplies.jpg'),
-(4, 'Accessories', 'default', 'images/category/accessories.jpg'),
-(5, 'Shoes', 'danger', 'images/category/shoes.jpg'),
-(6, 'Bags', 'primary', 'images/category/bags.jpg'),
-(7, 'Services', 'success', 'images/category/services.jpg'),
-(8, 'Food', 'info', 'images/category/food.jpg');
+INSERT INTO `tb_item_category` (`id`, `name`, `theme`, `image_url`, `is_active`) VALUES
+(1, 'Gadget', 'success', '150011508236515969f08a17301-gadgets-190615.jpg', 1),
+(2, 'Clothes', 'info', '150012049830753596a05b25f6e2-hanger.gif', 1),
+(3, 'School supplies', 'warning', '150012057410805596a05fe95597-00da223cfd4028f69847bda2544b809c.jpg', 1),
+(4, 'Makeup', 'default', '150012540411456596a18dc5eb0e-giphy.gif', 1),
+(5, 'Shoes', 'danger', '150012638618491596a1cb298dad-download (7).jpg', 1),
+(11, 'Food', '', '150012642227480596a1cd679aec-20121024-MacNCheese-12.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -127,7 +131,6 @@ INSERT INTO `tb_site_info` (`id`, `title`, `tagline`) VALUES
 CREATE TABLE `tb_student` (
   `id` varchar(50) NOT NULL,
   `fname` varchar(100) NOT NULL,
-  `mname` varchar(100) NOT NULL,
   `lname` varchar(100) NOT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -136,10 +139,12 @@ CREATE TABLE `tb_student` (
 -- Dumping data for table `tb_student`
 --
 
-INSERT INTO `tb_student` (`id`, `fname`, `mname`, `lname`, `is_active`) VALUES
-('BI00000', 'Roel', 'Mercurio', 'Dingle', 1),
-('BI00023', 'Mark', 'Lee', 'Zuckerberg', 1),
-('BI00100', 'Jaymie', 'Martin', 'Dingle', 1);
+INSERT INTO `tb_student` (`id`, `fname`, `lname`, `is_active`) VALUES
+('BI00000', 'Roel', 'Dingle', 1),
+('BI00023', 'Mark', 'Zuckerberg', 1),
+('BI00100', 'Jaymie', 'Dingle', 1),
+('BI00101', 'Desiree', 'Macaloi', 1),
+('BI00102', 'Jonalyn', 'Cruz', 1);
 
 -- --------------------------------------------------------
 
@@ -154,7 +159,6 @@ CREATE TABLE `tb_users` (
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `fname` varchar(50) NOT NULL,
-  `mname` varchar(50) NOT NULL,
   `lname` varchar(50) NOT NULL,
   `contact` varchar(50) NOT NULL,
   `image_url` text NOT NULL,
@@ -166,10 +170,11 @@ CREATE TABLE `tb_users` (
 -- Dumping data for table `tb_users`
 --
 
-INSERT INTO `tb_users` (`id`, `user_role_id`, `student_id`, `email`, `password`, `fname`, `mname`, `lname`, `contact`, `image_url`, `is_active`, `date_reg`) VALUES
-(21, 1, 'BI00000', 'roeldingle@gmail.com', '77b182f33eff49a3b70206e530bb47a3', 'Roel', 'Mercurio', 'Dingle', '09103629974', '1499607069186125962301d07b69-149897626410080595890089bd14-11825953_1047734388583992_1727016485304329009_n.jpg', 1, '2017-07-02 06:17:44'),
-(28, 2, 'BI00023', 'markzuckerberg@gmail.com', '26cae7718c32180a7a0f8e19d6d40a59', 'Mark', 'Lee', 'Zuckerberg', '09454454554', '1499823140823959657c24548e0-mark.jpg', 1, '2017-07-12 01:32:20'),
-(35, 3, 'BI00100', 'jaymiedingle@gmail.com', '96e79218965eb72c92a549dd5a330112', 'Jaymie', 'Martin', 'Dingle', '09106225625', '1499839742129485965bcfeafcd1-14996916591867059637a8b6443f-jaymie.jpg', 1, '2017-07-12 06:09:02');
+INSERT INTO `tb_users` (`id`, `user_role_id`, `student_id`, `email`, `password`, `fname`, `lname`, `contact`, `image_url`, `is_active`, `date_reg`) VALUES
+(21, 1, 'BI00000', 'roeldingle@gmail.com', '77b182f33eff49a3b70206e530bb47a3', 'Roel', 'Dingle', '09103629974', '1499607069186125962301d07b69-149897626410080595890089bd14-11825953_1047734388583992_1727016485304329009_n.jpg', 1, '2017-07-02 06:17:44'),
+(28, 2, 'BI00023', 'markzuckerberg@gmail.com', '26cae7718c32180a7a0f8e19d6d40a59', 'Mark', 'Zuckerberg', '09454454554', '1499823140823959657c24548e0-mark.jpg', 1, '2017-07-12 01:32:20'),
+(35, 3, 'BI00100', 'jaymiedingle@gmail.com', '96e79218965eb72c92a549dd5a330112', 'Jaymie', 'Dingle', '09106225625', '1499839742129485965bcfeafcd1-14996916591867059637a8b6443f-jaymie.jpg', 1, '2017-07-12 06:09:02'),
+(36, 3, 'BI00101', 'desiree@gmail.com', '96e79218965eb72c92a549dd5a330112', 'Desiree', 'Macaloi', '0922432456', '1500038337267055968c4c1a0b00-c335196e501b32c2fbd7bf6a98ecf68a_400x400.jpeg', 1, '2017-07-14 13:18:57');
 
 -- --------------------------------------------------------
 
@@ -246,12 +251,12 @@ ALTER TABLE `tb_user_role`
 -- AUTO_INCREMENT for table `tb_items`
 --
 ALTER TABLE `tb_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 --
 -- AUTO_INCREMENT for table `tb_item_category`
 --
 ALTER TABLE `tb_item_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `tb_item_status`
 --
@@ -266,7 +271,7 @@ ALTER TABLE `tb_site_info`
 -- AUTO_INCREMENT for table `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT for table `tb_user_role`
 --
