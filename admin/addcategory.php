@@ -1,5 +1,4 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
 
 
@@ -50,16 +49,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.categories {
-    background-color: #6eb752;
-} 
-.categories a{
-    color: #fff !important;
-} 
-</style>
-
 
     <div id="all">
       <div id="content">
@@ -79,7 +68,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-md-9">
                     <div class="box">
                         <h1>Add Category</h1>
-
+                        <a href="categories.php" class="btn btn-success pull-right"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to Category list</a>
                         <p class="lead">Add category item to the system</p>
 
                         <hr>
@@ -115,3 +104,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <!-- /#content -->
 
  <?php include('includes/footer.php'); ?>
+  <!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "categories";
+$("." + sub_page).addClass("active");
+</script>

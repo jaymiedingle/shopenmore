@@ -30,13 +30,6 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.category > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-</style>
 
     <div id="all">
 
@@ -125,8 +118,9 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
         </div>
         <!-- /#content -->
 
-
-
-
-
 <?php include('includes/footer.php'); ?>
+ <!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "items";
+$("." + sub_page).addClass("active");
+</script>

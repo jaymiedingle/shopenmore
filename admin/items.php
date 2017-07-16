@@ -19,15 +19,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.items {
-    background-color: #6eb752;
-} 
-.items a{
-    color: #fff !important;
-} 
-</style>
+
 
     <div id="all">
 
@@ -104,3 +96,9 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
     </div>
 
 <?php include('includes/footer.php'); ?>
+
+<!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "items";
+$("." + sub_page).addClass("active");
+</script>

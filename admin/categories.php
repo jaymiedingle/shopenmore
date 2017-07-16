@@ -13,15 +13,7 @@ $categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1");
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.categories {
-    background-color: #6eb752;
-} 
-.categories a{
-    color: #fff !important;
-} 
-</style>
+
 
     <div id="all">
 
@@ -98,3 +90,8 @@ $categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1");
     </div>
 
 <?php include('includes/footer.php'); ?>
+ <!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "categories";
+$("." + sub_page).addClass("active");
+</script>

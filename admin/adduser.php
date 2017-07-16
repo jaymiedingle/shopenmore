@@ -57,16 +57,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.adduser {
-    background-color: #6eb752;
-} 
-.adduser a{
-    color: #fff !important;
-} 
-</style>
-
 
     <div id="all">
       <div id="content">
@@ -86,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <div class="col-md-9">
                     <div class="box">
                         <h1>Add user</h1>
-
+                        <a href="users.php" class="btn btn-success pull-right"><i class="fa fa-chevron-left" aria-hidden="true"></i> Back to User list</a>
                         <p class="lead">Add users to the system</p>
 
                         <hr>
@@ -166,3 +156,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <!-- /#content -->
 
  <?php include('includes/footer.php'); ?>
+ <!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "users";
+$("." + sub_page).addClass("active");
+</script>

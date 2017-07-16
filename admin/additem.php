@@ -50,15 +50,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.additem {
-    background-color: #6eb752;
-} 
-.additem a{
-    color: #fff !important;
-} 
-</style>
 
 
     <div id="all">
@@ -148,3 +139,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <!-- /#content -->
 
  <?php include('includes/footer.php'); ?>
+ <!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "items";
+$("." + sub_page).addClass("active");
+</script>

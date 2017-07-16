@@ -32,13 +32,6 @@ $user = DB::queryFullColumns("SELECT * FROM tb_users
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.category > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-</style>
 
     <div id="all">
 
@@ -119,7 +112,7 @@ $user = DB::queryFullColumns("SELECT * FROM tb_users
                                     <img src="uploads/items/<?php echo $item_by['image_url']; ?>" alt="" style="width:100%;height:200px" class="img-responsive">
                                 </a>
                                 <div class="text" style="margin:20px 0;text-align:center">
-                                    <h3><a href="itemdetail.php?id=<?php echo $item_by['id']; ?>"><?php echo $item_by['name']; ?></a></h3>
+                                    <h3><a href="itemdetail.php?id=<?php echo $item_by['id']; ?>"><?php echo ucwords($item_by['name']); ?></a></h3>
                                     <p class="price">&#8369;<?php echo $item_by['price']; ?>.00</p>
                                     <span class="label label-<?php echo ($item_by['is_active']) ? 'primary' : 'default'; ?>">
                                         <?php echo ($item_by['is_active']) ? 'Active' : 'Inactive'; ?>
@@ -145,8 +138,8 @@ $user = DB::queryFullColumns("SELECT * FROM tb_users
         </div>
         <!-- /#content -->
 
-
-
-
-
      <?php include('includes/footer.php'); ?>
+     <script type="text/javascript">
+    var sub_page = "users";
+    $("." + sub_page).addClass("active");
+    </script>

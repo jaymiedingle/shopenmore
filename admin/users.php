@@ -20,15 +20,7 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.users {
-    background-color: #6eb752;
-} 
-.users a{
-    color: #fff !important;
-} 
-</style>
+
 
     <div id="all">
 
@@ -121,3 +113,8 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
     </div>
 
 <?php include('includes/footer.php'); ?>
+<!--give active state to navigation-->
+<script type="text/javascript">
+var sub_page = "users";
+$("." + sub_page).addClass("active");
+</script>
