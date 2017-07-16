@@ -37,6 +37,7 @@ h1 {
   #top {
     font-size: 12px;
     text-align: center;
+
   }
 }
 #top a {
@@ -45,12 +46,13 @@ h1 {
 #top ul.menu {
   margin: 10px 0;
   text-align: right;
-  font-size: 12px;
+  font-size: 20px;
   list-style: none;
 }
 @media (max-width: 991px) {
   #top ul.menu {
     text-align: center;
+    padding-left: 0;
   }
 }
 #top ul.menu > li {
@@ -58,12 +60,13 @@ h1 {
 }
 #top ul.menu > li a {
   color: #eeeeee;
+  margin-right:10px;
 }
-#top ul.menu > li + li:before {
+/*#top ul.menu > li + li:before {
   content: "|\00a0";
   padding: 0 5px;
   color: #f7f7f7;
-}
+}*/
 #top ul.menu > .active {
   color: #999999;
 }

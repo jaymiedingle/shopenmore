@@ -16,10 +16,6 @@
                         <span class="sr-only">Toggle navigation</span>
                         <i class="fa fa-align-justify"></i>
                     </button>
-                    <!-- <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#search">
-                        <span class="sr-only">Toggle search</span>
-                        <i class="fa fa-search"></i>
-                    </button> -->
                 </div>
             </div>
             <!--/.navbar-header -->
@@ -67,7 +63,34 @@
                    </li>
                    <?php if(isset($_SESSION['userdata'])) { ?>
                    <li class="myaccount">
-                    <a href="profile.php">My Account</a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="200">My Account <b class="caret"></b></a>
+                     <ul class="dropdown-menu">
+                            <li>
+                                <div class="yamm-content" style="padding: 20px 10px">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            
+                                            <ul>
+                                                <li>
+                                                    <a href="profile.php">Profile</a>
+                                                </li>
+                                                <li>
+                                                    <a href="myitems.php">My Items</a>
+                                                </li>
+                                                <li>
+                                                    <a href="message.php">Message</a>
+                                                </li>
+                                                <li>
+                                                    <a href="logout.php">Logout</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <!-- /.yamm-content -->
+                            </li>
+                        </ul>
                    </li>
                    <?php } ?>
 

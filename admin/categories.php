@@ -69,8 +69,8 @@ $categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1");
                                         </td>
                                        
                                         <td>
-                                            <a href="editcategory.php?id=<?php echo $category['id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="deletecategory.php?id=<?php echo $category['id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="editcategory.php?id=<?php echo $category['id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                            <a href="deletecategory.php?id=<?php echo $category['id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i>Remove</a>
                                         </td>
                                     </tr>
                                     <?php } ?>

@@ -13,11 +13,19 @@
                     <?php if(isset($_SESSION['admindata'])) { ?>
 
                     <li>
-                        <a href="myitems.php">My Profile</a>
+                        <?php
+                            $profile_image = 'uploads/users/'.$_SESSION['admindata']['image_url'];
+                        ?>
+                        <a href="profile.php" title="My profile">
+                        <img style="width:45px;height: 45px;border-radius:50%" src="<?php echo $profile_image; ?>">
+
+                        </a>
                     </li>
+
                     <li>
-                        <a href="logout.php">Logout</a>&nbsp;&nbsp;
-                        <img style="width:45px;height: 45px;border-radius:50%" src="uploads/users/<?php echo $_SESSION['admindata']['image_url']; ?>">
+                        <a href="logout.php" title="Logout">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </a>
                     </li>
                     
                     <?php } ?>

@@ -68,9 +68,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="index.php">Home</a>
+                        <li>
+                            My Account
                         </li>
-                        <li>My Account</li>
+                        <li>Profile</li>
                     </ul>
                 </div>
 

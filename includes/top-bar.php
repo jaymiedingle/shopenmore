@@ -15,28 +15,43 @@
                     <?php if(isset($_SESSION['userdata'])) { ?>
 
                     <li>
-                        <a href="profile.php"><?php echo ucwords($_SESSION['userdata']['fname']); ?>'s Profile</a>
-                    </li>
-                    <li>
-                        <a href="myitems.php">My Items</a>
-                    </li>
-                    <li>
-                        <a href="logout.php">Logout</a>&nbsp;&nbsp;
                         <?php
                             $profile_image = ($_SESSION['userdata']['image_url']) ? 'admin/uploads/users/'.$_SESSION['userdata']['image_url'] : 'images/default.png';
                         ?>
+                        <a href="profile.php" title="My profile">
                         <img style="width:45px;height: 45px;border-radius:50%" src="<?php echo $profile_image; ?>">
+
+                        </a>
                     </li>
+
+                    <li>
+                        <a href="myitems.php" title="My items">
+                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li style="position:relative">
+                        <a href="message.php" title="Messages">
+                            <i class="fa fa-comments" aria-hidden="true"></i>
+                            <span class="badge red">16</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="logout.php" title="Logout">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                        </a>
+                    </li>
+
+                    
 
 
                     
                     <?php }else{ ?>
 
                     <li>
-                        <a href="#" data-toggle="modal" data-target="#login-modal">Login</a>
+                        <a href="#" data-toggle="modal" data-target="#login-modal" style="font-size:14px">Login</a>
                     </li>
                     <li>
-                        <a href="register.php">Register</a>
+                        <a href="register.php" style="font-size:14px">Register</a>
                     </li>
 
                     <?php } ?>

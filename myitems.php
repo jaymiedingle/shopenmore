@@ -50,9 +50,10 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
 
                 <div class="col-md-12">
                     <ul class="breadcrumb">
-                        <li><a href="index.php">Home</a>
+                        <li>
+                            My Account
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li>My Item</li>
                     </ul>
                 </div>
 
@@ -99,8 +100,8 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                             </span>
                                         </td>
                                         <td>
-                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
-                                            <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i> Remove</a>
+                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</a>
+                                            <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i>Remove</a>
                                         </td>
                                     </tr>
                                     <?php } ?>

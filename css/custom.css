@@ -61,3 +61,22 @@ select
 #navigation a.active:hover, #navigation li.active:hover{
     color: #000 !important;
 } 
+
+
+#top .badge {
+  display: block;
+  position: absolute;
+  top: -4px;
+  right: -8px;
+  line-height: 16px;
+  height: 16px;
+  padding: 0 5px;
+  font-family: Arial, sans-serif;
+  color: white;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.08);
+}
+
+.red{background:red}
