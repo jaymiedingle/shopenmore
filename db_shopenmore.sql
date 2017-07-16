@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2017 at 09:33 AM
+-- Generation Time: Jul 16, 2017 at 11:21 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -19,6 +19,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_shopenmore`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_banners`
+--
+
+CREATE TABLE `tb_banners` (
+  `id` int(11) NOT NULL,
+  `name` varchar(50) NOT NULL,
+  `link` text NOT NULL,
+  `image_url` text NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_banners`
+--
+
+INSERT INTO `tb_banners` (`id`, `name`, `link`, `image_url`, `is_active`) VALUES
+(1, 'Shoe Sale', 'http://localhost/shopenmore/category.php?id=5', 'shoe-sale.png', 1),
+(4, 'Kids wear', 'http://localhost/shopenmore/category.php?id=2', '150019670130457596b2f5d7cb99-sweet.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -46,9 +68,9 @@ CREATE TABLE `tb_items` (
 INSERT INTO `tb_items` (`id`, `user_id`, `item_category_id`, `name`, `price`, `description`, `date_posted`, `item_status_id`, `image_url`, `is_active`) VALUES
 (34, 21, 5, 'Kyrie Shoe 3', 3000, 'Used Kyrie Irving Basketball shoes', '2017-07-09 13:53:30', 1, '1499608410224435962355aeb0d4-sneakers-Nike-Kyrie-1-Air-Mag.jpg', 1),
 (35, 21, 3, 'Meeting and Seminar room', 650, 'For rent AC room for seminars and meetings', '2017-07-12 00:00:33', 2, '14998176339961596566a11634b-18952754_1597746726916086_3280422255861674124_n.jpg', 1),
-(36, 35, 3, 'Breadboard', 280, 'Breadboard for electronic subjects', '2017-07-12 06:37:25', 1, '1499841445212105965c3a55d5ef-64-00.jpg', 0),
+(36, 35, 3, 'Breadboard', 280, 'Breadboard for electronic subjects', '2017-07-12 06:37:25', 1, '1499841445212105965c3a55d5ef-64-00.jpg', 1),
 (38, 35, 4, 'Press Powder', 180, 'Branded makeup for you and others ganda in the hood', '2017-07-12 06:44:22', 3, '1499841862256005965c5464143c-pressed-powder_LRG.jpg', 1),
-(39, 35, 3, 'Computer Rental (Shop)', 15, 'Computer rental (shop) for your school projects and needs', '2017-07-14 12:30:19', 2, '150003541952935968b95b99253-download (4).jpg', 0),
+(39, 35, 3, 'Computer Rental (Shop)', 15, 'Computer rental (shop) for your school projects and needs', '2017-07-14 12:30:19', 2, '150003541952935968b95b99253-download (4).jpg', 1),
 (40, 35, 11, 'Cheezy Special Yema Cake', 80, 'Cheezy Special Yema Cake, indi tinipid sa ingredients', '2017-07-14 12:31:40', 3, '1500035500119085968b9ac17cbe-12310517_1211308632219743_8194212334010780873_n.jpg', 1),
 (41, 21, 3, 'Imported Japanese Pen', 55, 'Imported Japanese Pen, limited stock only', '2017-07-14 13:10:34', 3, '1500037834106165968c2cab1308-download (5).jpg', 1),
 (42, 21, 4, 'Lipstick', 100, 'Lipstick from japan, branded', '2017-07-14 13:12:27', 3, '1500037947139335968c33b03e68-download (3).jpg', 1),
@@ -125,7 +147,7 @@ CREATE TABLE `tb_rating` (
 
 INSERT INTO `tb_rating` (`id`, `user_id`, `voter_id`, `rate`, `date`, `is_active`) VALUES
 (3, 36, 35, 1, '2017-07-16 12:21:10', 0),
-(4, 36, 21, 1, '2017-07-16 12:21:34', 0),
+(4, 36, 21, 0, '2017-07-16 12:21:34', 0),
 (5, 21, 36, 1, '2017-07-16 12:33:36', 0),
 (6, 35, 36, 1, '2017-07-16 12:35:01', 0),
 (7, 35, 21, 0, '2017-07-16 12:35:44', 0);
@@ -229,6 +251,12 @@ INSERT INTO `tb_user_role` (`id`, `name`, `theme`) VALUES
 --
 
 --
+-- Indexes for table `tb_banners`
+--
+ALTER TABLE `tb_banners`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_items`
 --
 ALTER TABLE `tb_items`
@@ -280,6 +308,11 @@ ALTER TABLE `tb_user_role`
 -- AUTO_INCREMENT for dumped tables
 --
 
+--
+-- AUTO_INCREMENT for table `tb_banners`
+--
+ALTER TABLE `tb_banners`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tb_items`
 --

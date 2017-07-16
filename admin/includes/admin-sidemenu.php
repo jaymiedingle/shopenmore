@@ -19,6 +19,9 @@
                                 <li  class="categories">
                                     <a href="categories.php"><i class="fa fa-tags"></i>Categories</a>
                                 </li>
+                                <li  class="banners">
+                                    <a href="banners.php"><i class="fa fa-flag"></i>Banner Ads</a>
+                                </li>
                                 <li>
                                     <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
                                 </li>
