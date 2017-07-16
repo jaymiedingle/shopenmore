@@ -1,8 +1,14 @@
 $(function(){
 
   methods.show_alert();
+      
 
+  /*rating event*/
+  $('input[name=rate]').change(function(){
+        $('#rateform').submit();
+   });
 
+  /*update active*/
   $(".slider").on('click', function(){
     methods.activate_update(this);
   });
@@ -19,9 +25,6 @@ $(function(){
     if(password != confirm_password){
       e.preventDefault();
       alert("Password do not match");
-      //methods.show_alert();
-
-      //$(".password-error-wrap").html('Passwords do not match');
     }
 
 

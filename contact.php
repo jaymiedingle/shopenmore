@@ -10,17 +10,6 @@
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.contact > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-.contact > a:hover, .contact > li:hover{
-    color: #000 !important;
-    /*background-color: #6eb752;*/
-} 
-</style>
 
     <div id="all">
 
@@ -36,37 +25,7 @@
 
                 </div>
 
-                 <div class="col-md-3">
-                    <!-- *** MENUS AND FILTERS ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Categories</h3>
-                        </div>
-
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked category-menu">
-                                <!--loop category-->
-                                 <?php foreach($item_categories as $key=>$category){ ?>
-                                 <?php
-                                    /*count items per category*/
-                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $category['id']);
-                                    $counter = DB::count();
-                                 ?>
-                                <li>
-                                    <a href="category.php?id=<?php echo $category['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $category['name']; ?> </a>
-                                </li>
-                                <?php } ?>
-                                <!--end loop category-->
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- *** MENUS AND FILTERS END *** -->
-
-                </div>
+                <?php include('includes/sidemenu.php'); ?>
 
                 <div class="col-md-9">
 
@@ -171,3 +130,8 @@
 
 
       <?php include('includes/footer.php'); ?>
+      <!--give active state to navigation-->
+      <script type="text/javascript">
+        var page = 'contact';
+        $("." + page + " > a").addClass("active");
+      </script>

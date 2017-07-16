@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2017 at 03:52 PM
+-- Generation Time: Jul 16, 2017 at 09:33 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -44,7 +44,6 @@ CREATE TABLE `tb_items` (
 --
 
 INSERT INTO `tb_items` (`id`, `user_id`, `item_category_id`, `name`, `price`, `description`, `date_posted`, `item_status_id`, `image_url`, `is_active`) VALUES
-(33, 21, 1, 'Playstation 3 package', 6800, 'Second hand PS3 unit complete with accessories and with several bonus games', '2017-07-09 13:40:46', 1, '1499607646148685962325e35907-149959350327425961fb1fc33bd-download (2).jpg', 1),
 (34, 21, 5, 'Kyrie Shoe 3', 3000, 'Used Kyrie Irving Basketball shoes', '2017-07-09 13:53:30', 1, '1499608410224435962355aeb0d4-sneakers-Nike-Kyrie-1-Air-Mag.jpg', 1),
 (35, 21, 3, 'Meeting and Seminar room', 650, 'For rent AC room for seminars and meetings', '2017-07-12 00:00:33', 2, '14998176339961596566a11634b-18952754_1597746726916086_3280422255861674124_n.jpg', 1),
 (36, 35, 3, 'Breadboard', 280, 'Breadboard for electronic subjects', '2017-07-12 06:37:25', 1, '1499841445212105965c3a55d5ef-64-00.jpg', 0),
@@ -53,7 +52,8 @@ INSERT INTO `tb_items` (`id`, `user_id`, `item_category_id`, `name`, `price`, `d
 (40, 35, 11, 'Cheezy Special Yema Cake', 80, 'Cheezy Special Yema Cake, indi tinipid sa ingredients', '2017-07-14 12:31:40', 3, '1500035500119085968b9ac17cbe-12310517_1211308632219743_8194212334010780873_n.jpg', 1),
 (41, 21, 3, 'Imported Japanese Pen', 55, 'Imported Japanese Pen, limited stock only', '2017-07-14 13:10:34', 3, '1500037834106165968c2cab1308-download (5).jpg', 1),
 (42, 21, 4, 'Lipstick', 100, 'Lipstick from japan, branded', '2017-07-14 13:12:27', 3, '1500037947139335968c33b03e68-download (3).jpg', 1),
-(43, 36, 7, 'High Grade Puppy food', 90, 'High Grade Puppy food 90 pesos per kilo for your loved pets', '2017-07-14 13:23:08', 1, '1500038588186145968c5bc98b6d-images (1).jpg', 0);
+(43, 36, 12, 'High Grade Puppy food', 90, 'High Grade Puppy food 90 pesos per kilo for your loved pets', '2017-07-14 13:23:08', 1, '1500038588186145968c5bc98b6d-images (1).jpg', 1),
+(44, 35, 3, 'brand new jansport bag', 500, 'authentic jansport with different colors available. just contact me if interested. my # is 09123456789.', '2017-07-16 05:38:33', 1, '15001835133245596afbd9eb38f-red-jansport.jpg', 1);
 
 -- --------------------------------------------------------
 
@@ -79,7 +79,8 @@ INSERT INTO `tb_item_category` (`id`, `name`, `theme`, `image_url`, `is_active`)
 (3, 'School supplies', 'warning', '150012057410805596a05fe95597-00da223cfd4028f69847bda2544b809c.jpg', 1),
 (4, 'Makeup', 'default', '150012540411456596a18dc5eb0e-giphy.gif', 1),
 (5, 'Shoes', 'danger', '150012638618491596a1cb298dad-download (7).jpg', 1),
-(11, 'Food', '', '150012642227480596a1cd679aec-20121024-MacNCheese-12.jpg', 1);
+(11, 'Food', '', '150012642227480596a1cd679aec-20121024-MacNCheese-12.jpg', 1),
+(12, 'Pet Supplies', '', '150017391131766596ad657c857f-peacekeeper-clipart-dog_food_and_bone.gif', 1);
 
 -- --------------------------------------------------------
 
@@ -102,6 +103,32 @@ INSERT INTO `tb_item_status` (`id`, `name`, `theme`) VALUES
 (2, 'For Rent', 'info'),
 (3, 'Limited Stock', 'danger'),
 (4, 'Out of Stock', 'default');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_rating`
+--
+
+CREATE TABLE `tb_rating` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `voter_id` int(11) NOT NULL,
+  `rate` int(11) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_rating`
+--
+
+INSERT INTO `tb_rating` (`id`, `user_id`, `voter_id`, `rate`, `date`, `is_active`) VALUES
+(3, 36, 35, 1, '2017-07-16 12:21:10', 0),
+(4, 36, 21, 1, '2017-07-16 12:21:34', 0),
+(5, 21, 36, 1, '2017-07-16 12:33:36', 0),
+(6, 35, 36, 1, '2017-07-16 12:35:01', 0),
+(7, 35, 21, 0, '2017-07-16 12:35:44', 0);
 
 -- --------------------------------------------------------
 
@@ -220,6 +247,12 @@ ALTER TABLE `tb_item_status`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_rating`
+--
+ALTER TABLE `tb_rating`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_site_info`
 --
 ALTER TABLE `tb_site_info`
@@ -251,17 +284,22 @@ ALTER TABLE `tb_user_role`
 -- AUTO_INCREMENT for table `tb_items`
 --
 ALTER TABLE `tb_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `tb_item_category`
 --
 ALTER TABLE `tb_item_category`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `tb_item_status`
 --
 ALTER TABLE `tb_item_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tb_rating`
+--
+ALTER TABLE `tb_rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `tb_site_info`
 --

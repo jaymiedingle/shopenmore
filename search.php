@@ -96,8 +96,8 @@ $search_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND name L
                                         </div>
                                     </div>
                                 </div>
-                                <a href="detail.php?id=<?php echo $item['id']; ?>" class="invisible">
-                                    <img src="img/product1.jpg" alt="" class="img-responsive">
+                                <a href="detail.html" class="invisible">
+                                    <img src="admin/uploads/items/<?php echo $item['image_url']; ?>" alt="" style="width:100%;height:280px" class="img-responsive">
                                 </a>
                                 <div class="text">
                                     <h3><a href="detail.php?id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h3>

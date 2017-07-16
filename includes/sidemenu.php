@@ -1,29 +1,31 @@
-<div class="col-md-3">
-                    <!-- *** CUSTOMER MENU ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
+ <div class="col-md-3">
+    <!-- *** MENUS AND FILTERS ***
+_________________________________________________________ -->
+    <div class="panel panel-default sidebar-menu">
 
-                        <div class="panel-heading">
-                            <h3 class="panel-title">My Account</h3>
-                        </div>
+        <div class="panel-heading">
+            <h3 class="panel-title">Categories</h3>
+        </div>
 
-                        <div class="panel-body">
+        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked category-menu">
+                <!--loop category-->
+                 <?php foreach($item_categories as $key=>$cat){ ?>
+                 <?php
+                    /*count items per category*/
+                    DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id=%s", $cat['id']);
+                    $counter = DB::count();
+                 ?>
+                <li class="category_<?php echo $cat['id']; ?>">
+                    <a href="category.php?id=<?php echo $cat['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $cat['name']; ?> </a>
+                </li>
+                <?php } ?>
+                <!--end loop category-->
+            </ul>
 
-                            <ul class="nav nav-pills nav-stacked">
-                                <li class="profile">
-                                    <a href="profile.php"><i class="fa fa-user"></i> <?php echo ucwords($_SESSION['userdata']['fname']); ?>'s Profile</a>
-                                </li>
-                                <li class="myitem">
-                                    <a href="myitems.php"><i class="fa fa-shopping-cart"></i> My items</a>
-                                </li>
-                                <li>
-                                    <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>
-                                </li>
-                            </ul>
-                        </div>
+        </div>
+    </div>
 
-                    </div>
-                    <!-- /.col-md-3 -->
+    <!-- *** MENUS AND FILTERS END *** -->
 
-                    <!-- *** CUSTOMER MENU END *** -->
-                </div>
+</div>

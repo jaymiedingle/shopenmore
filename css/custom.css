@@ -47,8 +47,17 @@ select
 }
 
 .rate-container{text-align:center}
-.rate-container a{opacity:.5}
+.rate-container .btn-group > label{opacity:.5}
 
-.rate-container a:hover, 
-.rate-container a.active
+.rate-container .btn-group > label:hover, 
+.rate-container .btn-group > label.active
 {opacity:1}
+
+
+#navigation a.active{
+    color: #fff !important;
+    background-color: #6eb752;
+} 
+#navigation a.active:hover, #navigation li.active:hover{
+    color: #000 !important;
+} 

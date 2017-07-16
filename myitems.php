@@ -57,7 +57,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                 </div>
 
                 
-                 <?php include('includes/sidemenu.php'); ?>
+                 <?php include('includes/account-sidemenu.php'); ?>
 
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
@@ -87,7 +87,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                         <th><?php echo ($key + 1); ?></th>
                                         <td>
                                             <a href="detail.php?id=<?php echo $item['tb_items.id']; ?>">
-                                                <?php echo $item['tb_items.name']; ?>
+                                                <?php echo ucwords($item['tb_items.name']); ?>
                                             </a>
                                         </td>
                                         <td>&#8369;<?php echo $item['tb_items.price']; ?>.00</td>
@@ -99,8 +99,8 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                             </span>
                                         </td>
                                         <td>
-                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="edititem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a>
+                                            <a href="deleteitem.php?id=<?php echo $item['tb_items.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i> Remove</a>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -120,3 +120,11 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
     </div>
     
  <?php include('includes/footer.php'); ?>
+ <!--give active state to navigation-->
+  <script type="text/javascript">
+    var page = 'myaccount';
+    $("." + page + " > a").addClass("active");
+
+    var sub_page = "myitem";
+    $("." + sub_page).addClass("active");
+  </script>

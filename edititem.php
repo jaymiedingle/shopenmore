@@ -139,7 +139,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <img id="image" style="width:100%;height:50%" class="img-thumbnail form-thumbnail"  src="<?php echo (isset($edit_item['tb_items.image_url'])) ? 'admin/uploads/items/' . $edit_item['tb_items.image_url'] : 'images/thumbnail-default.png'; ?>"><br />
+                                    <img id="image" style="width:100%;height:50%" class="img-thumbnail form-thumbnail"  src="<?php echo (isset($edit_item['tb_items.image_url']) && $edit_item['tb_items.image_url'] != 0) ? 'admin/uploads/items/' . $edit_item['tb_items.image_url'] : 'images/thumbnail-default.png'; ?>"><br />
                                     <input type="file" id="files" name="files" class="btn btn-secondary" style="font-size:11px;" value="Change Profile" />
                                 </div>
                                 <div class="col-sm-6">

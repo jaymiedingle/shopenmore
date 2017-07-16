@@ -1,26 +1,7 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
-
 <?php include('includes/nav-bar.php'); ?>
 
-<?php
-
-
-
-
-?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.faq > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-.faq > a:hover, .faq > li:hover{
-    color: #000 !important;
-    /*background-color: #6eb752;*/
-} 
-</style>
 
     <div id="all">
 
@@ -36,41 +17,7 @@
 
                 </div>
 
-                <div class="col-md-3">
-                    <!-- *** PAGES MENU ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Pages</h3>
-                        </div>
-
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked">
-                                <li>
-                                    <a href="text.html">Text page</a>
-                                </li>
-                                <li>
-                                    <a href="contact.html">Contact page</a>
-                                </li>
-                                <li>
-                                    <a href="faq.html">FAQ</a>
-                                </li>
-
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- *** PAGES MENU END *** -->
-
-
-                    <div class="banner">
-                        <!-- <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a> -->
-                    </div>
-                </div>
+                <?php include('includes/sidemenu.php'); ?>
 
                 <div class="col-md-9">
 
@@ -173,3 +120,8 @@
 
 
       <?php include('includes/footer.php'); ?>
+      <!--give active state to navigation-->
+      <script type="text/javascript">
+        var page = 'faq';
+        $("." + page + " > a").addClass("active");
+      </script>

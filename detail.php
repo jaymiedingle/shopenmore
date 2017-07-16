@@ -38,13 +38,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.category > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-</style>
+
 
     <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59682226aec25f00114bf183&product=sticky-share-buttons"></script>
 
@@ -63,50 +57,14 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                             
                         </li>
                         <li>
-                            <?php echo $item['tb_items.name']; ?>
+                            <?php echo ucwords($item['tb_items.name']); ?>
                         </li>
                     </ul>
                 </div>
 
 
                 
-                  <div class="col-md-3">
-                    <!-- *** MENUS AND FILTERS ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Categories</h3>
-                        </div>
-
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked category-menu">
-                                <!--loop category-->
-                                 <?php foreach($item_categories as $key=>$category){ ?>
-                                 <?php
-                                    /*count items per category*/
-                                    DB::query("SELECT * FROM tb_items WHERE item_category_id=%s", $category['id']);
-                                    $counter = DB::count();
-                                 ?>
-                                <li>
-                                    <a href="category.php?id=<?php echo $category['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $category['name']; ?> </a>
-                                </li>
-                                <?php } ?>
-                                <!--end loop category-->
-                            </ul>
-
-                        </div>
-                    </div>
-
-
-                    <!-- *** MENUS AND FILTERS END *** -->
-
-                    <!-- <div class="banner">
-                        <a href="#">
-                            <img src="img/banner.jpg" alt="sales 2014" class="img-responsive">
-                        </a>
-                    </div> -->
-                </div>
+                <?php include('includes/sidemenu.php'); ?>
 
                 <div class="col-md-9">
 
@@ -125,7 +83,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                         </div>
                         <div class="col-sm-6">
                             <div class="box">
-                                <h1 class="text-center"><?php echo $item['tb_items.name']; ?></h1>
+                                <h1 class="text-center"><?php echo ucwords($item['tb_items.name']); ?></h1>
                                 <p class="price">&#8369;<?php echo $item['tb_items.price']; ?>.00</p>
                                 
                                 <p class="goToDescription">
@@ -142,13 +100,44 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                                     <?php if(isset($_SESSION['userdata'])){ ?>
                                         
+                                        <?php if($_SESSION['userdata']['id'] != $item['tb_users.id']){ ?>
                                         <p style="text-align:center;margin:10px 0">
                                             Rate the seller &nbsp;
                                             <div class="rate-container">
-                                                <a href="#" class="btn btn-success btn-sm" title="Up vote" ><i class="fa fa-thumbs-up" aria-hidden="true"> 10</i></a>
-                                                <a href="#" class="btn btn-danger btn-sm" title="Down vote" ><i class="fa fa-thumbs-down" aria-hidden="true"> 0</i></a>
+
+                                                <?php
+
+                                                    $positive_rate = DB::query("SELECT * FROM tb_rating WHERE rate = 1 AND user_id = %i", $item['tb_users.id']);
+                                                    $positive_rate_count = DB::count();
+
+                                                    $negative_rate = DB::query("SELECT * FROM tb_rating WHERE rate = 0 AND user_id = %i", $item['tb_users.id']);
+                                                    $negative_rate_count = DB::count();
+
+                                                    $login_user_rated = DB::query("SELECT * FROM tb_rating WHERE voter_id = %i AND user_id = %i", $_SESSION['userdata']['id'], $item['tb_users.id']);
+
+                                                ?>
+           
+                                                <form id="rateform" name="rateform" action="rating.php" method="GET">
+
+                                                    <!--hidden fields-->
+                                                    <input type="hidden" name="user_id" value="<?php echo $item['tb_users.id']; ?>" />
+                                                    <input type="hidden" name="voter_id" value="<?php echo $_SESSION['userdata']['id']; ?>" />
+                                                    <!--endhidden fields-->
+
+                                                    <div class="btn-group" data-toggle="buttons">
+                                                      <label class="btn btn-lg btn-primary <?php echo (($login_user_rated) && $login_user_rated[0]['rate'] == 1) ? 'active' : ''; ?>">
+                                                        <input type="radio" name="rate" autocomplete="off" value="1" ><i class="fa fa-thumbs-up" aria-hidden="true"> <?php echo $positive_rate_count;?></i>
+                                                      </label>&nbsp;
+                                                      <label class="btn btn-lg btn-danger <?php echo (($login_user_rated) && $login_user_rated[0]['rate'] == 0) ? 'active' : ''; ?>">
+                                                        <input type="radio" name="rate" autocomplete="off" value="0"><i class="fa fa-thumbs-down" aria-hidden="true"> <?php echo $negative_rate_count;?></i>
+                                                      </label>
+                                                    </div>
+                                                </form>
+                                                
+
                                             </div>
                                         </p>
+                                        <?php } ?>
                                     <?php }else{ ?>
                                         <p style="text-align:center;margin:10px 0">
                                         <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary">
@@ -212,7 +201,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                     <img src="admin/uploads/items/<?php echo $item_by['image_url']; ?>" alt="" style="width:100%;height:200px" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html"><?php echo $item_by['name']; ?></a></h3>
+                                    <h3><a href="detail.html"><?php echo ucwords($item_by['name']); ?></a></h3>
                                     <p class="price">&#8369;<?php echo $item_by['price']; ?>.00</p>
                                     <p class="buttons">
                                         <a href="detail.php?id=<?php echo $item_by['id']; ?>" class="btn btn-default">View detail</a>
@@ -239,3 +228,13 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
 
       <?php include('includes/footer.php'); ?>
+
+
+      <!--give active state to navigation-->
+      <script type="text/javascript">
+        var page = 'category';
+        $("." + page + " > a").addClass("active");
+
+        var category_id = "<?php echo $item['tb_item_category.id']; ?>";
+        $(".category_" + category_id).addClass("active");
+      </script>

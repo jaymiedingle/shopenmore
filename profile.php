@@ -13,6 +13,13 @@ if(!isset($_SESSION['userdata'])){
 
 $profile = $_SESSION['userdata'];
 
+/*rate*/
+$positive_rate = DB::query("SELECT * FROM tb_rating WHERE rate = 1 AND user_id = %i", $profile['id']);
+$positive_rate_count = DB::count();
+
+$negative_rate = DB::query("SELECT * FROM tb_rating WHERE rate = 0 AND user_id = %i", $profile['id']);
+$negative_rate_count = DB::count();
+
 
 // Check if addstuff form was submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -52,19 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 }
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.myaccount >a,
-.profile > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-.myaccount > a:hover, .myaccount > li:hover,
-.profile > a:hover, .profile > li:hover{
-    color: #000 !important;
-    /*background-color: #6eb752;*/
-} 
-</style>
+
 
     <div id="all">
 
@@ -80,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 </div>
 
                 
-                <?php include('includes/sidemenu.php'); ?>
+                 <?php include('includes/account-sidemenu.php'); ?>
 
                 <div class="col-md-9" id="customer-orders">
                     <div class="box">
@@ -91,11 +86,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <p class="lead">
                                     <?php echo ucwords($profile['fname']); ?> <?php echo ucwords($profile['lname']); ?>
                                     &nbsp;
-                                    <small class="btn btn-danger btn-small" style="font-size:11px;font-style:italic">
+                                    <small class="" style="font-size:14px;font-style:italic">
                                         <i class="fa fa-envelope"></i> 
                                         <?php echo $profile['email']; ?>
                                     </small>
                                 </p>
+
+                                <div class="">
+                                    People's rating &nbsp;
+                                    <div class="btn-group" data-toggle="buttons">
+                                      <label class="btn btn-primary active">
+                                        <input type="radio" name="rate" autocomplete="off" value="1" ><i class="fa fa-thumbs-up" aria-hidden="true"> <?php echo $positive_rate_count;?></i>
+                                      </label>&nbsp;
+                                      <label class="btn btn-danger active">
+                                        <input type="radio" name="rate" autocomplete="off" value="0"><i class="fa fa-thumbs-down" aria-hidden="true"> <?php echo $negative_rate_count;?></i>
+                                      </label>
+                                    </div>
+                                </div>
                                 
                             </div> 
                             <div class="col-md-4">
@@ -161,3 +168,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 
  <?php include('includes/footer.php'); ?>
+
+ <!--give active state to navigation-->
+  <script type="text/javascript">
+    var page = 'myaccount';
+    $("." + page + " > a").addClass("active");
+
+    var sub_page = "profile";
+    $("." + sub_page).addClass("active");
+  </script>

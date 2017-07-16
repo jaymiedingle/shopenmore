@@ -16,17 +16,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
 
 
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-.category > a{
-    color: #fff !important;
-    background-color: #6eb752;
-} 
-.category > a:hover, .category > li:hover{
-    color: #000 !important;
-    /*background-color: #6eb752;*/
-} 
-</style>
+
 
     <div id="all">
 
@@ -37,42 +27,13 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                     <ul class="breadcrumb">
                         <li><a href="index.php">Home</a>
                         </li>
-                        <li><?php echo $category['name']; ?></li>
+                        <li><?php echo ucwords($category['name']); ?></li>
                     </ul>
                 </div>
 
                 
-                <div class="col-md-3">
-                    <!-- *** MENUS AND FILTERS ***
- _________________________________________________________ -->
-                    <div class="panel panel-default sidebar-menu">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Categories</h3>
-                        </div>
-
-                        <div class="panel-body">
-                            <ul class="nav nav-pills nav-stacked category-menu">
-                                <!--loop category-->
-                                 <?php foreach($item_categories as $key=>$cat){ ?>
-                                 <?php
-                                    /*count items per category*/
-                                    DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id=%s", $cat['id']);
-                                    $counter = DB::count();
-                                 ?>
-                                <li>
-                                    <a href="category.php?id=<?php echo $cat['id']; ?>"> <span class="badge pull-right"><?php echo $counter; ?></span> <?php echo $cat['name']; ?> </a>
-                                </li>
-                                <?php } ?>
-                                <!--end loop category-->
-                            </ul>
-
-                        </div>
-                    </div>
-
-                    <!-- *** MENUS AND FILTERS END *** -->
-
-                </div>
+                <?php include('includes/sidemenu.php'); ?>
+               
 
                 <div class="col-md-9">
 
@@ -105,7 +66,7 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                                     <img src="admin/uploads/items/<?php echo $item['image_url']; ?>" alt="" style="width:100%;height:280px" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.php?id=<?php echo $item['id']; ?>"><?php echo $item['name']; ?></a></h3>
+                                    <h3><a href="detail.php?id=<?php echo $item['id']; ?>"><?php echo ucwords($item['name']); ?></a></h3>
                                     <p class="price">&#8369;<?php echo $item['price']; ?>.00</p>
                                     <p class="buttons">
                                         <a href="detail.php?id=<?php echo $item['id']; ?>" class="btn btn-default">View detail</a>
@@ -123,8 +84,6 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                     </div>
                     <!-- /.products -->
 
-
-
                 </div>
                 <!-- /.col-md-9 -->
 
@@ -135,3 +94,12 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
         <!-- /#content -->
 
  <?php include('includes/footer.php'); ?>
+
+ <!--give active state to navigation-->
+  <script type="text/javascript">
+    var page = 'category';
+    $("." + page + " > a").addClass("active");
+
+    var category_id = "<?php echo $get_category_id; ?>";
+    $(".category_" + category_id).addClass("active");
+  </script>

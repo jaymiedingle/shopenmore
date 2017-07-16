@@ -5,11 +5,7 @@
 <?php
     $latest_item = DB::query("SELECT * FROM tb_items WHERE is_active = 1 ORDER BY date_posted DESC LIMIT 10");
 ?>
-<!--add active state on navigation current page via class-->
-<style type="text/css">
-    .home > a{color: #fff !important;background-color: #6eb752;} 
-    .home > a:hover, .home > li:hover{ color: #000 !important;} 
-</style>
+
 
     <div id="all">
 
@@ -124,3 +120,9 @@
         <!-- /#content -->
 
   <?php include('includes/footer.php'); ?>
+
+  <!--give active state to navigation-->
+  <script type="text/javascript">
+    var page = 'home';
+    $("." + page + " > a").addClass("active");
+  </script>
