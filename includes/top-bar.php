@@ -1,8 +1,8 @@
     <?php
 
     //get unread message count
-    $unread_message = DB::query("SELECT * FROM tb_messages WHERE receiver_id = ".." AND is_active = 1 AND is_opend != 0");
-
+    $unread_message = DB::query("SELECT * FROM tb_messages WHERE receiver_id = ".$_SESSION['userdata']['id']." AND is_active = 1 AND is_opened = 0");
+    $count_unread_message = DB::count();
 
     ?>
 
@@ -41,7 +41,7 @@
                     <li style="position:relative">
                         <a href="messages.php" title="Messages">
                             <i class="fa fa-comments" aria-hidden="true"></i>
-                            <span class="badge red">16</span>
+                            <span class="badge red"><?php echo $count_unread_message; ?></span>
                         </a>
                     </li>
                     <li>
