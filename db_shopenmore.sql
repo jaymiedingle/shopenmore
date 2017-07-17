@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2017 at 11:21 AM
+-- Generation Time: Jul 17, 2017 at 09:47 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.20
 
@@ -125,6 +125,36 @@ INSERT INTO `tb_item_status` (`id`, `name`, `theme`) VALUES
 (2, 'For Rent', 'info'),
 (3, 'Limited Stock', 'danger'),
 (4, 'Out of Stock', 'default');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tb_messages`
+--
+
+CREATE TABLE `tb_messages` (
+  `id` int(11) NOT NULL,
+  `parent_id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `receiver_id` int(11) NOT NULL,
+  `subject` varchar(100) NOT NULL,
+  `message` text NOT NULL,
+  `is_opened` tinyint(1) NOT NULL DEFAULT '0',
+  `date_send` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tb_messages`
+--
+
+INSERT INTO `tb_messages` (`id`, `parent_id`, `sender_id`, `receiver_id`, `subject`, `message`, `is_opened`, `date_send`, `is_active`) VALUES
+(1, 0, 28, 21, 'Regarding your item #1', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim jus', 0, '2017-07-17 12:01:48', 1),
+(2, 0, 35, 21, 'Regarding your item #1', 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim jus', 0, '2017-07-17 12:01:48', 1),
+(3, 0, 21, 35, 'Inquiry about 36', 'sdsds', 0, '2017-07-17 14:57:27', 1),
+(4, 0, 21, 35, 'Inquiry regarding item # 36', 'sdsds', 0, '2017-07-17 15:19:35', 1),
+(5, 0, 21, 35, 'Inquiry regarding item # 36', 'sdsds', 0, '2017-07-17 15:20:00', 1),
+(7, 0, 21, 35, 'Message for item #36', 'sdsds', 0, '2017-07-17 15:23:47', 1);
 
 -- --------------------------------------------------------
 
@@ -275,6 +305,12 @@ ALTER TABLE `tb_item_status`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `tb_messages`
+--
+ALTER TABLE `tb_messages`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tb_rating`
 --
 ALTER TABLE `tb_rating`
@@ -328,6 +364,11 @@ ALTER TABLE `tb_item_category`
 --
 ALTER TABLE `tb_item_status`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `tb_messages`
+--
+ALTER TABLE `tb_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tb_rating`
 --

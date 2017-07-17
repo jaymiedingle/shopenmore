@@ -80,3 +80,29 @@ select
 }
 
 .red{background:red}
+
+
+@media only screen and (min-device-width: 480px){
+  .details-img{width:100%;height:200px}
+}
+
+@media only screen and (min-device-width: 768px){
+  .details-img{width:100%;height:280px}
+}
+
+.details-img{width:100%;}
+
+
+
+  /* Medium Devices, Desktops */
+  @media only screen and (min-width : 992px) {
+    .details-img{height:460px}
+  }
+
+  /* Large Devices, Wide Screens */
+  @media only screen and (min-width : 1200px) {
+    .details-img{height:460px}
+  }
+
+
+

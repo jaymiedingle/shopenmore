@@ -29,18 +29,16 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
            AND user_id = %i ",  $item['tb_items.id'], $item['tb_users.id']);
 
 
-
   if(empty($item) || $get_item_id == false){
     echo '<script>window.location.href = "404.php";</script>';
     exit;
-}
-
+  }
 
 
 ?>
+<!-- 
 
-
-    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59682226aec25f00114bf183&product=sticky-share-buttons"></script>
+    <script type="text/javascript" src="//platform-api.sharethis.com/js/sharethis.js#property=59682226aec25f00114bf183&product=sticky-share-buttons"></script> -->
 
     <div id="all">
 
@@ -69,9 +67,9 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                 <div class="col-md-9">
 
                     <div class="row" id="productMain">
-                        <div class="col-sm-6">
+                        <div class="col-sm-7">
                             <div id="mainImage">
-                                <img src="admin/uploads/items/<?php echo $item['tb_items.image_url'];?>" alt="" style="width:100%;height:440px" class="img-responsive">
+                                <img src="admin/uploads/items/<?php echo $item['tb_items.image_url'];?>" alt=""  class="details-img img-responsive">
                             </div>
 
                             <div class="ribbon sale">
@@ -80,18 +78,31 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                             </div>
                             <!-- /.ribbon -->
 
+                            <div class="box" id="details">
+                                <p>
+                                    <h4>Description</h4>
+                                    <blockquote>
+                                        <p>
+                                            <em><?php echo $item['tb_items.description']; ?></em>
+                                        </p>
+                                    </blockquote>
+
+                                    <hr>
+                            </div>
+
+
                         </div>
-                        <div class="col-sm-6">
+                        <div class="col-sm-5">
                             <div class="box">
                                 <h1 class="text-center"><?php echo ucwords($item['tb_items.name']); ?></h1>
                                 <p class="price">&#8369;<?php echo $item['tb_items.price']; ?>.00</p>
                                 
                                 <p class="goToDescription">
                                     <a href="#details" class="scroll-to">
-
+                                        by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?> <br >ID# <?php echo $item['tb_users.student_id'];?>
+                                        <br /><br />
                                         <img style="height:80px;width:80px;border-radius:50%" src="admin/uploads/users/<?php echo $item['tb_users.image_url'];?>">
-                                        <br><br>
-                                         by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?> <br >ID# <?php echo $item['tb_users.student_id'];?>
+                                         
                                     </a>
                                 </p>
 
@@ -133,18 +144,48 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                                       </label>
                                                     </div>
                                                 </form>
+
+                                                <hr/>
+
+                                                <p>Message Seller</p>
+                                                <form id="messageform" name="messageform" action="addmessage.php" method="POST" class="box" style="text-align:left" >
+
+                                                    <!--hidden fields-->
+                                                    <input type="hidden" name="receiver_id" value="<?php echo $item['tb_users.id']; ?>" />
+                                                    <input type="hidden" name="sender_id" value="<?php echo $_SESSION['userdata']['id']; ?>" />
+                                                    <input type="hidden" name="item_id" value="<?php echo $item['tb_items.id']; ?>" />
+                                                    <!--endhidden fields-->
+
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" id="message" name="message" rows="2" required></textarea>
+                                                    </div>
+
+                                                    <div class="btn-group" data-toggle="buttons">
+                                                        <input type="submit" name="submit_message" class="btn btn-danger pull-right" value="Send">
+                                                    </div>
+                                                </form>
                                                 
 
                                             </div>
                                         </p>
                                         <?php } ?>
                                     <?php }else{ ?>
+
                                         <p style="text-align:center;margin:10px 0">
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary">
+                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary" style="width:70%"> 
                                             <i class="fa fa-thumbs-up" aria-hidden="true"></i><i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                                            Register to rate this seller 
+                                            Register to rate seller 
                                         </a>
                                         </p>
+
+                                        <p style="text-align:center;margin:10px 0">
+                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-warning" style="width:70%">
+                                            <i class="fa fa-comments" aria-hidden="true"></i>
+                                            Register to message seller 
+                                        </a>
+                                        </p>
+
+                                        
                                     <?php } ?>
                                 </p>
                                 
@@ -155,19 +196,6 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                         </div>
 
-                    </div>
-
-
-                    <div class="box" id="details">
-                        <p>
-                            <h4>Description</h4>
-                            <blockquote>
-                                <p>
-                                    <em><?php echo $item['tb_items.description']; ?></em>
-                                </p>
-                            </blockquote>
-
-                            <hr>
                     </div>
 
 
@@ -197,11 +225,11 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                         </div>
                                     </div>
                                 </div>
-                                <a href="detail.html" class="invisible">
+                                <a href="detail.php?id=<?php echo $item_by['id']; ?>" class="invisible">
                                     <img src="admin/uploads/items/<?php echo $item_by['image_url']; ?>" alt="" style="width:100%;height:200px" class="img-responsive">
                                 </a>
                                 <div class="text">
-                                    <h3><a href="detail.html"><?php echo ucwords($item_by['name']); ?></a></h3>
+                                    <h3><a href="detail.php?id=<?php echo $item_by['id']; ?>"><?php echo ucwords($item_by['name']); ?></a></h3>
                                     <p class="price">&#8369;<?php echo $item_by['price']; ?>.00</p>
                                     <p class="buttons">
                                         <a href="detail.php?id=<?php echo $item_by['id']; ?>" class="btn btn-default">View detail</a>

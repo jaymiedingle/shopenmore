@@ -1,3 +1,12 @@
+    <?php
+
+    //get unread message count
+    $unread_message = DB::query("SELECT * FROM tb_messages WHERE receiver_id = ".." AND is_active = 1 AND is_opend != 0");
+
+
+    ?>
+
+
     <!-- *** TOPBAR ***
  _________________________________________________________ -->
     <div id="top">
@@ -30,7 +39,7 @@
                         </a>
                     </li>
                     <li style="position:relative">
-                        <a href="message.php" title="Messages">
+                        <a href="messages.php" title="Messages">
                             <i class="fa fa-comments" aria-hidden="true"></i>
                             <span class="badge red">16</span>
                         </a>

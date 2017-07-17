@@ -78,7 +78,7 @@
                                                     <a href="myitems.php">My Items</a>
                                                 </li>
                                                 <li>
-                                                    <a href="message.php">Message</a>
+                                                    <a href="messages.php">Message</a>
                                                 </li>
                                                 <li>
                                                     <a href="logout.php">Logout</a>

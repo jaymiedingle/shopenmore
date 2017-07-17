@@ -17,7 +17,7 @@
                                     <a href="myitems.php"><i class="fa fa-shopping-cart"></i> My items</a>
                                 </li>
                                 <li class="message">
-                                    <a href="message.php"><i class="fa fa-comments"></i> Message <span class="badge pull-right">16</span></a>
+                                    <a href="messages.php"><i class="fa fa-comments"></i> Message <span class="badge pull-right">16</span></a>
                                 </li>
                                 <li>
                                     <a href="logout.php"><i class="fa fa-sign-out"></i> Logout</a>

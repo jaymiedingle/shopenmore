@@ -8,6 +8,11 @@ $(function(){
         $('#rateform').submit();
    });
 
+/*messages*/
+  $('input[name=submit_message]').on('click',function(){
+        $('#messageform').submit();
+   });
+
   /*update active*/
   $(".slider").on('click', function(){
     methods.activate_update(this);
