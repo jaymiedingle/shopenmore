@@ -50,21 +50,48 @@ $replies = DB::queryFullColumns("SELECT * FROM tb_messages
                 <div class="col-md-9">
 
                     <div class="box">
-                        <h1>Subject :  <span class="highlight"><?php echo $messages['tb_messages.subject']; ?></span> </h1>
+                        <h1><span class="highlight"><?php echo $messages['tb_messages.subject']; ?></span> </h1>
+                        <p class="lead"><?php echo $messages['tb_messages.message']; ?></p>
                     </div>
 
 
-                    <div class="row products">
-                        
-                        <!--loop item-->
-                        <?php foreach($replies as $key=>$reply){ ?>
-                        <div class="col-md-4 col-sm-6">
-                            <div class="product">
-                                <?php var_dump($reply); ?>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+
+                            <div class="box">
+                                <!--loop item-->
+                                <?php foreach($replies as $key=>$reply){ ?>
+
+                                <?php if($reply['tb_users.id'] == $profile['id']) { ?>
+                                        <div class="replies row">
+                                            <div class="col-xs-3" style="text-align:center" >
+                                                <img class="reply-img" src="admin/uploads/users/<?php echo $reply['tb_users.image_url']; ?>">
+                                            </div>
+                                            <div class="reply-box col-xs-9">
+                                                <?php echo $reply['tb_messages.message']; ?>
+                                            </div>
+                                        </div>
+                                        <!-- /.reply -->
+                                <?php }else{ ?>
+                                          <div class="replies row">
+                                            <div class="reply-box col-xs-9">
+                                                <?php echo $reply['tb_messages.message']; ?>
+                                            </div>
+                                            <div class="col-xs-3" style="text-align:center">
+                                                <img class="reply-img" src="admin/uploads/users/<?php echo $reply['tb_users.image_url']; ?>">
+                                            </div>
+                                        </div>
+                                        <!-- /.reply -->
+                                <?php } ?>
+
+                                
+                                    
+                                
+                                <?php } ?>
+
                             </div>
-                            <!-- /.product -->
+                        
                         </div>
-                        <?php } ?>
 
                        
 
