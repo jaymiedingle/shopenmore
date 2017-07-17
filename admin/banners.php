@@ -65,8 +65,8 @@ $banners = DB::query("SELECT * FROM tb_banners WHERE is_active = 1");
                                         </td>
                                        
                                         <td>
-                                            <a href="editbanner.php?id=<?php echo $banner['id']; ?>" class="btn btn-warning btn-sm" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                                            <a href="deletebanner.php?id=<?php echo $banner['id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="editbanner.php?id=<?php echo $banner['id']; ?>" class="btn btn-warning btn-xs" alt="Edit"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                            <a href="deletebanner.php?id=<?php echo $banner['id']; ?>" class="btn btn-danger btn-xs" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>

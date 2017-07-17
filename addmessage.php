@@ -14,7 +14,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $parent_id = 0;
     $sender_id = $_SESSION['userdata']['id']; //user role id for members
     $receiver_id = $_POST['receiver_id'];
-    $subject = "Message for item #" . $_POST['item_id'];
+    $subject = $_POST['subject'];
     $message = $_POST['message'];
     $is_active = 1; //flag for active users
 

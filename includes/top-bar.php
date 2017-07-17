@@ -1,8 +1,11 @@
     <?php
 
     //get unread message count
-    $unread_message = DB::query("SELECT * FROM tb_messages WHERE receiver_id = ".$_SESSION['userdata']['id']." AND is_active = 1 AND is_opened = 0");
-    $count_unread_message = DB::count();
+    if(isset($_SESSION['userdata'])){
+        $unread_message = DB::query("SELECT * FROM tb_messages WHERE receiver_id = ".$_SESSION['userdata']['id']." AND is_active = 1 AND is_opened = 0");
+        $count_unread_message = DB::count();
+    }
+    
 
     ?>
 
@@ -20,7 +23,6 @@
             </div>
             <div class="col-md-6" data-animate="fadeInDown">
                 <ul class="menu">
-                    
                     <?php if(isset($_SESSION['userdata'])) { ?>
 
                     <li>

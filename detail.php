@@ -136,10 +136,10 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                                     <!--endhidden fields-->
 
                                                     <div class="btn-group" data-toggle="buttons">
-                                                      <label class="btn btn-lg btn-primary <?php echo (($login_user_rated) && $login_user_rated[0]['rate'] == 1) ? 'active' : ''; ?>">
+                                                      <label class="btn btn-sm btn-primary <?php echo (($login_user_rated) && $login_user_rated[0]['rate'] == 1) ? 'active' : ''; ?>">
                                                         <input type="radio" name="rate" autocomplete="off" value="1" ><i class="fa fa-thumbs-up" aria-hidden="true"> <?php echo $positive_rate_count;?></i>
                                                       </label>&nbsp;
-                                                      <label class="btn btn-lg btn-danger <?php echo (($login_user_rated) && $login_user_rated[0]['rate'] == 0) ? 'active' : ''; ?>">
+                                                      <label class="btn btn-sm btn-danger <?php echo (($login_user_rated) && $login_user_rated[0]['rate'] == 0) ? 'active' : ''; ?>">
                                                         <input type="radio" name="rate" autocomplete="off" value="0"><i class="fa fa-thumbs-down" aria-hidden="true"> <?php echo $negative_rate_count;?></i>
                                                       </label>
                                                     </div>
@@ -147,23 +147,55 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
 
                                                 <hr/>
 
-                                                <p>Message Seller</p>
-                                                <form id="messageform" name="messageform" action="addmessage.php" method="POST" class="box" style="text-align:left" >
+                                                <p style="text-align:center;margin:10px 0">
+                                                    <a href="#" data-toggle="modal" data-target="#message-modal" class="btn btn-primary" style="width:80%">
+                                                        <i class="fa fa-comments" aria-hidden="true"></i>
+                                                        Message seller
+                                                    </a>
+                                                </p>
 
-                                                    <!--hidden fields-->
-                                                    <input type="hidden" name="receiver_id" value="<?php echo $item['tb_users.id']; ?>" />
-                                                    <input type="hidden" name="sender_id" value="<?php echo $_SESSION['userdata']['id']; ?>" />
-                                                    <input type="hidden" name="item_id" value="<?php echo $item['tb_items.id']; ?>" />
-                                                    <!--endhidden fields-->
+                                                <!--message modal-->
+                                                <div class="modal fade" id="message-modal" tabindex="-1" role="dialog" aria-labelledby="Message" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
 
-                                                    <div class="form-group">
-                                                        <textarea class="form-control" id="message" name="message" rows="2" required></textarea>
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                <h4 class="modal-title" id="Login">Message Seller</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                  <form id="messageform" name="messageform" action="addmessage.php" method="POST" style="text-align:left" >
+
+                                                                    <!--hidden fields-->
+                                                                    <input type="hidden" name="receiver_id" value="<?php echo $item['tb_users.id']; ?>" />
+                                                                    <input type="hidden" name="sender_id" value="<?php echo $_SESSION['userdata']['id']; ?>" />
+                                                                    <input type="hidden" name="item_id" value="<?php echo $item['tb_items.id']; ?>" />
+                                                                    <!--endhidden fields-->
+
+                                                                    <div class="form-group">
+                                                                      <label for="name">Subject</label>
+                                                                      <input type="text" name="subject" class="form-control" value="Inquiry on <?php echo $item['tb_items.name'];?> (#<?php echo $item['tb_items.id'];?>)" required>
+                                                                    </div>
+
+
+                                                                    <div class="form-group">
+                                                                        <label for="message">Message</label>
+                                                                        <textarea class="form-control" id="message" name="message" rows="2" required></textarea>
+                                                                    </div>
+
+                                                                    <div class="btn-group" data-toggle="buttons">
+                                                                        <input type="submit" name="submit_message" class="btn btn-danger pull-right" value="Send">
+                                                                    </div>
+                                                                </form>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                                <!--end message modal-->
 
-                                                    <div class="btn-group" data-toggle="buttons">
-                                                        <input type="submit" name="submit_message" class="btn btn-danger pull-right" value="Send">
-                                                    </div>
-                                                </form>
+
+                                               
                                                 
 
                                             </div>

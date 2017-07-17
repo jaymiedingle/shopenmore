@@ -18,10 +18,6 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
            ON tb_messages.sender_id = tb_users.id
            WHERE tb_messages.receiver_id = %i ", $profile['id'] );
 
-
-
-
-
 ?>
 
     <div id="all">
@@ -50,13 +46,12 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                         <hr>
 
                         <div class="table-responsive">
-                            <table class="table table-hover">
+                            <table id="message-table" class="table table-hover">
                                 <thead>
                                     <tr>
                                         <th>#</th>
                                         <th>Sender</th>
                                         <th>Subject</th>
-                                        <th>Status</th>
                                         <th>Date</th>
                                         <th>Action</th>
                                     </tr>
@@ -64,7 +59,7 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                 <tbody>
 
                                     <?php foreach($messages as $key=>$message) { ?>
-                                    <tr>
+                                    <tr class="<?php echo ($message['tb_messages.is_opened']) ? 'read' : ''; ?>">
                                         <th><?php echo ($key + 1); ?></th>
                                         <td>
                                             <?php echo ucwords($message['tb_users.fname'] . ' ' .$message['tb_users.lname']); ?>
@@ -74,16 +69,11 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                                 <?php echo ucwords($message['tb_messages.subject']); ?>
                                             </a>
                                         </td>
-                                        <td>
-                                            <span class="label label-<?php echo ($message['tb_messages.is_opened'] ) ? 'primary' : 'default'; ?>">
-                                            <?php echo ($message['tb_messages.is_opened'] ) ? 'Read' : 'Unread'; ?>
-                                            </span>
-                                        </td>
                                         <td style="font-size:11px">
                                             <?php echo date('m-j-Y h:i', strtotime($message['tb_messages.date_send'])); ?>
                                         </td>
                                         <td>
-                                            <a href="deletemessage.php?id=<?php echo $message['tb_messages.id']; ?>" class="btn btn-danger btn-sm" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            <a href="deletemessage.php?id=<?php echo $message['tb_messages.id']; ?>" class="btn btn-danger btn-xs" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                     <?php } ?>
