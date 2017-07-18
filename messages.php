@@ -64,36 +64,47 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                 </thead>
                                 <tbody>
 
-                                    <?php foreach($messages as $key=>$message) { ?>
-                                    <tr class="<?php echo ($message['tb_messages.is_opened']) ? 'read' : ''; ?>">
-                                        <th><?php echo ($key + 1); ?></th>
-                                        <td>
-                                            <?php 
+                                    <?php if(count($messages) <= 0){ ?>
+                                        <tr>
+                                            <td col="5">
+                                                No Records found
+                                            </td>
+                                        </tr>
 
-                                                if($message['tb_users.id'] == $profile['id']){
-                                                    echo "You";
-                                                }else{
-                                                    echo ucwords($message['tb_users.fname'] . ' ' .$message['tb_users.lname']); 
-                                                }
+                                    <?php }else{ ?>
 
-                                        
-                                            ?>
-                                        </td>
-                                        <td>
-                                            <a href="update_message_is_opened.php?id=<?php echo $message['tb_messages.id']; ?>">
-                                                <?php echo ucwords($message['tb_messages.subject']); ?>
-                                            </a>
-                                        </td>
-                                        <td style="font-size:11px">
-                                            <?php echo date('m-j-Y h:i', strtotime($message['tb_messages.date_send'])); ?>
-                                        </td>
-                                        <td>
-                                            <span class="badge"><?php echo $count_unread_message; ?></span>
-                                        </td>
-                                        <td>
-                                            <a href="deletemessage.php?id=<?php echo $message['tb_messages.id']; ?>" class="btn btn-danger btn-xs" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
+                                        <?php foreach($messages as $key=>$message) { ?>
+                                        <tr class="<?php echo ($message['tb_messages.is_opened']) ? 'read' : ''; ?>">
+                                            <th><?php echo ($key + 1); ?></th>
+                                            <td>
+                                                <?php 
+
+                                                    if($message['tb_users.id'] == $profile['id']){
+                                                        echo "You";
+                                                    }else{
+                                                        echo ucwords($message['tb_users.fname'] . ' ' .$message['tb_users.lname']); 
+                                                    }
+
+                                            
+                                                ?>
+                                            </td>
+                                            <td>
+                                                <a href="update_message_is_opened.php?id=<?php echo $message['tb_messages.id']; ?>">
+                                                    <?php echo ucwords($message['tb_messages.subject']); ?>
+                                                </a>
+                                            </td>
+                                            <td style="font-size:11px">
+                                                <?php echo date('m-j-Y h:i', strtotime($message['tb_messages.date_send'])); ?>
+                                            </td>
+                                            <td>
+                                                <span class="badge"><?php echo $count_unread_message; ?></span>
+                                            </td>
+                                            <td>
+                                                <a href="deletemessage.php?id=<?php echo $message['tb_messages.id']; ?>" class="btn btn-danger btn-xs" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
+                                            </td>
+                                        </tr>
+                                        <?php } ?>
+
                                     <?php } ?>
                                     
                                 </tbody>
