@@ -169,7 +169,7 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                                                     <!--hidden fields-->
                                                                     <input type="hidden" name="receiver_id" value="<?php echo $item['tb_users.id']; ?>" />
                                                                     <input type="hidden" name="sender_id" value="<?php echo $_SESSION['userdata']['id']; ?>" />
-                                                                    <input type="hidden" name="item_id" value="<?php echo $item['tb_items.id']; ?>" />
+                                                                    <input type="hidden" name="return_url" value="detail.php?id=<?php echo $item['tb_items.id']; ?>" />
                                                                     <!--endhidden fields-->
 
                                                                     <div class="form-group">
@@ -204,14 +204,14 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                     <?php }else{ ?>
 
                                         <p style="text-align:center;margin:10px 0">
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary" style="width:70%"> 
+                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary" style="width:100%"> 
                                             <i class="fa fa-thumbs-up" aria-hidden="true"></i><i class="fa fa-thumbs-down" aria-hidden="true"></i>
                                             Register to rate seller 
                                         </a>
                                         </p>
 
                                         <p style="text-align:center;margin:10px 0">
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-warning" style="width:70%">
+                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-warning" style="width:100%">
                                             <i class="fa fa-comments" aria-hidden="true"></i>
                                             Register to message seller 
                                         </a>

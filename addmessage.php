@@ -11,7 +11,7 @@ $profile = $_SESSION['userdata'];
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   /*step 2 gather form data to be saved in database*/
-    $parent_id = 0;
+    $parent_id = isset($_POST['parent_id']) ? $_POST['parent_id'] : 0;
     $sender_id = $_SESSION['userdata']['id']; //user role id for members
     $receiver_id = $_POST['receiver_id'];
     $subject = $_POST['subject'];
@@ -35,7 +35,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       $type = 'success';
       $message = "Message posted!";
       Common::display_message_alert($type, $message);
-      echo '<script>window.location.href = "detail.php?id='.urlencode($_POST['item_id']).'";</script>';
+      header('Location:'.$_POST['return_url']);
+      exit;
+      //echo '<script>window.location.href = "'.$_POST['return_url'].'";</script>';
+      // echo '<script>history.back();</script>';
    }
 }
 

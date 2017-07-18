@@ -138,7 +138,9 @@
             <!--alert display-->
             <?php if(isset($_SESSION['error_type']) && isset($_SESSION['error_message'])) { ?>
                 <div class="col-md-12" style="position:absolute;z-index:999;margin-top:10px;text-align:center">
-                    <div class="alert alert-<?php echo $_SESSION['error_type']; ?> alert-dismissible" style="display:none" role="alert">
+                    <!-- <div class="alert alert-<?php echo $_SESSION['error_type']; ?> alert-dismissible" style="display:none" role="alert"> -->
+
+                    <div class="alert alert-danger alert-dismissible" style="display:none" role="alert">
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>

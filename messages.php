@@ -16,7 +16,12 @@ $profile = $_SESSION['userdata'];
 $messages = DB::queryFullColumns("SELECT * FROM tb_messages
            LEFT JOIN tb_users 
            ON tb_messages.sender_id = tb_users.id
-           WHERE tb_messages.receiver_id = %i ", $profile['id'] );
+           WHERE tb_messages.parent_id = 0 
+           AND 
+           (
+            tb_messages.receiver_id = ".$profile['id']." OR 
+            tb_messages.sender_id = ".$profile['id']."
+           )");
 
 ?>
 
@@ -62,10 +67,19 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                     <tr class="<?php echo ($message['tb_messages.is_opened']) ? 'read' : ''; ?>">
                                         <th><?php echo ($key + 1); ?></th>
                                         <td>
-                                            <?php echo ucwords($message['tb_users.fname'] . ' ' .$message['tb_users.lname']); ?>
+                                            <?php 
+
+                                                if($message['tb_users.id'] == $profile['id']){
+                                                    echo "You";
+                                                }else{
+                                                    echo ucwords($message['tb_users.fname'] . ' ' .$message['tb_users.lname']); 
+                                                }
+
+                                        
+                                            ?>
                                         </td>
                                         <td>
-                                            <a href="messagedetail.php?id=<?php echo $message['tb_messages.id']; ?>">
+                                            <a href="update_message_is_opened.php?id=<?php echo $message['tb_messages.id']; ?>">
                                                 <?php echo ucwords($message['tb_messages.subject']); ?>
                                             </a>
                                         </td>

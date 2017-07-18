@@ -43,7 +43,10 @@
                     <li style="position:relative">
                         <a href="messages.php" title="Messages">
                             <i class="fa fa-comments" aria-hidden="true"></i>
+
+                            <?php if($count_unread_message > 0){ ?> 
                             <span class="badge red"><?php echo $count_unread_message; ?></span>
+                            <?php } ?>
                         </a>
                     </li>
                     <li>
