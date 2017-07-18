@@ -58,6 +58,7 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                         <th>Sender</th>
                                         <th>Subject</th>
                                         <th>Date</th>
+                                        <th>Reply</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -85,6 +86,9 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                         </td>
                                         <td style="font-size:11px">
                                             <?php echo date('m-j-Y h:i', strtotime($message['tb_messages.date_send'])); ?>
+                                        </td>
+                                        <td>
+                                            <span class="badge"><?php echo $count_unread_message; ?></span>
                                         </td>
                                         <td>
                                             <a href="deletemessage.php?id=<?php echo $message['tb_messages.id']; ?>" class="btn btn-danger btn-xs" alt="Delete"><i class="fa fa-times" aria-hidden="true"></i></a>
