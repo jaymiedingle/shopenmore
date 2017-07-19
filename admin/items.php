@@ -8,6 +8,16 @@
 
 $profile = $_SESSION['admindata'];
 
+/*pagination*/
+$limit = 3;
+$current_page = isset($_GET['page']) ? $_GET['page'] : 0;
+DB::query("SELECT * FROM tb_items WHERE is_active = 1");
+$total_count = DB::count();
+$pages_count = $total_count % $limit;
+
+echo $total_count;
+
+
 //get items of user
 $items = DB::queryFullColumns("SELECT * FROM tb_items 
            LEFT JOIN tb_users 
@@ -15,7 +25,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
            LEFT JOIN tb_item_category 
            ON tb_items.item_category_id = tb_item_category.id 
            LEFT JOIN tb_item_status
-           ON tb_items.item_status_id = tb_item_status.id");
+           ON tb_items.item_status_id = tb_item_status.id LIMIT $current_page,$limit");
 
 
 ?>
@@ -85,8 +95,32 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                             </table>
                         </div>
                     </div>
+
+                     <!--pagination-->
+                    <div class="pages">
+
+                        
+
+                        <ul class="pagination">
+                            <li><a href="#">«</a>
+                            </li>
+                            <?php for($i = 0; $i < $pages_count; $i++) { ?>
+                            
+                            <li class="active"><a href="#">1</a>
+                            </li>
+                            
+                            
+                            <?php } ?>
+                            <li><a href="#">»</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end pagination-->
+
                 </div>
                 <!-- /.col-md-9 -->
+
+               
 
 
             </div>
