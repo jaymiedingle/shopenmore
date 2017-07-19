@@ -8,8 +8,16 @@
 
 $profile = $_SESSION['admindata'];
 
+/*pagination data*/
+$limit = 10;
+$current_page = isset($_GET['page']) ? $_GET['page'] : 0;
+DB::query("SELECT * FROM tb_item_category WHERE is_active = 1");
+$total_count = DB::count();
+$pages_count = ceil($total_count / $limit);
+$offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
+
 //get users of user
-$categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1");
+$categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1 LIMIT $offset,$limit");
 
 
 ?>
@@ -78,7 +86,15 @@ $categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1");
                                 </tbody>
                             </table>
                         </div>
+
+                        <!--pagination-->
+                        <div class="pages">
+                            <?php echo Common::pagination($current_page, $pages_count); ?>
+                        </div>
+                        <!--end pagination-->
+
                     </div>
+
                 </div>
                 <!-- /.col-md-9 -->
 

@@ -49,4 +49,43 @@ class Common{
 		return $is_student;
 	}
 
+
+	public function pagination($current_page, $pages_count){
+
+		$current_page = ($current_page == 0) ? 1 : $current_page;
+
+		$html = '';
+
+
+		if($pages_count > 1){
+			$html .= '<ul class="pagination">';
+
+			if(($current_page - 1) > 0){
+				$html .= '<li><a href="?page='.($current_page - 1).'">«</a>';
+			}
+			
+			$html .= '</li>';
+
+			for($i = 1; $i <= $pages_count; $i++) {
+				$html .= '<li class="';
+				$html .= ($current_page == $i) ? 'active' : '';
+				$html .= '">';
+				$html .= '<a href="?page='.$i.'">'.$i;
+				$html .= '</a>';
+				$html .= '</li>';
+			}
+
+
+			if(($current_page + 1) <= $pages_count){
+				$html .= '<li><a href="?page='.($current_page + 1).'">»</a>';
+			}
+
+			$html .= '</li>';
+			$html .= '</ul>';
+		}
+		
+
+		return $html;
+
+	}
 }

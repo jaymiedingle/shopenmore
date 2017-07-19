@@ -1,9 +1,6 @@
 <?php
 session_start();
 
-// unset($_SESSION['error_type']);
-// unset($_SESSION['error_message']);
-
 include('libs/meekrodb.2.3.class.php');
 include('libs/common.php');
 

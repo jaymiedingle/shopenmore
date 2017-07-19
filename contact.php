@@ -57,7 +57,7 @@
                             <div class="col-sm-4">
                                 <h3><i class="fa fa-envelope"></i> Electronic support</h3>
                                 <ul>
-                                    <li><strong><a href="mailto:">icct.edu.ph</a></strong>
+                                    <li><strong><a href="mailto:">https://www.facebook.com/SEMbinangonan/</a></strong>
                                     </li>
                                 </ul>
                             </div>

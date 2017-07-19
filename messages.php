@@ -58,7 +58,6 @@ $messages = DB::queryFullColumns("SELECT * FROM tb_messages
                                         <th>Sender</th>
                                         <th>Subject</th>
                                         <th>Date</th>
-                                        <th>Reply</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

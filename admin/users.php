@@ -7,17 +7,19 @@
 
 $profile = $_SESSION['admindata'];
 
-
+/*pagination data*/
+$limit = 10;
+$current_page = isset($_GET['page']) ? $_GET['page'] : 0;
+DB::query("SELECT * FROM tb_users WHERE is_active = 1");
+$total_count = DB::count();
+$pages_count = ceil($total_count / $limit);
+$offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
 
 //get users of user
 $users = DB::queryFullColumns("SELECT * FROM tb_users
            LEFT JOIN tb_user_role 
            ON tb_users.user_role_id = tb_user_role.id 
-           -- LEFT JOIN tb_item_category 
-           -- ON tb_users.item_category_id = tb_item_category.id 
-           -- LEFT JOIN tb_item_status
-           -- ON tb_users.item_status_id = tb_item_status.id 
-           WHERE tb_users.id != %i ", $profile['id']);
+           WHERE tb_users.id != %i LIMIT $offset,$limit", $profile['id']);
 
 
 ?>
@@ -28,12 +30,6 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
         <div id="content">
             <div class="container">
 
-                <!-- <div class="col-md-12">
-                    <ul class="breadcrumb" style="margin-top:10px">
-                        </li>
-                        <li>Item List</li>
-                    </ul>
-                </div> -->
                 <br>
 
                 
@@ -101,7 +97,15 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                                 </tbody>
                             </table>
                         </div>
+
+                        <!--pagination-->
+                        <div class="pages">
+                            <?php echo Common::pagination($current_page, $pages_count); ?>
+                        </div>
+                        <!--end pagination-->
+
                     </div>
+
                 </div>
                 <!-- /.col-md-9 -->
 

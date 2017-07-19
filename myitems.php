@@ -14,6 +14,14 @@ if(!isset($_SESSION['userdata'])){
 
 $profile = $_SESSION['userdata'];
 
+/*pagination data*/
+$limit = 10;
+$current_page = isset($_GET['page']) ? $_GET['page'] : 0;
+DB::query("SELECT * FROM tb_banners WHERE is_active = 1");
+$total_count = DB::count();
+$pages_count = ceil($total_count / $limit);
+$offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
+
 //get items of user
 $items = DB::queryFullColumns("SELECT * FROM tb_items 
            LEFT JOIN tb_users 
@@ -22,7 +30,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
            ON tb_items.item_category_id = tb_item_category.id 
            LEFT JOIN tb_item_status
            ON tb_items.item_status_id = tb_item_status.id 
-           WHERE tb_users.id = %i ", $profile['id'] );
+           WHERE tb_users.id = %i  LIMIT $offset, $limit", $profile['id'] );
 
 
 
@@ -109,7 +117,17 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                 </tbody>
                             </table>
                         </div>
+
+                        <!--pagination-->
+                        <div class="pages">
+                            <?php echo Common::pagination($current_page, $pages_count); ?>
+                        </div>
+                        <!--end pagination-->
+                    
                     </div>
+
+                    
+
                 </div>
                 <!-- /.col-md-9 -->
 
