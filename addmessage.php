@@ -3,16 +3,12 @@
 
 <?php
 
-
-$profile = $_SESSION['userdata'];
-
-
 // Check if registration form was submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
   /*step 2 gather form data to be saved in database*/
     $parent_id = isset($_POST['parent_id']) ? $_POST['parent_id'] : 0;
-    $sender_id = $_SESSION['userdata']['id']; //user role id for members
+    $sender_id = $_POST['sender_id'];
     $receiver_id = $_POST['receiver_id'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
@@ -37,8 +33,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
       Common::display_message_alert($type, $message);
       header('Location:'.$_POST['return_url']);
       exit;
-      //echo '<script>window.location.href = "'.$_POST['return_url'].'";</script>';
-      // echo '<script>history.back();</script>';
    }
 }
 

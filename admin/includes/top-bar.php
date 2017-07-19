@@ -1,3 +1,15 @@
+<?php
+
+/*this will restrict entry to people who are not logedin*/
+if(!isset($_SESSION['admindata'])){
+  echo '<script>window.location.href = "index.php";</script>';
+  exit;
+}
+
+
+?>
+
+
     <!-- *** TOPBAR ***
  _________________________________________________________ -->
     <div id="top">

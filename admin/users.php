@@ -1,5 +1,4 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
 
 
@@ -7,6 +6,8 @@
 
 
 $profile = $_SESSION['admindata'];
+
+
 
 //get users of user
 $users = DB::queryFullColumns("SELECT * FROM tb_users
@@ -42,7 +43,9 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                     <div class="box">
 
                         <h1>Users List</h1>
+                        <?php if($profile['user_role_id']== 1){ ?>
                         <a href="adduser.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
+                        <?php } ?>
 
                         <p class="lead">Listing of all users in system</p>
 
@@ -81,18 +84,15 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                                         <td><?php echo ucwords($user['tb_users.fname']); ?> <?php echo ucwords($user['tb_users.lname']); ?></td>
                                        
                                         <td>
-                                            <!-- <div class="btn-group" id="status" data-toggle="buttons">
-                                                <label class="btn btn-default btn-on btn-xs active">
-                                                <input type="radio" value="1" name="is_active" checked="checked">Yes</label>
-                                                <label class="btn btn-default btn-off btn-xs ">
-                                                <input type="radio" value="0" name="is_active">No</label>
-                                            </div> -->
+                                            <?php if($user['tb_users.user_role_id'] > 2 OR $profile['user_role_id'] == 1){ ?>
 
                                             <!-- Rounded switch -->
                                             <label class="switch">
                                               <input class="tb_users" alt="<?php echo $user['tb_users.id']; ?>" type="checkbox" <?php echo ($user['tb_users.is_active'] ) ? 'checked' : ''; ?>>
                                               <div class="slider round"></div>
                                             </label>
+
+                                            <?php } ?>
 
                                         </td>
                                     </tr>

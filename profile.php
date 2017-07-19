@@ -1,7 +1,5 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
-
 <?php include('includes/nav-bar.php'); ?>
 
 <?php

@@ -41,7 +41,7 @@
                         </a>
                     </li>
                     <li style="position:relative">
-                        <a href="messages.php" title="Messages">
+                        <a href="messages.php" class="message-count-container" title="Messages">
                             <i class="fa fa-comments" aria-hidden="true"></i>
 
                             <?php if($count_unread_message > 0){ ?> 

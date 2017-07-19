@@ -17,7 +17,7 @@
                                     <a href="myitems.php"><i class="fa fa-shopping-cart"></i> My items</a>
                                 </li>
                                 <li class="message">
-                                    <a href="messages.php"><i class="fa fa-comments"></i> Message 
+                                    <a href="messages.php" class="message-count-container"><i class="fa fa-comments"></i> Message 
                                     <?php if($count_unread_message > 0){ ?>
                                     <span class="badge pull-right"><?php echo $count_unread_message; ?></span>
                                     <?php } ?>

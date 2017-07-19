@@ -13,9 +13,12 @@
                                 <li class="items">
                                     <a href="items.php"><i class="fa fa-shopping-cart"></i> Items</a>
                                 </li>
+                                
                                 <li  class="users">
                                     <a href="users.php"><i class="fa fa-user"></i> Users</a>
                                 </li>
+
+                                
                                 <li  class="categories">
                                     <a href="categories.php"><i class="fa fa-tags"></i>Categories</a>
                                 </li>

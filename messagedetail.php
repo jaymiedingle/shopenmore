@@ -11,15 +11,13 @@ if(!isset($_SESSION['userdata']) || ($get_message_id == false)){
     exit;
 }
 
-
 $profile = $_SESSION['userdata'];
 
 //get messages of user
 $messages = DB::queryFullColumns("SELECT * FROM tb_messages
            LEFT JOIN tb_users 
            ON tb_messages.sender_id = tb_users.id
-           WHERE tb_messages.id = %i ", $get_message_id );
-
+           WHERE tb_messages.id = %i ", $get_message_id);
 $messages = $messages[0];
 
 
@@ -27,7 +25,6 @@ $replies = DB::queryFullColumns("SELECT * FROM tb_messages
            LEFT JOIN tb_users 
            ON tb_messages.sender_id = tb_users.id
            WHERE tb_messages.parent_id = %i ", $messages['tb_messages.id']);
-
 
 
 ?>
@@ -82,7 +79,7 @@ $replies = DB::queryFullColumns("SELECT * FROM tb_messages
 
                                         <!--hidden fields-->
                                         <input type="hidden" name="parent_id" value="<?php echo $messages['tb_messages.id']; ?>" />
-                                        <input type="hidden" name="receiver_id" value="<?php echo $messages['tb_messages.sender_id']; ?>" />
+                                        <input type="hidden" name="receiver_id" value="<?php echo ($profile['id'] == $messages['tb_messages.sender_id']) ? $messages['tb_messages.receiver_id'] : $messages['tb_messages.sender_id']; ?>" />
                                         <input type="hidden" name="sender_id" value="<?php echo $profile['id']; ?>" />
                                         <input type="hidden" name="subject" class="form-control" value="<?php echo $messages['tb_messages.subject']; ?>" >
                                         <input type="hidden" name="return_url" value="messagedetail.php?id=<?php echo $messages['tb_messages.id']; ?>" />

@@ -1,12 +1,11 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
 
 
 <?php
+$profile = $_SESSION['admindata'];
 
-
-if(!isset($_SESSION['admindata'])){
+if($profile['user_role_id'] != 1){
   echo '<script>window.location.href = "404.php";</script>';
   exit;
 }
