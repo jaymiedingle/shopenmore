@@ -129,6 +129,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <div class="col-sm-6">
                                     <img id="image" style="width:100%;height:50%" class="img-thumbnail form-thumbnail"  src="images/thumbnail-default.png"><br />
                                     <input type="file" id="files" name="files" class="btn btn-secondary" style="font-size:11px;" value="Change Profile" />
+                                    <span class="notes">*Note: Please upload actual item images</span>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
