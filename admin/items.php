@@ -7,13 +7,13 @@
 
 $profile = $_SESSION['admindata'];
 
-/*pagination data*/
-$limit = 10;
+/*pagination*/
+$limit = 3;
 $current_page = isset($_GET['page']) ? $_GET['page'] : 0;
 DB::query("SELECT * FROM tb_items WHERE is_active = 1");
 $total_count = DB::count();
-$pages_count = ceil($total_count / $limit);
-$offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
+$pages_count = $total_count % $limit;
+
 
 //get items of user
 $items = DB::queryFullColumns("SELECT * FROM tb_items 
@@ -22,7 +22,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
            LEFT JOIN tb_item_category 
            ON tb_items.item_category_id = tb_item_category.id 
            LEFT JOIN tb_item_status
-           ON tb_items.item_status_id = tb_item_status.id ORDER BY date_posted DESC LIMIT $offset,$limit");
+           ON tb_items.item_status_id = tb_item_status.id LIMIT $current_page,$limit");
 
 
 ?>
@@ -91,16 +91,28 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                                 </tbody>
                             </table>
                         </div>
-
-                        <!--pagination-->
-                        <div class="pages">
-                            <?php echo Common::pagination($current_page, $pages_count); ?>
-                        </div>
-                        <!--end pagination-->
-
                     </div>
 
-                     
+                     <!--pagination-->
+                    <div class="pages">
+
+                        
+
+                        <ul class="pagination">
+                            <li><a href="#">«</a>
+                            </li>
+                            <?php for($i = 0; $i < $pages_count; $i++) { ?>
+                            
+                            <li class="active"><a href="#">1</a>
+                            </li>
+                            
+                            
+                            <?php } ?>
+                            <li><a href="#">»</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end pagination-->
 
                 </div>
                 <!-- /.col-md-9 -->

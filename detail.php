@@ -107,11 +107,14 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                 </p>
 
                                 <p class="text-center buttons">
-                                    <h3 style="text-align:center"><i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?></h3>
+                                    
 
                                     <?php if(isset($_SESSION['userdata'])){ ?>
                                         
                                         <?php if($_SESSION['userdata']['id'] != $item['tb_users.id']){ ?>
+
+                                        <h3 style="text-align:center"><i class="fa fa-phone"></i> <?php echo $item['tb_users.contact']; ?></h3>
+
                                         <p style="text-align:center;margin:10px 0">
                                             Rate the seller &nbsp;
                                             <div class="rate-container">
@@ -202,6 +205,13 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                         </p>
                                         <?php } ?>
                                     <?php }else{ ?>
+
+                                        <p style="text-align:center;margin:10px 0">
+                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-default" style="width:100%"> 
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            <?php echo substr($item['tb_users.contact'], 0, 5); ?> XXX-XXX
+                                        </a>
+                                        </p>
 
                                         <p style="text-align:center;margin:10px 0">
                                         <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary" style="width:100%"> 

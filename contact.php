@@ -37,7 +37,7 @@
                         <hr>
 
                         <div class="row">
-                            <div class="col-sm-4">
+                           <!--  <div class="col-sm-4">
                                 <h3><i class="fa fa-map-marker"></i> Address</h3>
                                 <p><strong>ICCT Binangonan Campus</strong>
                                     <br>National Rd
@@ -48,13 +48,13 @@
                                 </p>
                             </div>
                             <!-- /.col-sm-4 -->
-                            <div class="col-sm-4">
+                           <!--  <div class="col-sm-4">
                                 <h3><i class="fa fa-phone"></i> Call center</h3>
                                 <p><strong>(02) 249 4228</strong>
                                 </p>
-                            </div>
+                            </div> --> 
                             <!-- /.col-sm-4 -->
-                            <div class="col-sm-4">
+                            <div class="col-sm-12">
                                 <h3><i class="fa fa-envelope"></i> Electronic support</h3>
                                 <ul>
                                     <li><strong><a href="mailto:">https://www.facebook.com/SEMbinangonan/</a></strong>

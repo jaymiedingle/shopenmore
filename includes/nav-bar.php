@@ -94,14 +94,14 @@
                    </li>
                    <?php } ?>
 
-                   <li class="visible-xs visible-sm mobile-fb-like" >
+                   <!-- <li class="visible-xs visible-sm mobile-fb-like" >
                     <h4>
                         <a href="https://www.facebook.com/SenMofficial/" target="_blank">Like our FB page <img src="https://scontent.fmnl10-1.fna.fbcdn.net/v/t1.0-9/20031662_1999895480231933_4702362662918044706_n.png?oh=80feee058bfbd51d44e9d86cbec0c28e&oe=59C313D3" >
                         </a>
                     </h4>
                    <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2FSenMofficial%2F%3Fref%3Dbr_rs&width=200&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=328400533904097" width="200" height="70" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe>
                    </li>
-                   
+                    -->
                    
                 </ul>
 
