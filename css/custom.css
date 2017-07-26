@@ -9,6 +9,10 @@
   margin-bottom:4px;
 }
 
+.lb-lg {
+  font-size: 12px;
+}
+
 input[type=text], 
 input[type=password], 
 select

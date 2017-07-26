@@ -207,23 +207,23 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                     <?php }else{ ?>
 
                                         <p style="text-align:center;margin:10px 0">
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-default" style="width:100%"> 
+                                        <a href="registration.php" onclick="window.open('registration.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-default" style="width:100%"> 
                                             <i class="fa fa-phone" aria-hidden="true"></i>
                                             <?php echo substr($item['tb_users.contact'], 0, 5); ?> XXX-XXX
                                         </a>
                                         </p>
 
                                         <p style="text-align:center;margin:10px 0">
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary" style="width:100%"> 
+                                        <a href="registration.php" onclick="window.open('registration.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-primary" style="width:100%"> 
                                             <i class="fa fa-thumbs-up" aria-hidden="true"></i><i class="fa fa-thumbs-down" aria-hidden="true"></i>
-                                            Register to rate seller 
+                                            Registration to rate seller 
                                         </a>
                                         </p>
 
                                         <p style="text-align:center;margin:10px 0">
-                                        <a href="register.php" onclick="window.open('register.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-warning" style="width:100%">
+                                        <a href="registration.php" onclick="window.open('registration.php', 'newwindow', 'width=1200,height=650'); return false;" class="btn btn-warning" style="width:100%">
                                             <i class="fa fa-comments" aria-hidden="true"></i>
-                                            Register to message seller 
+                                            Registration to message seller 
                                         </a>
                                         </p>
 

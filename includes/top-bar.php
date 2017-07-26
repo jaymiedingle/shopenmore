@@ -16,7 +16,7 @@
         <div class="container">
             <div class="col-md-6 offer" data-animate="fadeInDown" style="margin:12px 0">
                 <?php if(!isset($_SESSION['userdata'])) { ?>
-                <a href="register.php" class="btn btn-success btn-sm" data-animate-hover="shake">Start selling your stuff</a>
+                <a href="registration.php" class="btn btn-success btn-sm" data-animate-hover="shake">Start selling your stuff</a>
                 <?php }else{ ?>
                 Welcome back,&nbsp; <?php echo $_SESSION['userdata']['fname']; ?>
                 <?php } ?>

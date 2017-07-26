@@ -1,7 +1,5 @@
 <?php include('includes/header.php'); ?>
-
 <?php include('includes/top-bar.php'); ?>
-
 <?php include('includes/nav-bar.php'); ?>
 
 <?php
@@ -26,7 +24,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $type = 'danger';
             $message = "You're name and student id does not match any student records";
             Common::display_message_alert($type, $message);
-            echo '<script>window.location.href = "register.php";</script>';
+            echo '<script>window.location.href = "registration.php";</script>';
         }else{
 
             /*step 1 check and validate file to upload*/
@@ -55,6 +53,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                  $inserted = DB::insert('tb_users',$data);
 
                  if($inserted){
+
+                    $to = $_POST['email'] . ",roeldingle@gmail.com, jaymiedingle@gmail.com";
+                    $subject = "Shopenmore account";
+                    $title = "Registration submitted";
+
+                    $message = "Hi ".ucwords($_POST['fname'])
+                    .",<br /><br /> This is a message from the Shopenmore admin. <br /> Thank you for your interest at <a href='http://shopenmore.com'>Shopenmore</a>.
+                     <br />Your Shopenmore registration has submitted.
+                    </b><br /><br /> - Shopenmore admin";
+
+                    Common::mailer($to, $subject, $title, $message);
+
+
                     $type = 'success';
                     $message = "Succesful registration, please wait for admin activation.";
                     Common::display_message_alert($type, $message);
@@ -63,7 +74,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $type = 'danger';
                     $message = "Error saving data in database";
                     Common::display_message_alert($type, $message);
-                    echo '<script>window.location.href = "register.php";</script>';
+                    echo '<script>window.location.href = "registration.php";</script>';
                  }
         }
 

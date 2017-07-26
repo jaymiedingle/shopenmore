@@ -40,8 +40,7 @@ class Common{
 	public function student_checker($data){
 
 		$is_student = DB::queryFirstRow("SELECT * FROM tb_student
-		 WHERE is_active = 1
-		  AND id=%s 
+		  WHERE id=%s 
 		  AND fname=%s
 		  AND lname=%s", 
 		  $data['student_id'], $data['fname'], $data['lname']);
