@@ -31,7 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
               'student_id' => $_POST['student_id'],
               'email' => $_POST['email'],
               'fname' => $_POST['fname'],
-              'mname' => $_POST['mname'],
+              // 'mname' => $_POST['mname'],
               'lname' => $_POST['lname'],
               'contact' => $_POST['contact'],
               'password' => md5($_POST['password']),
@@ -114,10 +114,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <input type="text" class="form-control" id="fname" name="fname" required>
                             </div>
 
-                            <div class="form-group">
-                                <label for="mname">Middle name</label>
-                                <input type="text" class="form-control" id="mname" name="mname" required>
-                            </div>
+                            <!-- <div class="form-group"> -->
+                                <!-- <label for="mname">Middle name</label> -->
+                                <!-- <input type="text" class="form-control" id="mname" name="mname" required> -->
+                            <!-- </div> -->
 
                             <div class="form-group">
                                 <label for="lname">Last name</label>

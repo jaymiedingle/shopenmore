@@ -10,7 +10,7 @@ $profile = $_SESSION['admindata'];
 /*pagination data*/
 $limit = 10;
 $current_page = isset($_GET['page']) ? $_GET['page'] : 0;
-DB::query("SELECT * FROM tb_users WHERE is_active = 1");
+DB::query("SELECT * FROM tb_users");
 $total_count = DB::count();
 $pages_count = ceil($total_count / $limit);
 $offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
@@ -19,7 +19,7 @@ $offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
 $users = DB::queryFullColumns("SELECT * FROM tb_users
            LEFT JOIN tb_user_role 
            ON tb_users.user_role_id = tb_user_role.id 
-           WHERE tb_users.id != %i LIMIT $offset,$limit", $profile['id']);
+           WHERE tb_users.id != %i ORDER BY date_reg DESC LIMIT $offset,$limit", $profile['id']);
 
 
 ?>

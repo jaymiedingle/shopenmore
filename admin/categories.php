@@ -17,7 +17,7 @@ $pages_count = ceil($total_count / $limit);
 $offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
 
 //get users of user
-$categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1 LIMIT $offset,$limit");
+$categories = DB::query("SELECT * FROM tb_item_category WHERE is_active = 1 ORDER BY id DESC LIMIT $offset,$limit");
 
 
 ?>

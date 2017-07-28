@@ -99,9 +99,10 @@ $item = DB::queryFullColumns("SELECT * FROM tb_items
                                 
                                 <p class="goToDescription">
                                     <a href="#details" class="scroll-to">
+                                        <img style="height:80px;width:80px;border-radius:50%" src="admin/uploads/users/<?php echo $item['tb_users.image_url'];?>"><br />
                                         by <?php echo $item['tb_users.fname'];?> <?php echo $item['tb_users.lname'];?> <br >ID# <?php echo $item['tb_users.student_id'];?>
-                                        <br /><br />
-                                        <img style="height:80px;width:80px;border-radius:50%" src="admin/uploads/users/<?php echo $item['tb_users.image_url'];?>">
+                                        <br />Joined <?php echo date('M d, Y', strtotime($item['tb_users.date_reg']));?><br />
+                                        
                                          
                                     </a>
                                 </p>

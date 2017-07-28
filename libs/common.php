@@ -14,7 +14,7 @@ class Common{
 	    
 	        // Verify file extension
 	        $ext = pathinfo($filename, PATHINFO_EXTENSION);
-	        if(!array_key_exists($ext, $allowed)) die("Error: Please select a valid file format.");
+	        if(!array_key_exists(strtolower($ext), $allowed)) die("Error: Please select a valid file format.");
 	    
 	        // Verify file size - 5MB maximum
 	        $maxsize = 5 * 1024 * 1024;
@@ -30,6 +30,7 @@ class Common{
 	    } else {
 	        return false;
 	    }
+	   
 	}
 
 	public function display_message_alert($type, $message){
@@ -49,7 +50,7 @@ class Common{
 	}
 
 
-	public function pagination($current_page, $pages_count){
+		public function pagination($current_page, $pages_count){
 
 		$current_page = ($current_page == 0) ? 1 : $current_page;
 
@@ -87,4 +88,5 @@ class Common{
 		return $html;
 
 	}
+
 }

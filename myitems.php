@@ -17,7 +17,7 @@ $profile = $_SESSION['userdata'];
 /*pagination data*/
 $limit = 10;
 $current_page = isset($_GET['page']) ? $_GET['page'] : 0;
-DB::query("SELECT * FROM tb_banners WHERE is_active = 1");
+DB::query("SELECT * FROM tb_items WHERE user_id = %i", $profile['id']);
 $total_count = DB::count();
 $pages_count = ceil($total_count / $limit);
 $offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
@@ -73,7 +73,7 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                         <h1>My Items</h1>
                         <a href="additem.php" class="btn btn-success pull-right"><i class="fa fa-plus" aria-hidden="true"></i> Add new</a>
 
-                        <p class="lead">Your orders on one place.</p>
+                        <p class="lead">Your Products on one place.</p>
 
                         <hr>
 
@@ -118,11 +118,13 @@ $items = DB::queryFullColumns("SELECT * FROM tb_items
                             </table>
                         </div>
 
-                        <!--pagination-->
+                         <!--pagination-->
                         <div class="pages">
                             <?php echo Common::pagination($current_page, $pages_count); ?>
                         </div>
                         <!--end pagination-->
+
+
                     
                     </div>
 

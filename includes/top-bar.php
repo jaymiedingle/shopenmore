@@ -65,7 +65,7 @@
                         <a href="#" data-toggle="modal" data-target="#login-modal" style="font-size:14px">Login</a>
                     </li>
                     <li>
-                        <a href="register.php" style="font-size:14px">Register</a>
+                        <a href="registration.php" style="font-size:14px">Register</a>
                     </li>
 
                     <?php } ?>

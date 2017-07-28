@@ -32,13 +32,14 @@
                         <!--loop category-->
                         <?php foreach($item_categories as $key=>$category){ ?>
                         <div class="col-sm-4">
-                            <div class="box same-height clickable">
+                            <div class="box home-categories same-height clickable">
                                 <!-- <div class="icon">
                                     <i class="fa fa-desktop"></i>
                                 </div> -->
 
                                 <h3><a href="category.php?id=<?php echo $category['id']; ?>"><?php echo $category['name']; ?></a></h3>
-                                <img style="height:140px;width:80%" src="admin/uploads/category/<?php echo $category['image_url']; ?>">
+                                <img src="admin/uploads/category/<?php echo $category['image_url']; ?>">
+                                <div class="overlay"></div>
                             </div>
                         </div>
                         <?php } ?>
