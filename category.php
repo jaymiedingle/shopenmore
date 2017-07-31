@@ -6,12 +6,21 @@
 
 <?php
 
- $get_category_id = isset($_GET['id']) ?  $_GET['id'] : 'No Category set';
+$get_category_id = isset($_GET['id']) ?  $_GET['id'] : 'No Category set';
 
 //get site info from database
 $category = DB::queryFirstRow("SELECT * FROM tb_item_category WHERE id=%s", $get_category_id);
 
-$category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id = " . $category['id']);
+
+/*pagination data*/
+$limit = 1;
+$current_page = isset($_GET['page']) ? $_GET['page'] : 0;
+DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id = " . $category['id']);
+$total_count = DB::count();
+$pages_count = ceil($total_count / $limit);
+$offset = ($current_page == 0) ? 0 : ($current_page - 1) * $limit;
+
+$category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item_category_id = " . $category['id'] . " ORDER BY id DESC LIMIT $offset, $limit");
 
 
 
@@ -79,10 +88,19 @@ $category_items = DB::query("SELECT * FROM tb_items WHERE is_active = 1 AND item
                         </div>
                         <?php } ?>
 
+
+                        
+
                        
 
                     </div>
                     <!-- /.products -->
+
+                    <!--pagination-->
+                    <div class="pages">
+                        <?php echo Common::pagination($current_page, $pages_count); ?>
+                    </div>
+                    <!--end pagination-->
 
                 </div>
                 <!-- /.col-md-9 -->

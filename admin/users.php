@@ -53,7 +53,7 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                                     <tr>
                                         <th>#</th>
                                         <th>Role</th>
-                                        <th>Stud#</th>
+                                        
                                         <th>Email</th>
                                         <th>Name</th>
                                         <th>Activate</th>
@@ -69,9 +69,9 @@ $users = DB::queryFullColumns("SELECT * FROM tb_users
                                                 <?php echo ucwords($user['tb_user_role.name']); ?>
                                             </span>
                                         </td>
-                                        <td>
+                                       <!-- <td>
                                             <?php echo ucwords($user['tb_users.student_id']); ?>
-                                        </td>
+                                        </td>-->
                                         <td>
                                             <a href="userdetails.php?id=<?php echo $user['tb_users.id']; ?>">
                                                 <?php echo $user['tb_users.email']; ?>

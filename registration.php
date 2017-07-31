@@ -18,11 +18,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
      /**Check if student**/
-        $is_student = Common::student_checker($_POST);
+       // $is_student = Common::student_checker($_POST);
+        $check_if_email_exist = DB::query("SELECT * FROM tb_users WHERE email = %s", $_POST['email']);
+        $count_email_found = DB::count();
 
-        if(!$is_student){
+        if($count_email_found > 0){
             $type = 'danger';
-            $message = "You're name and student id does not match any student records";
+            $message = "email already been used.";
             Common::display_message_alert($type, $message);
             echo '<script>window.location.href = "registration.php";</script>';
         }else{
@@ -38,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                   $is_active = 0; //flag for active users
 
                   $data = array(
-                      'student_id' => $_POST['student_id'],
+                     // 'student_id' => $_POST['student_id'],
                       'email' => $_POST['email'],
                       'fname' => $_POST['fname'],
                       'lname' => $_POST['lname'],
@@ -50,20 +52,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     );
 
                   //insert data in database
-                 $inserted = DB::insert('tb_users',$data);
+                  $inserted = DB::insert('tb_users',$data);
 
                  if($inserted){
 
-                    $to = $_POST['email'] . ",roeldingle@gmail.com, jaymiedingle@gmail.com";
-                    $subject = "Shopenmore account";
-                    $title = "Registration submitted";
+                    // $to = $_POST['email'] . ",roeldingle@gmail.com, jaymiedingle@gmail.com";
+                    // $subject = "Shopenmore account";
+                    // $title = "Registration submitted";
 
-                    $message = "Hi ".ucwords($_POST['fname'])
-                    .",<br /><br /> This is a message from the Shopenmore admin. <br /> Thank you for your interest at <a href='http://shopenmore.com'>Shopenmore</a>.
-                     <br />Your Shopenmore registration has submitted.
-                    </b><br /><br /> - Shopenmore admin";
+                    // $message = "Hi ".ucwords($_POST['fname'])
+                    // .",<br /><br /> This is a message from the Shopenmore admin. <br /> Thank you for your interest at <a href='http://shopenmore.com'>Shopenmore</a>.
+                    //  <br />Your Shopenmore registration has submitted.
+                    // </b><br /><br /> - Shopenmore admin";
 
-                    Common::mailer($to, $subject, $title, $message);
+                    // Common::mailer($to, $subject, $title, $message);
 
 
                     $type = 'success';
@@ -74,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $type = 'danger';
                     $message = "Error saving data in database";
                     Common::display_message_alert($type, $message);
-                    echo '<script>window.location.href = "registration.php";</script>';
+                   // echo '<script>window.location.href = "registration.php";</script>';
                  }
         }
 
@@ -123,10 +125,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <img id="image" style="width:40%;height:20%" class="img-thumbnail form-thumbnail"  src="images/default.png"><br />
                             </div>
 
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label for="student_id">Student ID</label>
                                 <input type="text" class="form-control" id="student_id" name="student_id" required>
-                            </div>
+                            </div>-->
                             
                             <div class="form-group">
                                 <label for="email">Email</label>

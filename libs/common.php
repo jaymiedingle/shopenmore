@@ -38,21 +38,28 @@ class Common{
         $_SESSION['error_message'] = $message;
 	}
 
-	public function student_checker($data){
+	// public function student_checker($data){
 
-		$is_student = DB::queryFirstRow("SELECT * FROM tb_student
-		  WHERE id=%s 
-		  AND fname=%s
-		  AND lname=%s", 
-		  $data['student_id'], $data['fname'], $data['lname']);
+		// $is_student = DB::queryFirstRow("SELECT * FROM tb_student
+		  //  WHERE id=%s 
+		  //AND lname=%s", 
+		  //$data['student_id'],$data['lname']);
 
-		return $is_student;
-	}
+		//return $is_student;
+	//}
 
 
-		public function pagination($current_page, $pages_count){
+	public function pagination($current_page, $pages_count){
 
 		$current_page = ($current_page == 0) ? 1 : $current_page;
+
+		$current_page = ($current_page == 0) ? 1 : $current_page;
+
+		if(isset($_GET['id'])){
+			$paginate_url = "?id=".$_GET['id']."&page=";
+		}else{
+			$paginate_url = "?page=";
+		}
 
 		$html = '';
 
@@ -61,7 +68,7 @@ class Common{
 			$html .= '<ul class="pagination">';
 
 			if(($current_page - 1) > 0){
-				$html .= '<li><a href="?page='.($current_page - 1).'">«</a>';
+				$html .= '<li><a href="'.$paginate_url.($current_page - 1).'">«</a>';
 			}
 			
 			$html .= '</li>';
@@ -70,14 +77,14 @@ class Common{
 				$html .= '<li class="';
 				$html .= ($current_page == $i) ? 'active' : '';
 				$html .= '">';
-				$html .= '<a href="?page='.$i.'">'.$i;
+				$html .= '<a href="'.$paginate_url.$i.'">'.$i;
 				$html .= '</a>';
 				$html .= '</li>';
 			}
 
 
 			if(($current_page + 1) <= $pages_count){
-				$html .= '<li><a href="?page='.($current_page + 1).'">»</a>';
+				$html .= '<li><a href="'.$paginate_url.($current_page + 1).'">»</a>';
 			}
 
 			$html .= '</li>';
